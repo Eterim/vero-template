@@ -7,8 +7,9 @@ Facturas, recibos e notas angolanas desenhadas em **React** e **Tailwind CSS** -
 Site e documentação: https://eterim.github.io/vero-template/ · [English](README.md)
 
 ```bash
-npm install @veroao/invoice react
+npx @veroao/invoice init       # projecto novo com um modelo de partida
 npx @veroao/invoice dev        # pré-visualização ao vivo dos teus modelos
+npx @veroao/invoice check      # verificações da AGT e de segurança
 ```
 
 - `apps/site` - site (landing, galeria de modelos, documentação)

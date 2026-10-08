@@ -7,8 +7,9 @@ Angolan invoices, receipts and credit/debit notes designed with **React** and **
 Website and docs (Portuguese): https://eterim.github.io/vero-template/ · [Português](README.pt.md)
 
 ```bash
-npm install @veroao/invoice react
+npx @veroao/invoice init       # new project with a starter template
 npx @veroao/invoice dev        # live preview of your templates
+npx @veroao/invoice check      # AGT and safety checks
 ```
 
 - `apps/site` - website (landing page, template gallery, documentation)

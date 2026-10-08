@@ -8,6 +8,8 @@ Funciona sem o Vero: desenhas o modelo, passas os teus dados e recebes o PDF.
 > Em desenvolvimento (0.x). A API pode mudar até à 1.0.
 
 ```bash
+npx @veroao/invoice init       # projecto novo com um modelo de partida
+# ou, num projecto que já existe:
 npm install @veroao/invoice react
 ```
 
@@ -53,6 +55,15 @@ o modelo pronto a importar.
 
 Não precisa de nada instalado no projecto: o React e a biblioteca vêm com a CLI.
 Outra pasta ou porta: `npx @veroao/invoice dev modelos --port 3300`.
+
+## Verificar
+
+```bash
+npx @veroao/invoice check
+```
+
+Faz o que o Vero e a galeria verificam a cada modelo da pasta: compila, desenha os cinco tipos de documento
+sem avisos da AGT e não tem dados fiscais ou de pagamento escritos à mão. Termina com código 1 se houver problemas.
 
 ## PDF
 

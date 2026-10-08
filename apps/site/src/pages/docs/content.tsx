@@ -68,7 +68,11 @@ export const DOC_PAGES: DocPage[] = [
     render: () => (
       <>
         <PageTitle eyebrow="Começar" lead="Node.js 18 ou mais recente e React 18 ou 19.">Instalação</PageTitle>
-        <Code className="mt-8" file="terminal" code="npm install @veroao/invoice react" copyable />
+        <H2>Projecto novo</H2>
+        <Code className="mt-5" file="terminal" code="npx @veroao/invoice init" copyable />
+        <P>Cria a pasta <C>vero-invoice</C> com o <C>package.json</C>, o <C>tsconfig.json</C> e um modelo de partida em <C>templates/invoice.tsx</C>. Depois: <C>cd vero-invoice</C>, <C>npm install</C> e <C>npm run dev</C>. Outra pasta: <C>npx @veroao/invoice init minhas-facturas</C>.</P>
+        <H2>Num projecto que já existe</H2>
+        <Code className="mt-5" file="terminal" code="npm install @veroao/invoice react" copyable />
         <P>Para só veres os modelos ao vivo, não precisas de instalar nada: <C>npx @veroao/invoice dev</C> traz a sua própria cópia do React e da biblioteca. Ver <A to="/docs/ver-ao-vivo">Ver ao vivo</A>.</P>
         <H2>TypeScript</H2>
         <P>Os tipos vêm no pacote. Usa <C>{'"jsx": "react-jsx"'}</C> no <C>tsconfig.json</C>:</P>
@@ -138,6 +142,9 @@ function Parties() {
           [<C>--version</C>, '', 'Versão.'],
         ]} />
         <Code className="mt-5" file="terminal" code="npx @veroao/invoice dev modelos --port 3300" />
+        <H2>Verificar antes de publicar</H2>
+        <Code className="mt-5" file="terminal" code="npx @veroao/invoice check" copyable />
+        <P>Faz as verificações do Vero e da galeria a todos os modelos da pasta: compilam, desenham os cinco tipos de documento sem avisos da AGT e não têm dados fiscais ou de pagamento escritos à mão (IBAN, telefones, NIF, ligações, e-mails, menções de certificação). Termina com erro se algum falhar - dá para usar na tua CI.</P>
       </>
     ),
   },
@@ -309,11 +316,14 @@ const template = compile(<MyInvoice />)   // só aspecto, sem código`} />
           <li>Faz fork de <A to={LINKS.github}>Eterim/vero-template</A> e cria <C>{'templates/<nome>/'}</C> com <C>meta.json</C> e <C>modelo.tsx</C>.</li>
           <li>Vê-o com <C>npx @veroao/invoice dev templates</C>.</li>
           <li>Gera o JSON e as imagens com <C>npm run templates -w packages/invoice -- {'<nome>'}</C>.</li>
-          <li>Abre o pull request.</li>
+          <li>Verifica com <C>npm run check:templates -w packages/invoice -- {'<nome>'}</C> - é o que a CI corre.</li>
+          <li>Abre o pull request. A CI repete as verificações e alguém da equipa revê o modelo.</li>
         </Ul>
         <H2>Regras</H2>
         <Ul>
           <li>Todos os elementos obrigatórios da AGT presentes.</li>
+          <li>No <C>meta.json</C>, o teu utilizador do GitHub em <C>author.name</C> e <C>"collection": "comunidade"</C>. Ao alterar um modelo, sobe a <C>version</C>.</li>
+          <li>Nada de números de conta, telefones, NIF, ligações, e-mails ou menções fiscais escritos no modelo - vêm sempre dos dados da empresa e dos componentes.</li>
           <li>Sem logótipo, nome ou dados de uma empresa real - o logótipo vem da empresa que usar o modelo.</li>
           <li>Licença MIT.</li>
         </Ul>

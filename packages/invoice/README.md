@@ -8,6 +8,8 @@ Works without Vero: design the template, pass your data, get a PDF.
 > In development (0.x). The API may change until 1.0. Messages and document labels are in Portuguese, the language of the documents.
 
 ```bash
+npx @veroao/invoice init       # new project with a starter template
+# or, in an existing project:
 npm install @veroao/invoice react
 ```
 
@@ -53,6 +55,15 @@ ready to import.
 
 Nothing needs to be installed in your project: React and the library come with the CLI.
 Another folder or port: `npx @veroao/invoice dev modelos --port 3300`.
+
+## Checking
+
+```bash
+npx @veroao/invoice check
+```
+
+Runs what Vero and the gallery check on every template in the folder: it compiles, renders all five document
+types without AGT warnings, and has no fiscal or payment data written by hand. Exits with code 1 on problems.
 
 ## PDF
 
