@@ -265,11 +265,11 @@ const template = compile(<MyInvoice />)   // só aspecto, sem código`} />
 }`} />
         <H2>No dashboard</H2>
         <Ul>
-          <li>Nas definições dos templates do dashboard, colas o JSON.</li>
+          <li>Na página do template, carrega em <strong className="text-zinc-200">Abrir no Vero</strong>: o dashboard abre a importação já preenchida. Também podes colar o JSON em Definições → Template de facturas → Importar.</li>
           <li>O Vero valida-o e mostra-o com os dados da tua empresa.</li>
           <li>Ao aplicares, as próximas emissões usam o template. Os documentos já emitidos não mudam.</li>
         </Ul>
-        <Callout>A importação no dashboard e o botão "Abrir no Vero" estão a chegar.</Callout>
+        <Callout>Importar templates é do plano Pro do Vero.</Callout>
       </>
     ),
   },

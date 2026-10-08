@@ -103,19 +103,20 @@ function Sidebar({ t }: { t: Template }) {
       <div className="border border-zinc-800 bg-zinc-950 p-5">
         <h2 className="flex items-center gap-2 text-sm font-bold"><FileText className="size-4 text-sky-400" /> Usar no Vero</h2>
         <ol className="mt-4 space-y-3 text-[13px] leading-snug text-zinc-400">
-          {['Copia o JSON deste template.', 'No Vero: Definições → Templates → Importar.', 'Cola o JSON. O Vero valida e mostra a factura com os teus dados.', 'Aplica. A certificação e os dados reais entram em cada factura.'].map((s, i) => (
+          {['Carrega em Abrir no Vero (ou copia o JSON e cola em Definições → Template de facturas → Importar).', 'O Vero valida o template e mostra a factura com os dados da tua empresa.', 'Carrega em Importar e usar. A certificação e os dados reais entram em cada factura.'].map((s, i) => (
             <li key={i} className="flex gap-3">
               <span className="flex size-5 shrink-0 items-center justify-center rounded-full border border-zinc-700 font-mono text-[10px] text-zinc-400">{i + 1}</span>{s}
             </li>
           ))}
         </ol>
         <div className="mt-5 flex flex-col gap-2">
+          <a href={LINKS.openInVero(t.slug)} target="_blank" rel="noopener"
+            className="inline-flex h-10 items-center justify-center gap-2 bg-white px-4 text-sm font-black text-black hover:bg-zinc-200">
+            Abrir no Vero <ArrowRight className="size-4" />
+          </a>
           <CopyJsonButton t={t} />
-          <span title="Chega com a importação no dashboard do Vero"
-            className="inline-flex h-10 cursor-not-allowed items-center justify-center gap-2 bg-white/90 px-4 text-sm font-black text-black/60">
-            Abrir no Vero <ArrowRight className="size-4" /> <span className="font-mono text-[10px] font-normal">em breve</span>
-          </span>
         </div>
+        <p className="mt-3 text-[12px] leading-snug text-zinc-500">Importar templates é do plano Pro do Vero.</p>
       </div>
       <div className="border border-zinc-800 bg-zinc-950 p-5">
         <h2 className="flex items-center gap-2 text-sm font-bold"><Code2 className="size-4 text-sky-400" /> No teu projecto</h2>
