@@ -24,7 +24,9 @@ for (const page of PAGES) {
     .replace(/(<meta property="og:description" content=")[^"]*(")/, `$1${esc(page.description)}$2`)
     .replace('</head>', `    <link rel="canonical" href="${url}" />\n  </head>`)
     .replace('<div id="root"></div>', `<div id="root">${render(page.path)}</div>`)
-  const out = page.path === '/' ? join(dist, 'index.html') : join(dist, page.path, 'index.html')
+  // /templates/x -> templates/x.html: o GitHub Pages serve-o em /templates/x sem redireccionar
+  // para /templates/x/ (o que aconteceria com templates/x/index.html).
+  const out = page.path === '/' ? join(dist, 'index.html') : join(dist, `${page.path}.html`)
   mkdirSync(dirname(out), { recursive: true })
   writeFileSync(out, html)
 }
