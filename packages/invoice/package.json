@@ -1,6 +1,6 @@
 {
   "name": "@veroao/invoice",
-  "version": "0.4.2",
+  "version": "0.4.3",
   "description": "Facturas, recibos e notas angolanas em React e Tailwind CSS - com as regras da AGT incluídas",
   "type": "module",
   "main": "./dist/index.js",

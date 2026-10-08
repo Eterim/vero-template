@@ -22,7 +22,9 @@ export function init({ dir = 'vero-invoice', version }: InitOptions): string {
     }, null, 2) + '\n',
     'tsconfig.json': JSON.stringify({
       compilerOptions: { target: 'ES2022', module: 'ESNext', moduleResolution: 'Bundler', jsx: 'react-jsx', strict: true, noEmit: true, skipLibCheck: true },
-      include: ['templates'],
+      // Sem "include": o tsconfig vale para o projecto todo (templates/ e, por exemplo, o
+      // script que gera o PDF com render()) - só com templates/ o JSX fora dela falhava.
+      exclude: ['node_modules'],
     }, null, 2) + '\n',
     '.gitignore': 'node_modules\n',
     'README.md': README,

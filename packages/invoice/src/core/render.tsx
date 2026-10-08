@@ -271,19 +271,20 @@ function Totals({ b }: { b: Extract<Block, { type: 'totals' }> }) {
     <Box style={b.style} wrap={false}>
       {b.title && <Box style={b.titleStyle ?? 'label'}><Text>{b.title}</Text></Box>}
       {rows.map(([k, v]) => (
-        <View key={k} style={{ flexDirection: 'row', justifyContent: 'space-between', ...(rule ? { paddingVertical: 6, borderBottomWidth: 0.4, borderBottomColor: rule } : { marginBottom: 6 }) }}>
+        <View key={k} style={{ flexDirection: 'row', justifyContent: 'space-between', ...(totalBg ? { paddingHorizontal: 8 } : {}), ...(rule ? { paddingVertical: 6, borderBottomWidth: 0.4, borderBottomColor: rule } : { marginBottom: 6 }) }}>
           <FiscalText element="Os totais">{k}</FiscalText>
           <FiscalText element="Os totais">{v}</FiscalText>
         </View>
       ))}
       <Box style={totalBg || b.totalColor ? { background: b.totalBackground, color: b.totalColor } : undefined}
         extra={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', paddingTop: 8, paddingBottom: totalBg ? 8 : 0, marginTop: rule ? 0 : 4,
-          ...(totalBg ? { marginHorizontal: -8, paddingHorizontal: 8 } : { borderTopWidth: 1, borderTopColor: color(t, b.ruleColor) ?? t.theme.colors.foreground }) }}>
+          // A barra do total fica dentro da coluna (antes saía 8 pt para cada lado e passava a margem).
+          ...(totalBg ? { paddingHorizontal: 8 } : { borderTopWidth: 1, borderTopColor: color(t, b.ruleColor) ?? t.theme.colors.foreground }) }}>
         <FiscalText element="O total" style={{ weight: 700 }}>{b.totalLabel ?? (paid ? 'TOTAL PAGO' : 'TOTAL A PAGAR')}</FiscalText>
         <FiscalText element="O total" style={b.totalStyle ?? { weight: 700, size: 16 }}>{m(tot.total)}</FiscalText>
       </Box>
       {wht && (
-        <View style={{ flexDirection: 'row', justifyContent: 'space-between', paddingTop: 6 }}>
+        <View style={{ flexDirection: 'row', justifyContent: 'space-between', paddingTop: 6, ...(totalBg ? { paddingHorizontal: 8 } : {}) }}>
           <FiscalText element="Os totais" style={{ weight: 700 }}>Valor líquido a pagar</FiscalText>
           <FiscalText element="Os totais" style={{ weight: 700 }}>{m(tot.total - wht.amount)}</FiscalText>
         </View>

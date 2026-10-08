@@ -2,6 +2,7 @@ import { useCallback, useEffect, useRef, useState } from 'react'
 import { AlertCircle, Braces, Check, Code2, Copy, Download, Eye, FileText, ListChecks, LoaderCircle, Radio, ShieldCheck, TriangleAlert } from 'lucide-react'
 import type { RenderWarning, TemplateV2 } from '../../src/core/types'
 import { downloadPdf, renderPages, type DocType } from './render'
+import { highlight } from './highlight'
 
 interface Item { name: string; file: string }
 interface Loaded { name: string; file: string; source: string; template?: TemplateV2; errors?: { component?: string; message: string }[]; ms: number }
@@ -59,8 +60,8 @@ function Pages({ template, docType, onWarnings, onMs }: { template: TemplateV2; 
   )
 }
 
-function Source({ text }: { text: string }) {
-  return <pre className="h-full overflow-auto p-6 font-mono text-[12.5px] leading-relaxed text-zinc-300">{text}</pre>
+function Source({ text, lang }: { text: string; lang: 'tsx' | 'json' }) {
+  return <pre className="h-full overflow-auto p-6 font-mono text-[12.5px] leading-relaxed text-zinc-300"><code>{highlight(text, lang)}</code></pre>
 }
 
 export default function App() {
@@ -176,8 +177,8 @@ export default function App() {
         <div className="min-h-0 flex-1 bg-[radial-gradient(circle_at_50%_0%,#111113,#000_70%)]">
           {view === 'preview' && template && <Pages template={template} docType={docType} onWarnings={setWarnings} onMs={onMs} />}
           {view === 'preview' && !template && !errors.length && <p className="p-10 text-center font-mono text-sm text-zinc-600">// a carregar…</p>}
-          {view === 'code' && loaded && <Source text={loaded.source} />}
-          {view === 'json' && template && selected && <Source text={importJson(selected, template)} />}
+          {view === 'code' && loaded && <Source text={loaded.source} lang="tsx" />}
+          {view === 'json' && template && selected && <Source text={importJson(selected, template)} lang="json" />}
         </div>
 
         {/* o que falta / avisos */}
