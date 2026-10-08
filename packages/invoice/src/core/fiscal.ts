@@ -28,7 +28,7 @@ export interface FiscalCheck {
 
 /**
  * Verifica os elementos fiscais. Com `insert` (por omissão, e sempre num documento emitido),
- * os que faltam são acrescentados. Sem `insert` (o editor), o modelo fica como está e cada
+ * os que faltam são acrescentados. Sem `insert` (o editor), o template fica como está e cada
  * aviso traz o bloco para o editor o acrescentar com um clique.
  */
 export function ensureFiscalBlocks(template: TemplateV2, opts: { insert?: boolean } = {}): FiscalCheck {
@@ -52,7 +52,7 @@ export function ensureFiscalBlocks(template: TemplateV2, opts: { insert?: boolea
   const tail: Block[] = []
   for (const f of FISCAL_BLOCKS) {
     const key = f.role ? `party:${f.role}` : f.type
-    if ((counts.get(key) ?? 0) > 1) warnings.push({ kind: 'duplicate', element: f.element, message: `${f.element}: aparece mais de uma vez no modelo - deve aparecer só uma.` })
+    if ((counts.get(key) ?? 0) > 1) warnings.push({ kind: 'duplicate', element: f.element, message: `${f.element}: aparece mais de uma vez no template - deve aparecer só uma.` })
     if (found.has(key)) continue
     const block = (f.role ? { type: 'party', role: f.role } : { type: f.type }) as Block
     const atStart = ['documentTitle', 'documentNumber', 'documentDate', 'party'].includes(f.type)
@@ -61,7 +61,7 @@ export function ensureFiscalBlocks(template: TemplateV2, opts: { insert?: boolea
     warnings.push({
       kind: 'missing', element: f.element,
       message: insert
-        ? `${f.element}: elemento obrigatório que não estava no modelo - o Vero acrescentou-o ${atStart ? 'no início' : 'no fim'} do documento.`
+        ? `${f.element}: elemento obrigatório que não estava no template - o Vero acrescentou-o ${atStart ? 'no início' : 'no fim'} do documento.`
         : `${f.element}: obrigatório em todos os documentos.`,
       fix: { label: 'Acrescentar', addBlock: block, atStart },
     })
@@ -74,7 +74,7 @@ export function ensureFiscalBlocks(template: TemplateV2, opts: { insert?: boolea
     warnings.push({
       kind: 'missing', element: 'As menções legais',
       message: insert
-        ? `As menções legais (${detail}): elemento obrigatório que não estava no modelo - o Vero acrescentou-o no fim do documento.`
+        ? `As menções legais (${detail}): elemento obrigatório que não estava no template - o Vero acrescentou-o no fim do documento.`
         : `As menções legais (${detail}): obrigatórias em todos os documentos.`,
       fix: { label: 'Acrescentar', addBlock: tail[tail.length - 1], atStart: false },
     })

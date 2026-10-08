@@ -43,22 +43,22 @@ export const DOC_PAGES: DocPage[] = [
     render: () => (
       <>
         <PageTitle eyebrow="Começar" lead="Desenha facturas, recibos e notas em React e Tailwind CSS. A biblioteca trata das regras da AGT; o aspecto é teu.">Introdução</PageTitle>
-        <P><C>@veroao/invoice</C> é uma biblioteca open source para desenhar os documentos fiscais angolanos - factura (FT), factura-recibo (FR), nota de crédito (NC), nota de débito (ND) e recibo (RC) - com componentes React e classes do Tailwind. Funciona sozinha: passas os dados do documento e recebes o PDF. E funciona com o Vero: o modelo importa-se no dashboard e passa a ser usado em todas as emissões.</P>
+        <P><C>@veroao/invoice</C> é uma biblioteca open source para desenhar os documentos fiscais angolanos - factura (FT), factura-recibo (FR), nota de crédito (NC), nota de débito (ND) e recibo (RC) - com componentes React e classes do Tailwind. Funciona sozinha: passas os dados do documento e recebes o PDF. E funciona com o Vero: o template importa-se no dashboard e passa a ser usado em todas as emissões.</P>
         <H2>Como funciona</H2>
         <Ul>
-          <li>Escreves o modelo em React: <C>{'<Document>'}</C>, <C>{'<Items>'}</C>, <C>{'<Totals>'}</C>… com <C>className</C> como numa página web.</li>
+          <li>Escreves o template em React: <C>{'<Document>'}</C>, <C>{'<Items>'}</C>, <C>{'<Totals>'}</C>… com <C>className</C> como numa página web.</li>
           <li><C>compile()</C> corre o React uma vez e devolve um JSON só com o aspecto - sem código.</li>
-          <li><C>render()</C> junta esse modelo aos dados do documento e desenha o PDF.</li>
+          <li><C>render()</C> junta esse template aos dados do documento e desenha o PDF.</li>
           <li>No Vero, colas o JSON nas definições: o Vero valida-o, mostra-o com os dados da empresa e usa-o ao emitir.</li>
         </Ul>
         <H2>Porquê componentes fiscais</H2>
-        <P>Os componentes já sabem o que é uma factura. <C>{'<Customer />'}</C> mostra o nome, o NIF, a morada e escreve "Consumidor final" quando não há NIF; <C>{'<Items />'}</C> mostra o código de isenção nas linhas sem IVA; <C>{'<LegalNotes />'}</C> traz o ATCUD, o texto legal e a menção do programa certificado. O modelo decide onde ficam e com que aspecto - nunca o conteúdo.</P>
-        <Callout>O código QR da AGT não é um componente: fica sempre no canto inferior direito da última página, em todos os modelos. Ver <A to="/docs/regras-agt">Regras da AGT</A>.</Callout>
+        <P>Os componentes já sabem o que é uma factura. <C>{'<Customer />'}</C> mostra o nome, o NIF, a morada e escreve "Consumidor final" quando não há NIF; <C>{'<Items />'}</C> mostra o código de isenção nas linhas sem IVA; <C>{'<LegalNotes />'}</C> traz o ATCUD, o texto legal e a menção do programa certificado. O template decide onde ficam e com que aspecto - nunca o conteúdo.</P>
+        <Callout>O código QR da AGT não é um componente: fica sempre no canto inferior direito da última página, em todos os templates. Ver <A to="/docs/regras-agt">Regras da AGT</A>.</Callout>
         <H2>Próximos passos</H2>
         <Ul>
-          <li><A to="/docs/instalacao">Instalar</A> e escrever <A to="/docs/primeiro-modelo">o primeiro modelo</A>.</li>
+          <li><A to="/docs/instalacao">Instalar</A> e escrever <A to="/docs/primeiro-template">o primeiro template</A>.</li>
           <li>Ver os <A to="/componentes">componentes</A>, cada um com exemplos.</li>
-          <li>Partir de um dos <A to="/modelos">modelos da galeria</A>.</li>
+          <li>Partir de um dos <A to="/templates">templates da galeria</A>.</li>
         </Ul>
       </>
     ),
@@ -70,10 +70,10 @@ export const DOC_PAGES: DocPage[] = [
         <PageTitle eyebrow="Começar" lead="Node.js 18 ou mais recente e React 18 ou 19.">Instalação</PageTitle>
         <H2>Projecto novo</H2>
         <Code className="mt-5" file="terminal" code="npx @veroao/invoice init" copyable />
-        <P>Cria a pasta <C>vero-invoice</C> com o <C>package.json</C>, o <C>tsconfig.json</C> e um modelo de partida em <C>templates/invoice.tsx</C>. Depois: <C>cd vero-invoice</C>, <C>npm install</C> e <C>npm run dev</C>. Outra pasta: <C>npx @veroao/invoice init minhas-facturas</C>.</P>
+        <P>Cria a pasta <C>vero-invoice</C> com o <C>package.json</C>, o <C>tsconfig.json</C> e um template de partida em <C>templates/invoice.tsx</C>. Depois: <C>cd vero-invoice</C>, <C>npm install</C> e <C>npm run dev</C>. Outra pasta: <C>npx @veroao/invoice init minhas-facturas</C>.</P>
         <H2>Num projecto que já existe</H2>
         <Code className="mt-5" file="terminal" code="npm install @veroao/invoice react" copyable />
-        <P>Para só veres os modelos ao vivo, não precisas de instalar nada: <C>npx @veroao/invoice dev</C> traz a sua própria cópia do React e da biblioteca. Ver <A to="/docs/ver-ao-vivo">Ver ao vivo</A>.</P>
+        <P>Para só veres os templates ao vivo, não precisas de instalar nada: <C>npx @veroao/invoice dev</C> traz a sua própria cópia do React e da biblioteca. Ver <A to="/docs/ver-ao-vivo">Ver ao vivo</A>.</P>
         <H2>TypeScript</H2>
         <P>Os tipos vêm no pacote. Usa <C>{'"jsx": "react-jsx"'}</C> no <C>tsconfig.json</C>:</P>
         <Code className="mt-5" file="tsconfig.json" code={`{
@@ -90,14 +90,14 @@ export const DOC_PAGES: DocPage[] = [
     ),
   },
   {
-    slug: 'primeiro-modelo', title: 'O primeiro modelo', group: 'Começar',
+    slug: 'primeiro-template', title: 'O primeiro template', group: 'Começar',
     render: () => (
       <>
-        <PageTitle eyebrow="Começar" lead="Um modelo é um componente React que devolve um <Document>, opcionalmente dentro de <Tailwind>.">O primeiro modelo</PageTitle>
-        <Code className="mt-8" file="modelos/factura.tsx" code={FIRST} copyable />
+        <PageTitle eyebrow="Começar" lead="Um template é um componente React que devolve um <Document>, opcionalmente dentro de <Tailwind>.">O primeiro template</PageTitle>
+        <Code className="mt-8" file="templates/factura.tsx" code={FIRST} copyable />
         <H2>O que está a acontecer</H2>
         <Ul>
-          <li><C>{'<Tailwind config>'}</C> define as cores (<C>brand</C>) e as letras do modelo, como o <C>tailwind.config</C>.</li>
+          <li><C>{'<Tailwind config>'}</C> define as cores (<C>brand</C>) e as letras do template, como o <C>tailwind.config</C>.</li>
           <li><C>{'<Document>'}</C> é a página A4: <C>bg-*</C> é o fundo, <C>px-*</C> as margens, <C>pt-*</C> o espaço acima do corpo.</li>
           <li>Os componentes do documento (<C>DocumentTitle</C>, <C>Customer</C>, <C>Items</C>…) recebem só classes - os dados vêm de cada documento.</li>
         </Ul>
@@ -105,8 +105,8 @@ export const DOC_PAGES: DocPage[] = [
         <Code className="mt-5" file="terminal" code="npx @veroao/invoice dev" copyable />
         <P>Abre <C>http://localhost:3200</C> com o PDF, que se actualiza cada vez que gravas. Para gerar o PDF no teu código, ver <A to="/docs/pdf">Gerar o PDF</A>.</P>
         <H2>Os teus componentes</H2>
-        <P>Podes partir o modelo em componentes, usar listas (<C>.map</C>) e condições. Hooks não funcionam: um modelo não tem estado - corre uma vez para dar o JSON.</P>
-        <Code className="mt-5" file="modelos/factura.tsx" code={`const card = "flex-1 rounded border border-zinc-200 p-3"
+        <P>Podes partir o template em componentes, usar listas (<C>.map</C>) e condições. Hooks não funcionam: um template não tem estado - corre uma vez para dar o JSON.</P>
+        <Code className="mt-5" file="templates/factura.tsx" code={`const card = "flex-1 rounded border border-zinc-200 p-3"
 
 function Parties() {
   return (
@@ -124,9 +124,9 @@ function Parties() {
     slug: 'ver-ao-vivo', title: 'Ver ao vivo', group: 'Começar',
     render: () => (
       <>
-        <PageTitle eyebrow="Começar" lead="Um servidor local que desenha os teus modelos e os volta a desenhar sempre que gravas.">Ver ao vivo</PageTitle>
+        <PageTitle eyebrow="Começar" lead="Um servidor local que desenha os teus templates e os volta a desenhar sempre que gravas.">Ver ao vivo</PageTitle>
         <Code className="mt-8" file="terminal" code="npx @veroao/invoice dev" copyable />
-        <P>Procura os modelos na pasta <C>templates/</C> ou <C>modelos/</C> (senão, na pasta actual): cada ficheiro <C>.tsx</C> com <C>export default</C>, ou <C>{'<pasta>/<nome>/modelo.tsx'}</C>, como na galeria.</P>
+        <P>Procura os templates na pasta <C>templates/</C> ou <C>templates/</C> (senão, na pasta actual): cada ficheiro <C>.tsx</C> com <C>export default</C>, ou <C>{'<pasta>/<nome>/template.tsx'}</C>, como na galeria.</P>
         <H2>O que mostra</H2>
         <Ul>
           <li>O PDF com dados de exemplo, nos cinco tipos de documento: FT, FR, NC, ND e RC.</li>
@@ -136,15 +136,15 @@ function Parties() {
         </Ul>
         <H2>Opções</H2>
         <Table head={['Opção', 'Por omissão', 'O que faz']} rows={[
-          [<C>[pasta]</C>, 'templates/ ou modelos/', 'Pasta dos modelos.'],
+          [<C>[pasta]</C>, 'templates/ ou templates/', 'Pasta dos templates.'],
           [<C>--port</C>, '3200', 'Porta do servidor.'],
           [<C>--help</C>, '', 'Ajuda.'],
           [<C>--version</C>, '', 'Versão.'],
         ]} />
-        <Code className="mt-5" file="terminal" code="npx @veroao/invoice dev modelos --port 3300" />
+        <Code className="mt-5" file="terminal" code="npx @veroao/invoice dev templates --port 3300" />
         <H2>Verificar antes de publicar</H2>
         <Code className="mt-5" file="terminal" code="npx @veroao/invoice check" copyable />
-        <P>Faz as verificações do Vero e da galeria a todos os modelos da pasta: compilam, desenham os seis tipos de documento (com a pró-forma) sem avisos da AGT e não têm dados fiscais ou de pagamento escritos à mão (IBAN, telefones, NIF, ligações, e-mails, menções de certificação). Termina com erro se algum falhar - dá para usar na tua CI.</P>
+        <P>Faz as verificações do Vero e da galeria a todos os templates da pasta: compilam, desenham os seis tipos de documento (com a pró-forma) sem avisos da AGT e não têm dados fiscais ou de pagamento escritos à mão (IBAN, telefones, NIF, ligações, e-mails, menções de certificação). Termina com erro se algum falhar - dá para usar na tua CI.</P>
       </>
     ),
   },
@@ -189,7 +189,7 @@ function Parties() {
     slug: 'dados', title: 'Os dados do documento', group: 'Guias',
     render: () => (
       <>
-        <PageTitle eyebrow="Guias" lead="O modelo só tem aspecto. Tudo o que é fiscal chega em cada documento, já calculado e assinado.">Os dados do documento</PageTitle>
+        <PageTitle eyebrow="Guias" lead="O template só tem aspecto. Tudo o que é fiscal chega em cada documento, já calculado e assinado.">Os dados do documento</PageTitle>
         <P>Os dados são um <C>DocumentData</C>. No Vero, é o Vero que os passa; fora do Vero, quem chama <C>render()</C>. Para experimentar, <C>sampleDocument("FT")</C> devolve um documento fictício completo.</P>
         <Table head={['Campo', 'O que é']} rows={[
           [<C>documentType</C>, 'FT, FR, NC, ND, RC ou PF (pró-forma, sem valor fiscal).'],
@@ -220,10 +220,10 @@ function Parties() {
     slug: 'pdf', title: 'Gerar o PDF', group: 'Guias',
     render: () => (
       <>
-        <PageTitle eyebrow="Guias" lead="render() aceita o modelo em React, o JSON do modelo ou o JSON de importação do Vero.">Gerar o PDF</PageTitle>
+        <PageTitle eyebrow="Guias" lead="render() aceita o template em React, o JSON do template ou o JSON de importação do Vero.">Gerar o PDF</PageTitle>
         <Code className="mt-8" file="gerar.tsx" code={`import { writeFileSync } from "node:fs"
 import { render, sampleDocument } from "@veroao/invoice"
-import MyInvoice from "./modelos/factura"
+import MyInvoice from "./templates/factura"
 
 const { pdf, warnings } = await render(<MyInvoice />, sampleDocument("FT"))
 
@@ -248,26 +248,26 @@ for (const w of warnings) console.warn(w.message)`} copyable />
     slug: 'usar-no-vero', title: 'Usar no Vero', group: 'Guias',
     render: () => (
       <>
-        <PageTitle eyebrow="Guias" lead="O Vero importa o modelo em JSON. Nunca executa código de terceiros.">Usar no Vero</PageTitle>
+        <PageTitle eyebrow="Guias" lead="O Vero importa o template em JSON. Nunca executa código de terceiros.">Usar no Vero</PageTitle>
         <Code className="mt-8" file="compilar.tsx" code={`import { compile } from "@veroao/invoice"
-import MyInvoice from "./modelos/factura"
+import MyInvoice from "./templates/factura"
 
 const template = compile(<MyInvoice />)   // só aspecto, sem código`} />
-        <P>O JSON de importação embrulha o modelo com o nome e a versão. É o que copia o botão <strong className="text-zinc-200">JSON para o Vero</strong> do <C>dev</C> e de cada página da <A to="/modelos">galeria</A>:</P>
-        <Code className="mt-5" file="modelo.json" code={`{
+        <P>O JSON de importação embrulha o template com o nome e a versão. É o que copia o botão <strong className="text-zinc-200">JSON para o Vero</strong> do <C>dev</C> e de cada página da <A to="/templates">galeria</A>:</P>
+        <Code className="mt-5" file="template.json" code={`{
   "format": "vero-template",
   "schemaVersion": 2,
-  "id": "autor/nome-do-modelo",
+  "id": "autor/nome-do-template",
   "version": 1,
-  "name": "Nome do modelo",
+  "name": "Nome do template",
   "author": "autor",
   "template": { "version": 2, "theme": { … }, "body": [ … ] }
 }`} />
         <H2>No dashboard</H2>
         <Ul>
-          <li>Nas definições dos modelos do dashboard, colas o JSON.</li>
+          <li>Nas definições dos templates do dashboard, colas o JSON.</li>
           <li>O Vero valida-o e mostra-o com os dados da tua empresa.</li>
-          <li>Ao aplicares, as próximas emissões usam o modelo. Os documentos já emitidos não mudam.</li>
+          <li>Ao aplicares, as próximas emissões usam o template. Os documentos já emitidos não mudam.</li>
         </Ul>
         <Callout>A importação no dashboard e o botão "Abrir no Vero" estão a chegar.</Callout>
       </>
@@ -277,11 +277,11 @@ const template = compile(<MyInvoice />)   // só aspecto, sem código`} />
     slug: 'regras-agt', title: 'Regras da AGT', group: 'Guias',
     render: () => (
       <>
-        <PageTitle eyebrow="Guias" lead="O que a biblioteca garante em qualquer modelo - para que nenhum aspecto ponha um documento fora da lei.">Regras da AGT</PageTitle>
+        <PageTitle eyebrow="Guias" lead="O que a biblioteca garante em qualquer template - para que nenhum aspecto ponha um documento fora da lei.">Regras da AGT</PageTitle>
         <H2>O código QR</H2>
-        <P>Fica sempre no canto inferior direito da última página, acima do rodapé, com 96 pt e a marca da AGT ao centro. Não é um componente: nenhum modelo o pode mover, esconder ou deformar. Se o conteúdo lhe fosse tocar, passa para uma página nova. A pró-forma não leva QR.</P>
+        <P>Fica sempre no canto inferior direito da última página, acima do rodapé, com 96 pt e a marca da AGT ao centro. Não é um componente: nenhum template o pode mover, esconder ou deformar. Se o conteúdo lhe fosse tocar, passa para uma página nova. A pró-forma não leva QR.</P>
         <H2>O rodapé AGT</H2>
-        <P>Em todas as páginas, por cima da faixa do rodapé do modelo: <C>XXXX-Processado por programa válido nº …</C> à esquerda (os 4 caracteres da assinatura e o número de certificação) e o número do documento à direita. Também é do motor, como o QR.</P>
+        <P>Em todas as páginas, por cima da faixa do rodapé do template: <C>XXXX-Processado por programa válido nº …</C> à esquerda (os 4 caracteres da assinatura e o número de certificação) e o número do documento à direita. Também é do motor, como o QR.</P>
         <H2>Desenhado pelo motor quando os dados o pedem</H2>
         <Ul>
           <li>Retenção na fonte e "Valor líquido a pagar", nos totais.</li>
@@ -307,7 +307,7 @@ const template = compile(<MyInvoice />)   // só aspecto, sem código`} />
           <li>Texto fiscal com contraste mínimo de 4,5 sobre o fundo onde está; se não, usa a cor do texto do tema.</li>
           <li>Texto fiscal nunca abaixo de 7 pt.</li>
         </Ul>
-        <H2>O que o modelo nunca contém</H2>
+        <H2>O que o template nunca contém</H2>
         <P>Números, NIF, ATCUD, a menção do programa certificado ou o QR escritos como texto. Vêm sempre dos dados do documento, através dos componentes.</P>
       </>
     ),
@@ -316,27 +316,27 @@ const template = compile(<MyInvoice />)   // só aspecto, sem código`} />
     slug: 'publicar', title: 'Publicar na galeria', group: 'Guias',
     render: () => (
       <>
-        <PageTitle eyebrow="Guias" lead="Os modelos da galeria vivem no repositório. Publicar é abrir um pull request com uma pasta.">Publicar na galeria</PageTitle>
+        <PageTitle eyebrow="Guias" lead="Os templates da galeria vivem no repositório. Publicar é abrir um pull request com uma pasta.">Publicar na galeria</PageTitle>
         <Code className="mt-8" file="templates/" code={`templates/<nome>/
   meta.json         nome, descrição, autor, versão, tipos de documento, etiquetas
-  modelo.tsx        o modelo em React + Tailwind
-  modelo.json       o mesmo modelo compilado (gerado)
+  template.tsx        o template em React + Tailwind
+  template.json       o mesmo template compilado (gerado)
   preview-ft.webp   pré-visualizações de cada tipo de documento (geradas)
   …`} />
         <H2>Passos</H2>
         <Ul>
-          <li>Faz fork de <A to={LINKS.github}>Eterim/vero-template</A> e cria <C>{'templates/<nome>/'}</C> com <C>meta.json</C> e <C>modelo.tsx</C>.</li>
+          <li>Faz fork de <A to={LINKS.github}>Eterim/vero-template</A> e cria <C>{'templates/<nome>/'}</C> com <C>meta.json</C> e <C>template.tsx</C>.</li>
           <li>Vê-o com <C>npx @veroao/invoice dev templates</C>.</li>
           <li>Gera o JSON e as imagens com <C>npm run templates -w packages/invoice -- {'<nome>'}</C>.</li>
           <li>Verifica com <C>npm run check:templates -w packages/invoice -- {'<nome>'}</C> - é o que a CI corre.</li>
-          <li>Abre o pull request. A CI repete as verificações e alguém da equipa revê o modelo.</li>
+          <li>Abre o pull request. A CI repete as verificações e alguém da equipa revê o template.</li>
         </Ul>
         <H2>Regras</H2>
         <Ul>
           <li>Todos os elementos obrigatórios da AGT presentes.</li>
-          <li>No <C>meta.json</C>, o teu utilizador do GitHub em <C>author.name</C> e <C>"collection": "comunidade"</C>. Ao alterar um modelo, sobe a <C>version</C>.</li>
-          <li>Nada de números de conta, telefones, NIF, ligações, e-mails ou menções fiscais escritos no modelo - vêm sempre dos dados da empresa e dos componentes.</li>
-          <li>Sem logótipo, nome ou dados de uma empresa real - o logótipo vem da empresa que usar o modelo.</li>
+          <li>No <C>meta.json</C>, o teu utilizador do GitHub em <C>author.name</C> e <C>"collection": "comunidade"</C>. Ao alterar um template, sobe a <C>version</C>.</li>
+          <li>Nada de números de conta, telefones, NIF, ligações, e-mails ou menções fiscais escritos no template - vêm sempre dos dados da empresa e dos componentes.</li>
+          <li>Sem logótipo, nome ou dados de uma empresa real - o logótipo vem da empresa que usar o template.</li>
           <li>Licença MIT.</li>
         </Ul>
       </>

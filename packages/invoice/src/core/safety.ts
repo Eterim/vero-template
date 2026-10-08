@@ -1,6 +1,6 @@
 /**
- * Verificação de segurança de um modelo em JSON, antes de o aceitar (pull request na
- * galeria, importação no Vero). Um modelo é usado por empresas que não o escreveram:
+ * Verificação de segurança de um template em JSON, antes de o aceitar (pull request na
+ * galeria, importação no Vero). Um template é usado por empresas que não o escreveram:
  * nada nele pode parecer dado fiscal ou de pagamento que não venha do documento.
  *
  * - Textos livres: sem IBAN, contas, telefones, NIF ou outros números longos, ligações,
@@ -17,7 +17,7 @@ export interface SafetyIssue {
   message: string
 }
 
-/** Variáveis que um texto pode usar - vêm sempre dos dados do documento, nunca do modelo. */
+/** Variáveis que um texto pode usar - vêm sempre dos dados do documento, nunca do template. */
 export const TEMPLATE_VARIABLES = [
   'org.name', 'org.website', 'org.email', 'org.phone', 'customer.name',
   'document.reference', 'document.number', 'document.title', 'document.type',
@@ -68,11 +68,11 @@ export function checkTemplate(input: unknown): SafetyIssue[] {
   const add = (path: string, message: string) => issues.push({ path, message })
 
   let size = 0
-  try { size = new TextEncoder().encode(JSON.stringify(input)).length } catch { add('', 'o modelo não é JSON válido'); return issues }
-  if (size > LIMITS.jsonBytes) add('', `o modelo tem ${Math.round(size / 1000)} kB - o máximo é ${LIMITS.jsonBytes / 1000} kB`)
+  try { size = new TextEncoder().encode(JSON.stringify(input)).length } catch { add('', 'o template não é JSON válido'); return issues }
+  if (size > LIMITS.jsonBytes) add('', `o template tem ${Math.round(size / 1000)} kB - o máximo é ${LIMITS.jsonBytes / 1000} kB`)
 
   if (!isObject(input) || input.version !== 2 || !Array.isArray(input.body)) {
-    add('', 'formato desconhecido: esperado um modelo v2 ({ version: 2, theme, body: [...] })')
+    add('', 'formato desconhecido: esperado um template v2 ({ version: 2, theme, body: [...] })')
     return issues
   }
 
@@ -145,9 +145,9 @@ function checkText(text: string, path: string, where: string, max: number, add: 
   // O que fica depois de tirar as variáveis é o que o autor escreveu.
   const literal = text.replace(/\{\{[^}]*\}\}/g, ' ')
   const q = `"${clip(text)}"`
-  if (URL_LIKE.test(literal)) add(path, `${q}: ligações não podem estar no modelo - use {{org.website}}`)
-  if (EMAIL_LIKE.test(literal)) add(path, `${q}: e-mails não podem estar no modelo - use {{org.email}}`)
-  if (IBAN_LIKE.test(literal) || LONG_NUMBER.test(literal)) add(path, `${q}: números de conta, telefone, NIF ou referências não podem estar no modelo - vêm dos dados da empresa`)
+  if (URL_LIKE.test(literal)) add(path, `${q}: ligações não podem estar no template - use {{org.website}}`)
+  if (EMAIL_LIKE.test(literal)) add(path, `${q}: e-mails não podem estar no template - use {{org.email}}`)
+  if (IBAN_LIKE.test(literal) || LONG_NUMBER.test(literal)) add(path, `${q}: números de conta, telefone, NIF ou referências não podem estar no template - vêm dos dados da empresa`)
   const seen = new Set<string>()
   for (const r of RESERVED) {
     if (r.allowedIn?.includes(where) || seen.has(r.what) || !r.re.test(literal)) continue

@@ -1,9 +1,9 @@
 /**
- * compile(): executa o modelo React uma vez e devolve o modelo em JSON (TemplateV2) -
+ * compile(): executa o template React uma vez e devolve o template em JSON (TemplateV2) -
  * só aspecto, sem código. É este JSON que o Vero guarda e desenha na emissão.
  *
  * A árvore é percorrida sem o React DOM: funcionam componentes próprios, fragmentos,
- * listas (.map) e condições; hooks não (um modelo não tem estado).
+ * listas (.map) e condições; hooks não (um template não tem estado).
  */
 import { Fragment, isValidElement, type ReactElement, type ReactNode } from 'react'
 import { VERO_KIND, type ItemColumn, type PdfStyle } from './components/index.js'
@@ -14,7 +14,7 @@ export interface CompileIssue { component: string; message: string }
 
 export class CompileError extends Error {
   constructor(public issues: CompileIssue[]) {
-    super(`O modelo tem ${issues.length} ${issues.length === 1 ? 'problema' : 'problemas'}:\n${issues.map((i) => `- <${i.component}> ${i.message}`).join('\n')}`)
+    super(`O template tem ${issues.length} ${issues.length === 1 ? 'problema' : 'problemas'}:\n${issues.map((i) => `- <${i.component}> ${i.message}`).join('\n')}`)
     this.name = 'CompileError'
   }
 }
@@ -22,7 +22,7 @@ export class CompileError extends Error {
 const FONTS = new Set(['Inter', 'Playfair Display', 'Helvetica', 'Times-Roman'])
 
 /**
- * Aspecto por omissão de rótulos e tabelas, quando o modelo não passa classes
+ * Aspecto por omissão de rótulos e tabelas, quando o template não passa classes
  * (ex.: <Customer /> sem labelClassName). O renderizador procura-os por estes nomes.
  */
 const DEFAULT_STYLES: Record<string, Style> = {
@@ -32,7 +32,7 @@ const DEFAULT_STYLES: Record<string, Style> = {
   details: { size: 7, color: '#71717a', marginTop: 2 },
 }
 
-/** Estilos em objecto (pt) → estilo do modelo. */
+/** Estilos em objecto (pt) → estilo do template. */
 function fromStyleObject(o: PdfStyle | undefined): Style {
   if (!o) return {}
   const s: Style = {}
@@ -120,7 +120,7 @@ class Compiler {
         return this.expand((el.type as (p: unknown) => ReactNode)(el.props))
       } catch (e) {
         const msg = (e as Error).message
-        this.issues.push({ component: this.componentName(el), message: /hook|Invalid hook call|useState|useEffect|useContext/i.test(msg) ? 'hooks não são suportados - um modelo não tem estado' : `erro ao executar: ${msg}` })
+        this.issues.push({ component: this.componentName(el), message: /hook|Invalid hook call|useState|useEffect|useContext/i.test(msg) ? 'hooks não são suportados - um template não tem estado' : `erro ao executar: ${msg}` })
         return []
       }
     }
@@ -289,7 +289,7 @@ const nameOf = (el: Element) => {
 }
 
 /**
- * Transforma o modelo React no JSON que o Vero importa. Lança CompileError com a lista
+ * Transforma o template React no JSON que o Vero importa. Lança CompileError com a lista
  * de problemas (classes que não existem num PDF, elementos HTML, hooks…).
  */
 export function compile(element: ReactNode): TemplateV2 {
@@ -304,7 +304,7 @@ export function compile(element: ReactNode): TemplateV2 {
       doc = c.expand(r.props.children as ReactNode).find((x): x is Element => typeof x !== 'string' && c.kind(x) === 'document')
     } else if (kind === 'document') doc = r
   }
-  if (!doc) throw new CompileError([...c.issues, { component: 'Document', message: 'o modelo tem de devolver um <Document> (opcionalmente dentro de <Tailwind>)' }])
+  if (!doc) throw new CompileError([...c.issues, { component: 'Document', message: 'o template tem de devolver um <Document> (opcionalmente dentro de <Tailwind>)' }])
   const template = c.document(doc, config)
   if (c.issues.length) throw new CompileError(c.issues)
   return template

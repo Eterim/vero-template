@@ -7,10 +7,10 @@ const text = (t: string) => base([{ type: 'text', text: t }])
 const messages = (t: unknown) => checkTemplate(t).map((i) => i.message).join('\n')
 
 describe('checkTemplate', () => {
-  it('aceita os modelos da galeria', () => {
+  it('aceita os templates da galeria', () => {
     const root = new URL('../../../../templates/', import.meta.url)
     for (const d of readdirSync(root, { withFileTypes: true }).filter((e) => e.isDirectory())) {
-      const json = JSON.parse(readFileSync(new URL(`${d.name}/modelo.json`, root), 'utf8'))
+      const json = JSON.parse(readFileSync(new URL(`${d.name}/template.json`, root), 'utf8'))
       expect(checkTemplate(json.template), d.name).toEqual([])
     }
   })
@@ -61,7 +61,7 @@ describe('checkTemplate', () => {
     expect(messages(base([deep]))).toMatch(/níveis/)
   })
 
-  it('recusa o que não é um modelo v2', () => {
+  it('recusa o que não é um template v2', () => {
     expect(messages({ version: 1 })).toMatch(/formato desconhecido/)
     expect(messages('texto')).toMatch(/formato desconhecido/)
   })

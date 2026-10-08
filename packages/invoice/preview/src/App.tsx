@@ -112,7 +112,7 @@ export default function App() {
 
   return (
     <div className="grid h-full grid-cols-[250px_1fr]">
-      {/* modelos */}
+      {/* templates */}
       <aside className="flex min-h-0 flex-col border-r border-zinc-900 bg-zinc-950">
         <div className="border-b border-zinc-900 px-4 py-4">
           <p className="text-sm font-black tracking-tight">@veroao/invoice <span className="font-mono text-[11px] font-normal text-zinc-500">dev</span></p>
@@ -127,7 +127,7 @@ export default function App() {
             </button>
           ))}
           {list && !list.templates.length && (
-            <p className="px-3 py-4 text-xs leading-relaxed text-zinc-500">Nenhum modelo. Crie <span className="font-mono text-zinc-300">{list.dir}/factura.tsx</span> com <span className="font-mono text-zinc-300">export default</span>.</p>
+            <p className="px-3 py-4 text-xs leading-relaxed text-zinc-500">Nenhum template. Crie <span className="font-mono text-zinc-300">{list.dir}/factura.tsx</span> com <span className="font-mono text-zinc-300">export default</span>.</p>
           )}
         </nav>
         <p className={`flex items-center gap-2 border-t border-zinc-900 px-4 py-3 font-mono text-[11px] ${connected ? 'text-emerald-500' : 'text-zinc-600'}`}>

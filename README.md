@@ -14,7 +14,7 @@ npx @veroao/invoice check      # AGT and safety checks
 
 - `apps/site` - website (landing page, template gallery, documentation)
 - `packages/invoice` - the `@veroao/invoice` library (see its README)
-- `templates/` - the gallery templates (each one: `meta.json`, `modelo.tsx`, `modelo.json`, `preview-<type>.webp`)
+- `templates/` - the gallery templates (each one: `meta.json`, `template.tsx`, `template.json`, `preview-<type>.webp`)
 - `examples/` - one example per component, used by the website
 
 MIT licensed.
@@ -25,7 +25,7 @@ MIT licensed.
 npm install
 npm run dev                                 # website at http://localhost:5200
 npm test -w packages/invoice                # library tests (includes the gallery templates)
-npm run templates -w packages/invoice       # builds modelo.json and previews from modelo.tsx
+npm run templates -w packages/invoice       # builds template.json and previews from template.tsx
 npm run check:templates -w packages/invoice # the checks CI runs on every pull request
 ```
 

@@ -57,7 +57,7 @@ export async function loadTemplate(file: string): Promise<LoadResult> {
     const outFile = join(outDir, `${name}-${++counter}.mjs`)
     writeFileSync(outFile, out.outputFiles[0].text)
     const mod = (await import(pathToFileURL(outFile).href)) as { default?: FC }
-    if (typeof mod.default !== 'function') return done({ errors: [{ message: 'o ficheiro tem de exportar o modelo por omissão: export default function MeuModelo() { … }' }] })
+    if (typeof mod.default !== 'function') return done({ errors: [{ message: 'o ficheiro tem de exportar o template por omissão: export default function MeuModelo() { … }' }] })
     return done({ template: compile(createElement(mod.default)) })
   } catch (e) {
     if (e instanceof CompileError) return done({ errors: e.issues })

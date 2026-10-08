@@ -11,7 +11,7 @@ describe('findTemplates', () => {
     writeFileSync(join(dir, '_shared.tsx'), '')
     writeFileSync(join(dir, 'notes.md'), '')
     mkdirSync(join(dir, 'a-classic'))
-    writeFileSync(join(dir, 'a-classic', 'modelo.tsx'), '')
+    writeFileSync(join(dir, 'a-classic', 'template.tsx'), '')
     mkdirSync(join(dir, 'empty'))
     mkdirSync(join(dir, 'node_modules'))
     expect([...findTemplates(dir).keys()]).toEqual(['a-classic', 'b-invoice'])

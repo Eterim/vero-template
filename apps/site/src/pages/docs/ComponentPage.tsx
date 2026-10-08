@@ -60,7 +60,7 @@ export default function ComponentPage() {
       {c.required && (
         <p className="mt-6 flex items-start gap-2 border border-sky-900/60 bg-sky-950/20 px-4 py-3 text-[13.5px] text-sky-100/90">
           <ShieldCheck className="mt-0.5 size-4 shrink-0 text-sky-400" />
-          Obrigatório pela AGT. Pode mudar de aspecto e de lugar; se faltar no modelo, é acrescentado ao emitir.
+          Obrigatório pela AGT. Pode mudar de aspecto e de lugar; se faltar no template, é acrescentado ao emitir.
         </p>
       )}
       <Code className="mt-8" code={`import { ${c.name} } from "@veroao/invoice"`} />

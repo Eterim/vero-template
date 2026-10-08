@@ -1,7 +1,7 @@
 import { ArrowRight } from 'lucide-react'
 import { CopyCommand } from '../components/CopyCommand'
 
-// Facturas dos modelos, em leque 3D. A primeira fica à frente.
+// Facturas dos templates, em leque 3D. A primeira fica à frente.
 const FAN = ['vero-moderno', 'azul', 'vero-classico', 'terracota', 'minimal', 'vero-simples']
 
 function InvoiceFan() {
@@ -44,7 +44,7 @@ export function Hero() {
             <span className="bg-gradient-to-r from-zinc-500 to-zinc-300 bg-clip-text text-transparent">Desenha a tua.</span>
           </h1>
           <p className="mt-6 max-w-md text-[17px] leading-relaxed text-pretty text-zinc-400">
-            Cria o modelo das tuas facturas em React e Tailwind CSS e usa-o no Vero.
+            Cria o template das tuas facturas em React e Tailwind CSS e usa-o no Vero.
             As cores, as letras e a disposição são tuas - a certificação e as regras da AGT ficam por nossa conta.
           </p>
           <div className="mt-9 flex flex-col gap-3 sm:flex-row sm:items-center">

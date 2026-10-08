@@ -5,14 +5,14 @@ Each folder is a gallery template. To publish yours, open a pull request with a 
 ```
 templates/<name>/
   meta.json         name, description, author, version, document types, tags
-  modelo.tsx        the template in React + Tailwind (@veroao/invoice)
-  modelo.json       the same template compiled - this is what Vero imports
+  template.tsx        the template in React + Tailwind (@veroao/invoice)
+  template.json       the same template compiled - this is what Vero imports
   preview-ft.webp   a preview for each document type
   preview-fr.webp   (ft, fr, nc, nd, rc), 900 px wide
   …
 ```
 
-`modelo.json` and the images are built from `modelo.tsx` with `npm run templates -w packages/invoice` - never edit them by hand. To see yours while you design it: `npx @veroao/invoice dev templates`.
+`template.json` and the images are built from `template.tsx` with `npm run templates -w packages/invoice` - never edit them by hand. To see yours while you design it: `npx @veroao/invoice dev templates`.
 
 ## Rules
 
@@ -28,7 +28,7 @@ templates/<name>/
 {
   "slug": "classico",
   "name": "Clássico",
-  "description": "O modelo por omissão das facturas do Vero.",
+  "description": "O template por omissão das facturas do Vero.",
   "author": { "name": "vero", "url": "https://vero.ao" },
   "collection": "vero",
   "version": 1,

@@ -1,5 +1,5 @@
 import { useEffect } from 'react'
-import { BrowserRouter, Link, Route, Routes, useLocation } from 'react-router-dom'
+import { BrowserRouter, Link, Navigate, Route, Routes, useLocation, useParams } from 'react-router-dom'
 import { Logo } from './components/Logo'
 import { GithubIcon } from './components/GithubIcon'
 import { LINKS } from './lib/links'
@@ -28,7 +28,7 @@ function Nav() {
         <Link to="/" aria-label="Vero Template - início"><Logo /></Link>
         <div className="flex items-center gap-1 text-sm font-semibold text-zinc-400 sm:gap-6">
           <Link to="/componentes" className={`hidden sm:block ${link}`}>Componentes</Link>
-          <Link to="/modelos" className={link}>Modelos</Link>
+          <Link to="/templates" className={link}>Templates</Link>
           <Link to="/#como-funciona" className={`hidden md:block ${link}`}>Como funciona</Link>
           <Link to="/docs" className={`hidden md:block ${link}`}>Documentação</Link>
           <a href={LINKS.github} aria-label="GitHub" title="GitHub" className="p-2 transition-colors hover:text-white"><GithubIcon className="size-[18px]" /></a>
@@ -56,6 +56,11 @@ function Footer() {
   )
 }
 
+function OldTemplateLink() {
+  const { slug } = useParams()
+  return <Navigate to={`/templates/${slug ?? ''}`} replace />
+}
+
 export default function App() {
   return (
     <BrowserRouter basename={import.meta.env.BASE_URL}>
@@ -64,8 +69,11 @@ export default function App() {
       <main>
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="/modelos" element={<Templates />} />
-          <Route path="/modelos/:slug" element={<TemplateDetail />} />
+          <Route path="/templates" element={<Templates />} />
+          <Route path="/templates/:slug" element={<TemplateDetail />} />
+          {/* Endereços antigos (/modelos) continuam a funcionar. */}
+          <Route path="/modelos" element={<Navigate to="/templates" replace />} />
+          <Route path="/modelos/:slug" element={<OldTemplateLink />} />
           <Route path="/docs" element={<DocPage />} />
           <Route path="/docs/:slug" element={<DocPage />} />
           <Route path="/componentes" element={<ComponentsIndex />} />

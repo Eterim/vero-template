@@ -16,21 +16,21 @@ const TYPES: Record<string, string> = {
 
 export interface DevOptions { dir?: string; port: number }
 
-/** Folder with the templates: the one given, or templates/, modelos/, or the current folder. */
+/** Folder with the templates: the one given, templates/ (or the older modelos/), or the current folder. */
 export function findDir(dir?: string): string {
   if (dir) return resolve(dir)
   for (const d of ['templates', 'modelos']) if (existsSync(d) && statSync(d).isDirectory()) return resolve(d)
   return resolve('.')
 }
 
-/** <dir>/<name>.tsx, or <dir>/<name>/modelo.tsx | index.tsx (the gallery layout). */
+/** <dir>/<name>.tsx, or <dir>/<name>/template.tsx | index.tsx (the gallery layout). */
 export function findTemplates(dir: string): Map<string, string> {
   const out = new Map<string, string>()
   for (const entry of readdirSync(dir, { withFileTypes: true })) {
     if (entry.name.startsWith('.') || entry.name.startsWith('_') || entry.name === 'node_modules') continue
     if (entry.isFile() && /\.(tsx|jsx)$/.test(entry.name)) out.set(entry.name.replace(/\.(tsx|jsx)$/, ''), join(dir, entry.name))
     if (entry.isDirectory()) {
-      for (const f of ['modelo.tsx', 'index.tsx', 'template.tsx', 'modelo.jsx', 'index.jsx']) {
+      for (const f of ['template.tsx', 'index.tsx', 'template.jsx', 'index.jsx', 'modelo.tsx', 'modelo.jsx']) {
         const p = join(dir, entry.name, f)
         if (existsSync(p)) { out.set(entry.name, p); break }
       }
@@ -52,7 +52,7 @@ export async function dev(opts: DevOptions) {
   const clients = new Set<ServerResponse>()
   const broadcast = (data: unknown) => { for (const c of clients) c.write(`data: ${JSON.stringify(data)}\n\n`) }
 
-  // Ao gravar: recompila (um ficheiro de modelo → só esse; outro ficheiro, ex. componentes partilhados → todos)
+  // Ao gravar: recompila (um ficheiro de template → só esse; outro ficheiro, ex. componentes partilhados → todos)
   let timer: NodeJS.Timeout | undefined
   const changed = new Set<string>()
   watch(dir, { recursive: true }, (_event, filename) => {
@@ -119,5 +119,5 @@ export async function dev(opts: DevOptions) {
   const n = files.size
   console.log(`\n  @veroao/invoice dev\n`)
   console.log(`  → http://localhost:${opts.port}`)
-  console.log(`  ${n ? `${n} ${n === 1 ? 'modelo' : 'modelos'} em ${relative(process.cwd(), dir) || '.'}/` : `nenhum modelo em ${relative(process.cwd(), dir) || '.'}/ - crie um ficheiro .tsx com export default`}\n`)
+  console.log(`  ${n ? `${n} ${n === 1 ? 'template' : 'templates'} em ${relative(process.cwd(), dir) || '.'}/` : `nenhum template em ${relative(process.cwd(), dir) || '.'}/ - crie um ficheiro .tsx com export default`}\n`)
 }

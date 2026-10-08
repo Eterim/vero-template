@@ -7,7 +7,7 @@ import { init } from './init'
 import { loadTemplate } from './load'
 
 describe('init', () => {
-  it('cria um projecto cujo modelo compila e passa as verificações', async () => {
+  it('cria um projecto cujo template compila e passa as verificações', async () => {
     const root = init({ dir: join(mkdtempSync(join(tmpdir(), 'veroao-init-')), 'Minhas Facturas'), version: '1.2.3' })
     const pkg = JSON.parse(readFileSync(join(root, 'package.json'), 'utf8'))
     expect(pkg.name).toBe('minhas-facturas')

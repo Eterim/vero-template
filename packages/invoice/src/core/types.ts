@@ -1,5 +1,5 @@
 /**
- * Contrato v2 (prova de conceito): o modelo é uma árvore de blocos com estilos.
+ * Contrato v2 (prova de conceito): o template é uma árvore de blocos com estilos.
  * Continua a ser só dados - o Vero é que desenha. Os blocos fiscais podem ser
  * movidos e estilizados, nunca escondidos (ver fiscal.ts).
  */
@@ -103,7 +103,7 @@ export type BlockType = Block['type']
 export const FISCAL_PARTS = ['atcud', 'exemptions', 'legal', 'certification'] as const
 export type FiscalPart = (typeof FISCAL_PARTS)[number]
 /**
- * Partes que o modelo tem de colocar. A menção do programa certificado ('certification')
+ * Partes que o template tem de colocar. A menção do programa certificado ('certification')
  * já não: o motor desenha-a sozinho no rodapé de todas as páginas, com o número do documento.
  */
 export const REQUIRED_FISCAL_PARTS = ['atcud', 'exemptions', 'legal'] as const satisfies readonly FiscalPart[]

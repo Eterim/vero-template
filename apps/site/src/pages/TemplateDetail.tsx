@@ -62,8 +62,8 @@ function CodeTab({ t }: { t: Template }) {
   if (code === null) return <p className="py-20 text-center font-mono text-sm text-zinc-600">// a carregar…</p>
   return (
     <div>
-      <p className="mb-4 text-sm text-zinc-400">O modelo em React + Tailwind. Copia-o para o teu projecto e muda o que quiseres.</p>
-      <Code code={code} file={`templates/${t.slug}/modelo.tsx`} copyable className="[&_pre]:max-h-[760px] [&_pre]:text-[12px]" />
+      <p className="mb-4 text-sm text-zinc-400">O template em React + Tailwind. Copia-o para o teu projecto e muda o que quiseres.</p>
+      <Code code={code} file={`templates/${t.slug}/template.tsx`} copyable className="[&_pre]:max-h-[760px] [&_pre]:text-[12px]" />
     </div>
   )
 }
@@ -85,7 +85,7 @@ function JsonTab({ t }: { t: Template }) {
           <Download className="size-3.5" /> {t.slug}.json
         </button>
       </div>
-      <Code code={json} file={`templates/${t.slug}/modelo.json`} copyable className="[&_pre]:max-h-[760px] [&_pre]:text-[12px]" />
+      <Code code={json} file={`templates/${t.slug}/template.json`} copyable className="[&_pre]:max-h-[760px] [&_pre]:text-[12px]" />
     </div>
   )
 }
@@ -103,7 +103,7 @@ function Sidebar({ t }: { t: Template }) {
       <div className="border border-zinc-800 bg-zinc-950 p-5">
         <h2 className="flex items-center gap-2 text-sm font-bold"><FileText className="size-4 text-sky-400" /> Usar no Vero</h2>
         <ol className="mt-4 space-y-3 text-[13px] leading-snug text-zinc-400">
-          {['Copia o JSON deste modelo.', 'No Vero: Definições → Modelos → Importar.', 'Cola o JSON. O Vero valida e mostra a factura com os teus dados.', 'Aplica. A certificação e os dados reais entram em cada factura.'].map((s, i) => (
+          {['Copia o JSON deste template.', 'No Vero: Definições → Templates → Importar.', 'Cola o JSON. O Vero valida e mostra a factura com os teus dados.', 'Aplica. A certificação e os dados reais entram em cada factura.'].map((s, i) => (
             <li key={i} className="flex gap-3">
               <span className="flex size-5 shrink-0 items-center justify-center rounded-full border border-zinc-700 font-mono text-[10px] text-zinc-400">{i + 1}</span>{s}
             </li>
@@ -120,7 +120,7 @@ function Sidebar({ t }: { t: Template }) {
       <div className="border border-zinc-800 bg-zinc-950 p-5">
         <h2 className="flex items-center gap-2 text-sm font-bold"><Code2 className="size-4 text-sky-400" /> No teu projecto</h2>
         <div className="mt-4 [&_button]:w-full"><CopyCommand command="npm install @veroao/invoice" /></div>
-        <p className="mt-3 text-[12px] leading-snug text-zinc-500">Copia o <span className="font-mono text-zinc-300">modelo.tsx</span> para o teu projecto e gera o PDF com <span className="font-mono text-zinc-300">render()</span>. <Link to="/docs/pdf" className="text-sky-400 hover:text-sky-300">Ver a documentação</Link></p>
+        <p className="mt-3 text-[12px] leading-snug text-zinc-500">Copia o <span className="font-mono text-zinc-300">template.tsx</span> para o teu projecto e gera o PDF com <span className="font-mono text-zinc-300">render()</span>. <Link to="/docs/pdf" className="text-sky-400 hover:text-sky-300">Ver a documentação</Link></p>
       </div>
       <dl className="divide-y divide-zinc-900 border border-zinc-800 bg-zinc-950 px-5 text-[13px]">
         {info.map(([k, v]) => (
@@ -141,8 +141,8 @@ export default function TemplateDetail() {
     return (
       <div className="mx-auto max-w-6xl px-4 py-32 text-center sm:px-6">
         <p className="font-mono text-sm text-zinc-500">// 404</p>
-        <h1 className="mt-3 text-3xl font-black tracking-tighter">Este modelo não existe.</h1>
-        <Link to="/modelos" className="mt-6 inline-flex items-center gap-2 text-sm text-sky-400 hover:text-sky-300"><ArrowLeft className="size-4" /> Ver todos os modelos</Link>
+        <h1 className="mt-3 text-3xl font-black tracking-tighter">Este template não existe.</h1>
+        <Link to="/templates" className="mt-6 inline-flex items-center gap-2 text-sm text-sky-400 hover:text-sky-300"><ArrowLeft className="size-4" /> Ver todos os templates</Link>
       </div>
     )
   }
@@ -158,7 +158,7 @@ export default function TemplateDetail() {
       <div aria-hidden className="pointer-events-none absolute inset-x-0 top-0 h-72 bg-[radial-gradient(ellipse_60%_80%_at_30%_0%,rgba(14,165,233,.1),transparent)]" />
       <div className="relative mx-auto max-w-6xl px-4 pt-10 pb-28 sm:px-6">
         <nav className="flex items-center gap-2 font-mono text-xs text-zinc-500">
-          <Link to="/modelos" className="hover:text-white">modelos</Link><span>/</span><span className="text-zinc-300">{t.slug}</span>
+          <Link to="/templates" className="hover:text-white">templates</Link><span>/</span><span className="text-zinc-300">{t.slug}</span>
         </nav>
         <div className="mt-6 flex flex-col justify-between gap-6 lg:flex-row lg:items-end">
           <div>

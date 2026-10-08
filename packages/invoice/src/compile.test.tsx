@@ -3,7 +3,7 @@ import { useState } from 'react'
 import { compile, CompileError, Column, Customer, Document, Footer, Items, Row, Tailwind, Text, Totals } from './index.js'
 
 describe('compile()', () => {
-  it('transforma React + Tailwind no modelo JSON', () => {
+  it('transforma React + Tailwind no template JSON', () => {
     const t = compile(
       <Tailwind config={{ theme: { extend: { colors: { accent: '#0E4C63' }, fontFamily: { sans: ['Inter'] } } } }}>
         <Document className="bg-white px-12 pt-8 text-[12px]">

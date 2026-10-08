@@ -1,6 +1,6 @@
 /**
  * Componentes do @veroao/invoice. Não desenham nada sozinhos: marcam o que cada
- * peça é, e o `compile()` transforma a árvore React no modelo (JSON) que o
+ * peça é, e o `compile()` transforma a árvore React no template (JSON) que o
  * renderizador desenha. Os dados (linhas, NIF, totais, ATCUD, certificação, QR)
  * vêm sempre do documento - os componentes só definem o aspecto.
  */
@@ -64,7 +64,7 @@ function marker<P>(kind: string, displayName: string) {
 
 // ── Estrutura ────────────────────────────────────────────────────────────────
 
-/** Cores e letras do modelo, como o `tailwind.config` (theme.extend.colors / fontFamily). */
+/** Cores e letras do template, como o `tailwind.config` (theme.extend.colors / fontFamily). */
 export const Tailwind = marker<{ config?: TailwindConfig } & WithChildren>('tailwind', 'Tailwind')
 /** A página A4. bg-* = fundo, px-* = margens laterais, pt-* = margem acima do corpo. */
 export const Document = marker<Styled & WithChildren>('document', 'Document')

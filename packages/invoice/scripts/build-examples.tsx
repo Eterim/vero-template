@@ -20,7 +20,7 @@ const only = process.argv.slice(2)
 
 interface ExampleModule {
   default: FC
-  /** O exemplo é o modelo inteiro (<Tailwind>/<Document>). */
+  /** O exemplo é o template inteiro (<Tailwind>/<Document>). */
   page?: boolean
   /** Num exemplo de página inteira, cortar à volta do conteúdo (ex.: só o cabeçalho). */
   crop?: boolean

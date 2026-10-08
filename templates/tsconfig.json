@@ -10,5 +10,5 @@
     "baseUrl": ".",
     "paths": { "@veroao/invoice": ["../packages/invoice/src/index.ts"] }
   },
-  "include": ["*/modelo.tsx"]
+  "include": ["*/template.tsx"]
 }

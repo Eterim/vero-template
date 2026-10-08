@@ -45,7 +45,7 @@ export const COMPONENT_DOCS: ComponentDoc[] = [
   // ── Estrutura
   {
     slug: 'tailwind', name: 'Tailwind', group: 'Estrutura',
-    summary: 'As cores e as letras do modelo, como no tailwind.config. Envolve o <Document>.',
+    summary: 'As cores e as letras do template, como no tailwind.config. Envolve o <Document>.',
     props: [{ name: 'config', type: 'TailwindConfig', description: 'theme.extend.colors e theme.extend.fontFamily (sans, display). As cores ficam disponíveis como text-*, bg-*, border-*.' }],
     examples: [{ id: 'default', title: 'Cores e letra próprias', description: 'brand e brand-light vêm do config; font-display usa a Playfair Display.' }],
     notes: [
@@ -55,7 +55,7 @@ export const COMPONENT_DOCS: ComponentDoc[] = [
   },
   {
     slug: 'document', name: 'Document', group: 'Estrutura',
-    summary: 'A página A4. É a raiz do modelo: tudo o que está dentro é o corpo do documento.',
+    summary: 'A página A4. É a raiz do template: tudo o que está dentro é o corpo do documento.',
     props: [{ name: 'className', type: 'string', description: 'bg-* = fundo da página, px-* = margens laterais, pt-* = margem acima do corpo, text-* = tamanho e cor do texto por omissão.' }, STYLED[1]],
     examples: [{ id: 'default', title: 'Página com fundo creme', description: 'O código QR da AGT aparece sempre no canto inferior direito da última página.' }],
   },
@@ -114,7 +114,7 @@ export const COMPONENT_DOCS: ComponentDoc[] = [
   },
   {
     slug: 'logo', name: 'Logo', group: 'Estrutura',
-    summary: 'O logótipo da empresa que emite. O modelo nunca traz um logótipo próprio.',
+    summary: 'O logótipo da empresa que emite. O template nunca traz um logótipo próprio.',
     props: [
       { name: 'className', type: 'string', description: 'h-* = altura do logótipo.' },
       { name: 'fallback', type: '"name" | "none"', default: '"name"', description: 'Sem imagem: mostrar o nome da empresa, ou nada.' },

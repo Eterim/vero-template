@@ -1,19 +1,19 @@
 # @veroao/invoice
 
 Facturas, recibos e notas angolanas em **React** e **Tailwind CSS** - com as regras da AGT incluídas.
-Funciona sem o Vero: desenhas o modelo, passas os teus dados e recebes o PDF.
+Funciona sem o Vero: desenhas o template, passas os teus dados e recebes o PDF.
 
 [English](https://github.com/Eterim/vero-template/blob/main/packages/invoice/README.md)
 
 > Em desenvolvimento (0.x). A API pode mudar até à 1.0.
 
 ```bash
-npx @veroao/invoice init       # projecto novo com um modelo de partida
+npx @veroao/invoice init       # projecto novo com um template de partida
 # ou, num projecto que já existe:
 npm install @veroao/invoice react
 ```
 
-## Um modelo
+## Um template
 
 ```tsx
 import { Tailwind, Document, Row, Logo, DocumentTitle, DocumentNumber,
@@ -47,14 +47,14 @@ export default function MyInvoice() {
 npx @veroao/invoice dev
 ```
 
-Abre `http://localhost:3200` com os modelos da pasta `templates/` ou `modelos/` (senão, a pasta actual):
-cada `.tsx` com `export default`, ou `<pasta>/<nome>/modelo.tsx`. O PDF volta a ser desenhado sempre que
+Abre `http://localhost:3200` com os templates da pasta `templates/` ou `templates/` (senão, a pasta actual):
+cada `.tsx` com `export default`, ou `<pasta>/<nome>/template.tsx`. O PDF volta a ser desenhado sempre que
 gravas, com os cinco tipos de documento (FT, FR, NC, ND, RC). Se o Tailwind ou o código tiver um erro,
 aparece o componente e o motivo, e fica à vista a última versão boa. O botão **JSON para o Vero** copia
-o modelo pronto a importar.
+o template pronto a importar.
 
 Não precisa de nada instalado no projecto: o React e a biblioteca vêm com a CLI.
-Outra pasta ou porta: `npx @veroao/invoice dev modelos --port 3300`.
+Outra pasta ou porta: `npx @veroao/invoice dev templates --port 3300`.
 
 ## Verificar
 
@@ -62,7 +62,7 @@ Outra pasta ou porta: `npx @veroao/invoice dev modelos --port 3300`.
 npx @veroao/invoice check
 ```
 
-Faz o que o Vero e a galeria verificam a cada modelo da pasta: compila, desenha os seis tipos de documento (com a pró-forma)
+Faz o que o Vero e a galeria verificam a cada template da pasta: compila, desenha os seis tipos de documento (com a pró-forma)
 sem avisos da AGT e não tem dados fiscais ou de pagamento escritos à mão. Termina com código 1 se houver problemas.
 
 ## PDF
@@ -75,14 +75,14 @@ const { pdf, warnings } = await render(<MyInvoice />, documento)   // pdf: Uint8
 
 `documento` (`DocumentData`) traz tudo o que é fiscal - número, data, ATCUD, os 4 caracteres da
 assinatura, o número do **teu** programa certificado, o URL do QR, empresa, cliente, linhas e totais.
-O modelo nunca o contém. Para experimentar: `sampleDocument("FT")`.
+O template nunca o contém. Para experimentar: `sampleDocument("FT")`.
 
 ## Usar no Vero
 
 ```ts
 import { compile } from "@veroao/invoice"
 
-const modelo = compile(<MyInvoice />)   // JSON só com o aspecto - é isto que o Vero importa
+const template = compile(<MyInvoice />)   // JSON só com o aspecto - é isto que o Vero importa
 ```
 
 O React corre uma vez, do teu lado. O Vero só recebe JSON e nunca executa código de terceiros.
@@ -94,9 +94,9 @@ O React corre uma vez, do teu lado. O Vero só recebe JSON e nunca executa códi
 - Desenhado a partir dos dados, quando é preciso: retenção na fonte e valor líquido, a menção do regime simplificado,
   "Não sujeito" nas linhas M02, marca de água nos anulados e o aviso da pró-forma (`documentType: "PF"`).
 - Os elementos obrigatórios (tipo, número, data, NIF das partes, artigos, totais, menções legais) nunca
-  faltam: se o modelo não os tiver, são acrescentados e vêm nos `warnings`.
+  faltam: se o template não os tiver, são acrescentados e vêm nos `warnings`.
 - Texto fiscal com **contraste** mínimo (4,5) e nunca abaixo de 7 pt.
-- `checkTemplate(json)` recusa modelos cujo texto próprio pareça dado fiscal ou de pagamento
+- `checkTemplate(json)` recusa templates cujo texto próprio pareça dado fiscal ou de pagamento
   (IBAN, telefones, NIF, ligações, e-mails, menções de certificação) - isso vem sempre do documento.
 
 ## Tailwind suportado
@@ -121,6 +121,6 @@ transformações, grelha CSS e posicionamento absoluto. Também se pode usar `st
 `Logo` · `DocumentTitle` · `DocumentNumber` · `DocumentDate` · `Atcud` · `StatusBadge` · `Issuer` · `Customer` ·
 `Payment` · `Items` · `Totals` · `Notes` · `AmountInWords` · `BankAccounts` · `LegalNotes` · `PageNumber`
 
-Componentes teus, listas (`.map`) e condições funcionam. Hooks não - um modelo não tem estado.
+Componentes teus, listas (`.map`) e condições funcionam. Hooks não - um template não tem estado.
 
 As letras (Inter, Playfair Display) vêm no pacote, com licença OFL. Licença MIT.

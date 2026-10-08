@@ -4,8 +4,8 @@
  *   npm run check:templates -w packages/invoice            (todos)
  *   npm run check:templates -w packages/invoice -- azul    (só um)
  *
- * Por pasta: ficheiros permitidos e tamanhos, meta.json, o modelo.tsx lido sem executar
- * (imports e globais proibidos), depois compilado - o modelo.json tem de ser igual ao
+ * Por pasta: ficheiros permitidos e tamanhos, meta.json, o template.tsx lido sem executar
+ * (imports e globais proibidos), depois compilado - o template.json tem de ser igual ao
  * gerado, passar a verificação de segurança e desenhar cada tipo sem avisos -, e as
  * pré-visualizações.
  *
@@ -26,7 +26,7 @@ const DOC_TYPES = ['FT', 'FR', 'NC', 'ND', 'RC'] as const
 const SLUG = /^[a-z0-9]+(?:-[a-z0-9]+)*$/
 const GITHUB_LOGIN = /^[a-z0-9](?:[a-z0-9-]{0,38})$/i
 const RESERVED_AUTHORS = new Set(['vero', 'veroao', 'eterim', 'agt', 'admin', 'oficial', 'official'])
-const MAX_BYTES: Record<string, number> = { 'meta.json': 4_000, 'modelo.tsx': 50_000, 'modelo.json': 200_000, webp: 300_000 }
+const MAX_BYTES: Record<string, number> = { 'meta.json': 4_000, 'template.tsx': 50_000, 'template.json': 200_000, webp: 300_000 }
 const INVISIBLE = /[\u0000-\u001F\u007F-\u009F\u00AD\u200B-\u200F\u202A-\u202E\u2060-\u2064\u2066-\u2069\uFEFF]/
 
 const prAuthor = process.env.PR_AUTHOR?.trim()
@@ -61,7 +61,7 @@ async function checkFolder(slug: string, fail: (m: string) => void) {
   // 1. Ficheiros
   const meta = readMeta(dir, fail)
   if (!meta) return
-  const expected = new Set(['meta.json', 'modelo.tsx', 'modelo.json', ...meta.docTypes.map((t) => `preview-${t.toLowerCase()}.webp`)])
+  const expected = new Set(['meta.json', 'template.tsx', 'template.json', ...meta.docTypes.map((t) => `preview-${t.toLowerCase()}.webp`)])
   for (const e of readdirSync(dir, { withFileTypes: true })) {
     const st = lstatSync(join(dir, e.name))
     if (st.isSymbolicLink()) { fail(`${e.name}: ligações simbólicas não são permitidas`); continue }
@@ -71,28 +71,28 @@ async function checkFolder(slug: string, fail: (m: string) => void) {
     if (st.size > max) fail(`${e.name}: ${Math.round(st.size / 1000)} kB - o máximo é ${max / 1000} kB`)
   }
   for (const f of expected) if (!existsSync(join(dir, f))) fail(`falta ${f}`)
-  if (!existsSync(join(dir, 'modelo.tsx'))) return
+  if (!existsSync(join(dir, 'template.tsx'))) return
 
   // 2. Código, lido sem executar
-  const source = readFileSync(join(dir, 'modelo.tsx'), 'utf8')
+  const source = readFileSync(join(dir, 'template.tsx'), 'utf8')
   const sourceIssues = auditSource(source)
-  sourceIssues.forEach((i) => fail(`modelo.tsx:${i.line}: ${i.message}`))
+  sourceIssues.forEach((i) => fail(`template.tsx:${i.line}: ${i.message}`))
   if (sourceIssues.length) return // não se executa código que não passou
 
-  // 3. Compilar e comparar com o modelo.json enviado
-  const mod = (await import(join(dir, 'modelo.tsx'))) as { default?: FC }
-  if (typeof mod.default !== 'function') { fail('modelo.tsx tem de exportar o modelo por omissão'); return }
+  // 3. Compilar e comparar com o template.json enviado
+  const mod = (await import(join(dir, 'template.tsx'))) as { default?: FC }
+  if (typeof mod.default !== 'function') { fail('template.tsx tem de exportar o template por omissão'); return }
   let template
   try { template = compile(createElement(mod.default)) } catch (e) { fail((e as Error).message); return }
   const generated = JSON.parse(JSON.stringify(importJson(meta, slug, template)))
   let committed: unknown
-  try { committed = JSON.parse(readFileSync(join(dir, 'modelo.json'), 'utf8')) } catch { fail('modelo.json não é JSON válido') }
+  try { committed = JSON.parse(readFileSync(join(dir, 'template.json'), 'utf8')) } catch { fail('template.json não é JSON válido') }
   if (committed !== undefined && !isDeepStrictEqual(committed, generated)) {
-    fail('modelo.json não corresponde ao modelo.tsx - gere-o com `npm run templates -w packages/invoice` e não o edite à mão')
+    fail('template.json não corresponde ao template.tsx - gere-o com `npm run templates -w packages/invoice` e não o edite à mão')
   }
 
   // 4. Segurança do conteúdo
-  checkTemplate(template).forEach((i) => fail(`${i.path || 'modelo'}: ${i.message}`))
+  checkTemplate(template).forEach((i) => fail(`${i.path || 'template'}: ${i.message}`))
 
   // 5. Desenhar cada tipo e ver as pré-visualizações
   for (const dt of meta.docTypes) {
@@ -164,8 +164,8 @@ function readMeta(dir: string, fail: (m: string) => void): Meta | undefined {
 function report() {
   const out = process.env.GITHUB_STEP_SUMMARY
   if (!out) return
-  const lines = ['## Verificação dos modelos', '']
-  if (!slugs.length) lines.push('Nenhum modelo alterado.')
+  const lines = ['## Verificação dos templates', '']
+  if (!slugs.length) lines.push('Nenhum template alterado.')
   for (const slug of slugs) {
     const p = failures.get(slug)
     lines.push(p ? `### ✗ \`${slug}\`\n${p.map((x) => `- ${x.replace(/\|/g, '\\|')}`).join('\n')}\n` : `- ✓ \`${slug}\``)

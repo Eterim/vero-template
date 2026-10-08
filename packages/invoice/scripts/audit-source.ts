@@ -1,5 +1,5 @@
 /**
- * Lê o modelo.tsx SEM o executar e recusa o que um modelo não precisa e que pode ser
+ * Lê o template.tsx SEM o executar e recusa o que um template não precisa e que pode ser
  * usado para fazer mal quando a CI (ou alguém) o corre: imports fora de react e
  * @veroao/invoice, acesso ao sistema, à rede, a eval e afins.
  *
@@ -22,7 +22,7 @@ const FORBIDDEN_NAMES = new Set([
 
 const FORBIDDEN_PROPS = new Set(['constructor', '__proto__', 'prototype', '__defineGetter__', '__defineSetter__', '__lookupGetter__', '__lookupSetter__'])
 
-export function auditSource(source: string, fileName = 'modelo.tsx'): SourceIssue[] {
+export function auditSource(source: string, fileName = 'template.tsx'): SourceIssue[] {
   const sf = ts.createSourceFile(fileName, source, ts.ScriptTarget.Latest, true, ts.ScriptKind.TSX)
   const issues: SourceIssue[] = []
   const add = (node: ts.Node, message: string) => issues.push({ line: sf.getLineAndCharacterOfPosition(node.getStart()).line + 1, message })
@@ -31,7 +31,7 @@ export function auditSource(source: string, fileName = 'modelo.tsx'): SourceIssu
     if (ts.isImportDeclaration(node) || ts.isExportDeclaration(node)) {
       const spec = node.moduleSpecifier
       if (spec && (!ts.isStringLiteral(spec) || !ALLOWED_IMPORTS.has(spec.text))) {
-        add(node, `import de ${spec.getText(sf)} - um modelo só pode importar de ${[...ALLOWED_IMPORTS].join(' e ')}`)
+        add(node, `import de ${spec.getText(sf)} - um template só pode importar de ${[...ALLOWED_IMPORTS].join(' e ')}`)
       }
     } else if (ts.isImportEqualsDeclaration(node)) {
       add(node, 'import = require(...) não é permitido')
@@ -40,13 +40,13 @@ export function auditSource(source: string, fileName = 'modelo.tsx'): SourceIssu
     } else if (ts.isMetaProperty(node)) {
       add(node, `${node.getText(sf)} não é permitido`)
     } else if (ts.isIdentifier(node) && FORBIDDEN_NAMES.has(node.text) && !isPropertyName(node)) {
-      add(node, `"${node.text}" não é permitido num modelo`)
+      add(node, `"${node.text}" não é permitido num template`)
     } else if (ts.isPropertyAccessExpression(node) && FORBIDDEN_PROPS.has(node.name.text)) {
-      add(node, `".${node.name.text}" não é permitido num modelo`)
+      add(node, `".${node.name.text}" não é permitido num template`)
     } else if (ts.isElementAccessExpression(node)) {
       const arg = node.argumentExpression
       if (ts.isStringLiteralLike(arg) || ts.isNoSubstitutionTemplateLiteral(arg)) {
-        if (FORBIDDEN_PROPS.has(arg.text) || FORBIDDEN_NAMES.has(arg.text)) add(node, `["${arg.text}"] não é permitido num modelo`)
+        if (FORBIDDEN_PROPS.has(arg.text) || FORBIDDEN_NAMES.has(arg.text)) add(node, `["${arg.text}"] não é permitido num template`)
       } else if (!ts.isNumericLiteral(arg) && !ts.isIdentifier(arg)) {
         add(node, 'acesso com chave calculada (obj[a + b]) não é permitido - use obj.nome ou obj[i]')
       }

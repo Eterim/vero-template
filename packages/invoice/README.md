@@ -47,14 +47,14 @@ export default function MyInvoice() {
 npx @veroao/invoice dev
 ```
 
-Opens `http://localhost:3200` with the templates in `templates/` or `modelos/` (otherwise the current folder):
-every `.tsx` with a `default` export, or `<folder>/<name>/modelo.tsx`. The PDF is redrawn every time you save,
+Opens `http://localhost:3200` with the templates in `templates/` or `templates/` (otherwise the current folder):
+every `.tsx` with a `default` export, or `<folder>/<name>/template.tsx`. The PDF is redrawn every time you save,
 for all five document types (FT, FR, NC, ND, RC). If Tailwind or the code has an error, you see the component
 and the reason, and the last good version stays on screen. The **JSON para o Vero** button copies the template
 ready to import.
 
 Nothing needs to be installed in your project: React and the library come with the CLI.
-Another folder or port: `npx @veroao/invoice dev modelos --port 3300`.
+Another folder or port: `npx @veroao/invoice dev templates --port 3300`.
 
 ## Checking
 

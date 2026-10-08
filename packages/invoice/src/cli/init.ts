@@ -1,6 +1,6 @@
 /**
  * `npx @veroao/invoice init [pasta]` - cria um projecto pronto a usar: package.json,
- * tsconfig.json e um modelo de partida em templates/. Não instala nada.
+ * tsconfig.json e um template de partida em templates/. Não instala nada.
  */
 import { existsSync, mkdirSync, readdirSync, writeFileSync } from 'node:fs'
 import { basename, join, relative, resolve } from 'node:path'
@@ -33,7 +33,7 @@ export function init({ dir = 'vero-invoice', version }: InitOptions): string {
   return root
 }
 
-const README = `# Modelos de facturas
+const README = `# Templates de facturas
 
 Feito com [@veroao/invoice](https://www.npmjs.com/package/@veroao/invoice).
 
@@ -43,7 +43,7 @@ npm run dev      # pré-visualização ao vivo em http://localhost:3200
 npm run check    # as verificações da AGT e de segurança, antes de publicar
 \`\`\`
 
-Cada ficheiro \`.tsx\` em \`templates/\` é um modelo. Documentação: https://eterim.github.io/vero-template/docs
+Cada ficheiro \`.tsx\` em \`templates/\` é um template. Documentação: https://eterim.github.io/vero-template/docs
 `
 
 const STARTER = `import {
@@ -52,7 +52,7 @@ const STARTER = `import {
   Notes, AmountInWords, BankAccounts, LegalNotes,
 } from "@veroao/invoice"
 
-// As cores e a letra do modelo. Usa-as nas classes: text-muted, bg-surface, border-line…
+// As cores e a letra do template. Usa-as nas classes: text-muted, bg-surface, border-line…
 const config = {
   theme: {
     extend: {

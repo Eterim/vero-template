@@ -1,7 +1,7 @@
 {
   "slug": "classico",
   "name": "Clássico",
-  "description": "O modelo por omissão das facturas do Vero.",
+  "description": "O template por omissão das facturas do Vero.",
   "author": {
     "name": "vero",
     "url": "https://vero.ao"

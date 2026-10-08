@@ -97,7 +97,7 @@ export function Showcase() {
           </div>
         </div>
         <div className="mt-10 grid overflow-hidden border border-zinc-800 bg-zinc-950 lg:grid-cols-[1.15fr_1fr]">
-          <Code code={mode === 'tailwind' ? TAILWIND : INLINE} file="modelos/moderno.tsx"
+          <Code code={mode === 'tailwind' ? TAILWIND : INLINE} file="templates/moderno.tsx"
             className="min-w-0 border-0 [&_pre]:h-[560px] [&_pre]:text-[12px]" />
           <div className="relative flex items-center justify-center border-t border-zinc-800 bg-[radial-gradient(circle_at_50%_40%,#18181b,#09090b)] p-8 lg:border-t-0 lg:border-l">
             <img src={`${import.meta.env.BASE_URL}previews/vero-moderno.webp`} alt="O PDF gerado pelo código ao lado" loading="lazy" width={900} height={1272}
@@ -246,14 +246,14 @@ export function Components() {
 const TOOLS = [
   { id: 'check', icon: ListChecks, title: 'Verificação fiscal', text: 'Diz o que falta para o documento ter tudo o que a AGT exige - e acrescenta com um clique.' },
   { id: 'contrast', icon: Contrast, title: 'Contraste', text: 'Texto fiscal que não se lê sobre o fundo é corrigido, e o editor diz porquê.' },
-  { id: 'types', icon: LayoutTemplate, title: 'Cinco documentos, um modelo', text: 'Factura, factura-recibo, nota de crédito, nota de débito e recibo - todos a partir do mesmo modelo.' },
+  { id: 'types', icon: LayoutTemplate, title: 'Cinco documentos, um template', text: 'Factura, factura-recibo, nota de crédito, nota de débito e recibo - todos a partir do mesmo template.' },
 ] as const
 
 function ToolPanel({ id }: { id: (typeof TOOLS)[number]['id'] }) {
   if (id === 'check') {
     return (
       <div className="p-5">
-        <p className="flex items-center gap-2 text-xs font-semibold text-sky-300"><ListChecks className="size-4" /> Para o modelo ficar completo, faltam 3 elementos</p>
+        <p className="flex items-center gap-2 text-xs font-semibold text-sky-300"><ListChecks className="size-4" /> Para o template ficar completo, faltam 3 elementos</p>
         <div className="mt-3 flex flex-wrap gap-1.5">
           {['NIF do cliente', 'totais', 'menções legais'].map((x) => (
             <span key={x} className="flex items-center gap-1 rounded-full border border-sky-500/40 px-2.5 py-0.5 text-[11.5px] text-sky-200"><Plus className="size-3" /> {x}</span>
@@ -293,7 +293,7 @@ export function Tools() {
   return (
     <section className="border-t border-zinc-900 py-24 sm:py-32">
       <div className={container}>
-        <Title center sub="Antes de uma factura sair, o modelo é verificado - no editor e na emissão.">Ferramentas que conhecem a lei</Title>
+        <Title center sub="Antes de uma factura sair, o template é verificado - no editor e na emissão.">Ferramentas que conhecem a lei</Title>
         <div className="mt-14 grid gap-8 lg:grid-cols-[0.8fr_1.2fr] lg:items-center [&>*]:min-w-0">
           <div className="space-y-2">
             {TOOLS.map((t) => (
@@ -327,7 +327,7 @@ export function Tools() {
 const STEPS = [
   { icon: Type, title: 'Escreva', text: 'Um .tsx com componentes React e Tailwind. Componentes seus, props, listas.' },
   { icon: Terminal, title: 'Veja ao vivo', text: 'npx @veroao/invoice dev: o PDF actualiza-se cada vez que grava.' },
-  { icon: GitPullRequest, title: 'Publique', text: 'Um pull request e o modelo entra na galeria, com código e pré-visualização.' },
+  { icon: GitPullRequest, title: 'Publique', text: 'Um pull request e o template entra na galeria, com código e pré-visualização.' },
   { icon: Rocket, title: 'Use no Vero', text: 'Importe no Vero: certificação e dados reais entram em cada factura.' },
 ]
 
@@ -354,18 +354,18 @@ export function HowItWorks() {
   )
 }
 
-// ── 6. Modelos ────────────────────────────────────────────────────────────────
+// ── 6. Templates ────────────────────────────────────────────────────────────────
 
 export function Gallery() {
   const featured = TEMPLATES.slice(0, 4)
   return (
-    <section id="modelos" className="border-t border-zinc-900 py-24 sm:py-32">
+    <section id="templates" className="border-t border-zinc-900 py-24 sm:py-32">
       <div className={container}>
-        <Eyebrow icon={Palette}>Modelos</Eyebrow>
+        <Eyebrow icon={Palette}>Templates</Eyebrow>
         <div className="mt-4 flex flex-col justify-between gap-6 sm:flex-row sm:items-end">
-          <Title sub="Pré-visualização, código para copiar e importação no Vero em cada um.">Comece de um modelo. Ou do zero.</Title>
-          <Link to="/modelos" className="inline-flex shrink-0 items-center gap-2 text-sm font-semibold text-zinc-300 hover:text-white">
-            Ver os {TEMPLATES.length} modelos <ArrowRight className="size-4" />
+          <Title sub="Pré-visualização, código para copiar e importação no Vero em cada um.">Comece de um template. Ou do zero.</Title>
+          <Link to="/templates" className="inline-flex shrink-0 items-center gap-2 text-sm font-semibold text-zinc-300 hover:text-white">
+            Ver os {TEMPLATES.length} templates <ArrowRight className="size-4" />
           </Link>
         </div>
         <div className="mt-12 grid grid-cols-2 gap-x-4 gap-y-10 lg:grid-cols-4">
@@ -394,14 +394,14 @@ export function UseInVero() {
         <div>
           <Eyebrow icon={Braces}>Usar no Vero</Eyebrow>
           <div className="mt-4">
-            <Title sub="O modelo só traz o aspecto. Ao emitir, o Vero preenche a série, o ATCUD, a assinatura, o programa certificado, o QR e os dados reais.">
+            <Title sub="O template só traz o aspecto. Ao emitir, o Vero preenche a série, o ATCUD, a assinatura, o programa certificado, o QR e os dados reais.">
               Um clique e está nas suas facturas.
             </Title>
           </div>
           <ul className="mt-8 space-y-3 text-sm text-zinc-300">
             <li className="flex gap-3"><Check className="mt-0.5 size-4 shrink-0 text-emerald-400" /> O Vero recebe só um JSON - nunca executa código de terceiros.</li>
             <li className="flex gap-3"><Check className="mt-0.5 size-4 shrink-0 text-emerald-400" /> Valida o que é obrigatório e mostra a factura com os seus dados antes de aplicar.</li>
-            <li className="flex gap-3"><Check className="mt-0.5 size-4 shrink-0 text-emerald-400" /> Cada factura fica presa à versão do modelo: reimprimir anos depois sai igual.</li>
+            <li className="flex gap-3"><Check className="mt-0.5 size-4 shrink-0 text-emerald-400" /> Cada factura fica presa à versão do template: reimprimir anos depois sai igual.</li>
           </ul>
         </div>
         <div className="border border-zinc-800 bg-zinc-950 p-5">
@@ -431,7 +431,7 @@ export function OpenSource() {
       <div className={`relative ${container}`}>
         <h2 className="mx-auto max-w-3xl text-4xl font-black tracking-tighter text-balance sm:text-6xl">Open source. Use, adapte, contribua.</h2>
         <p className="mx-auto mt-5 max-w-xl text-[17px] leading-relaxed text-zinc-400">
-          Licença MIT. Funciona sem o Vero - gere PDFs com os seus dados, no seu servidor. Com o Vero, importa qualquer modelo da galeria.
+          Licença MIT. Funciona sem o Vero - gere PDFs com os seus dados, no seu servidor. Com o Vero, importa qualquer template da galeria.
         </p>
         <div className="mt-9 flex justify-center"><CopyCommand command="npm install @veroao/invoice" /></div>
         <div className="mt-6 flex justify-center gap-3">

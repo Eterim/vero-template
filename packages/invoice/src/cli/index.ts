@@ -2,7 +2,7 @@
 /**
  * npx @veroao/invoice <command>
  *   init [dir]                new project with a starter template
- *   dev [dir] [--port 3200]   live preview of the templates in dir (default: templates/ or modelos/)
+ *   dev [dir] [--port 3200]   live preview of the templates in dir (default: templates/)
  *   check [dir]               AGT and safety checks, exit code 1 on problems
  */
 import { readFileSync } from 'node:fs'
@@ -30,11 +30,11 @@ const HELP = `
     npx @veroao/invoice check [pasta]
 
   Comandos:
-    init      Cria um projecto novo com um modelo de partida
+    init      Cria um projecto novo com um template de partida
               (por omissão na pasta vero-invoice)
-    dev       Pré-visualização ao vivo dos modelos (.tsx) da pasta
-              (por omissão: templates/ ou modelos/, senão a pasta actual)
-    check     Verifica os modelos: compilam, cumprem as regras da AGT e
+    dev       Pré-visualização ao vivo dos templates (.tsx) da pasta
+              (por omissão: templates/, senão a pasta actual)
+    check     Verifica os templates: compilam, cumprem as regras da AGT e
               não têm dados fiscais ou de pagamento escritos à mão
 
   Opções:
@@ -51,7 +51,7 @@ if (args.includes('--version') || args.includes('-v')) {
   try {
     const root = init({ dir: args[1], version: pkg.version })
     const rel = relative(process.cwd(), root)
-    console.log(`\n  Projecto criado em ${rel || '.'}\n\n  Próximos passos:\n${rel ? `    cd ${rel}\n` : ''}    npm install\n    npm run dev\n\n  O modelo está em templates/invoice.tsx.\n`)
+    console.log(`\n  Projecto criado em ${rel || '.'}\n\n  Próximos passos:\n${rel ? `    cd ${rel}\n` : ''}    npm install\n    npm run dev\n\n  O template está em templates/invoice.tsx.\n`)
   } catch (e) {
     console.error(`\n  ${(e as Error).message}\n`)
     process.exit(1)

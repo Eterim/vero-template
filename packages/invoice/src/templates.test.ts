@@ -4,14 +4,14 @@ import { createElement, type FC } from 'react'
 import { describe, expect, it } from 'vitest'
 import { compile, render, sampleDocument } from './index.js'
 
-// A prova de que o código da galeria é verdadeiro: cada templates/*/modelo.tsx compila e
+// A prova de que o código da galeria é verdadeiro: cada templates/*/template.tsx compila e
 // desenha os cinco documentos sem avisos.
 const ROOT = new URL('../../../templates/', import.meta.url).pathname
 const SLUGS = readdirSync(ROOT, { withFileTypes: true }).filter((d) => d.isDirectory()).map((d) => d.name)
 
 describe.each(SLUGS)('templates/%s', (slug) => {
   it('compila e desenha FT, FR, NC, ND e RC sem avisos', async () => {
-    const mod = (await import(join(ROOT, slug, 'modelo.tsx'))) as { default: FC }
+    const mod = (await import(join(ROOT, slug, 'template.tsx'))) as { default: FC }
     const template = compile(createElement(mod.default))
     expect(template.body.length).toBeGreaterThan(0)
     for (const dt of ['FT', 'FR', 'NC', 'ND', 'RC'] as const) {

@@ -8,7 +8,7 @@ import { sampleDocument } from './sample.js'
 import type { DocumentData, TemplateV2 } from './types.js'
 
 const template = (slug: string): TemplateV2 =>
-  JSON.parse(readFileSync(new URL(`../../../../templates/${slug}/modelo.json`, import.meta.url), 'utf8')).template
+  JSON.parse(readFileSync(new URL(`../../../../templates/${slug}/template.json`, import.meta.url), 'utf8')).template
 
 const FONTS = join(dirname(createRequire(import.meta.url).resolve('pdfjs-dist/package.json')), 'standard_fonts') + '/'
 
@@ -53,7 +53,7 @@ describe('elementos fiscais do motor', () => {
     for (let i = 1; i <= 60; i++) expect(all).toContain(`Artigo ${i} `)
   })
 
-  it('a menção do programa certificado aparece uma só vez por página, mesmo que o modelo a peça', async () => {
+  it('a menção do programa certificado aparece uma só vez por página, mesmo que o template a peça', async () => {
     const [p] = await pages(sampleDocument('FT'), 'classico')
     expect(count(p, 'Processado por programa')).toBe(1)
   })

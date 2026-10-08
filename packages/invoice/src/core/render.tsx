@@ -319,12 +319,12 @@ function Fiscal({ b }: { b: Extract<Block, { type: 'fiscal' }> }) {
 /** Altura do QR da AGT com a margem branca e a legenda (pt). */
 /**
  * Código QR da AGT: não é um bloco. É desenhado sempre no canto inferior direito da última
- * página, por cima da faixa do rodapé - posição exigida pela AGT, igual em todos os modelos.
+ * página, por cima da faixa do rodapé - posição exigida pela AGT, igual em todos os templates.
  */
 export const AGT_QR = { size: 96, caption: 'Verificar factura - AGT' } as const
 
 const QR_TILE_H = AGT_QR.size + 12 + 9
-/** Linha AGT (programa certificado + número), 6 pt acima da faixa do rodapé do modelo, em todas as páginas. */
+/** Linha AGT (programa certificado + número), 6 pt acima da faixa do rodapé do template, em todas as páginas. */
 const AGT_LINE_BOTTOM = 6
 const AGT_LINE_H = 10
 /** O QR fica 4 pt acima da linha AGT, e o conteúdo acaba pelo menos 6 pt acima do QR. */
@@ -336,7 +336,7 @@ const CONTENT_ABOVE_LINE = 10
 const CONTINUATION_TOP = 36
 
 /**
- * Código QR da AGT. Sem props de estilo nem de posição: é igual em todos os modelos.
+ * Código QR da AGT. Sem props de estilo nem de posição: é igual em todos os templates.
  * Desenhado em vector, com tamanho fixo (não encolhe), sobre branco, com a legenda em cima
  * e a marca da AGT ao centro. Sem hooks - é desenhado dentro de um `render` do react-pdf.
  */
@@ -422,7 +422,7 @@ function Bank({ b }: { b: Extract<Block, { type: 'bank' }> }) {
   )
 }
 
-/** Faixas decorativas no canto superior direito (as do modelo clássico do Vero). */
+/** Faixas decorativas no canto superior direito (as do template clássico do Vero). */
 function Corner({ hex }: { hex: string | null }) {
   const mix = (h: string, ratio: number) => {
     const n = parseInt(h.slice(1), 16)
@@ -441,7 +441,7 @@ function Corner({ hex }: { hex: string | null }) {
 
 /**
  * Linha AGT de todas as páginas: "XXXX-Processado por programa válido nº …" à esquerda e o
- * número do documento à direita. É do motor, como o QR: nenhum modelo a tira ou muda de sítio.
+ * número do documento à direita. É do motor, como o QR: nenhum template a tira ou muda de sítio.
  */
 function AgtLine({ marginX, bottom }: { marginX: number; bottom: number }) {
   const { data, t } = useCtx()
@@ -612,7 +612,7 @@ function estimateHeight(t: TemplateV2, b: Block, inheritedSize = 9): number {
 export interface RenderV2Result { document: ReactNode; warnings: RenderWarning[] }
 
 /**
- * `insertMissing: false` só no editor: mostra o modelo tal como está (ex.: em branco) e
+ * `insertMissing: false` só no editor: mostra o template tal como está (ex.: em branco) e
  * os elementos obrigatórios em falta vêm como avisos. Um documento emitido usa sempre o
  * valor por omissão (true) - nunca sai sem eles.
  */
@@ -629,7 +629,7 @@ export async function buildDocumentV2(input: TemplateV2, data: DocumentData, opt
     const need = Math.ceil(estimateHeight(t, { type: 'stack', children: t.bottom.children, style: zs } as Block))
     if (need > bottomH) {
       warnings.push({ kind: 'space', element: 'A faixa do rodapé',
-        message: `A faixa do rodapé tem ${bottomH} pt, mas o que lá está precisa de cerca de ${need} pt. No PDF o Vero já a aumentou, para nada ficar apertado - guarde a altura certa no modelo.`,
+        message: `A faixa do rodapé tem ${bottomH} pt, mas o que lá está precisa de cerca de ${need} pt. No PDF o Vero já a aumentou, para nada ficar apertado - guarde a altura certa no template.`,
         fix: { label: `Mudar para ${need} pt`, bottomHeight: need } })
       bottomH = need
     }

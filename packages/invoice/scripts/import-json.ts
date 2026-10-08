@@ -13,7 +13,7 @@ export interface Meta {
   updatedAt: string
 }
 
-/** O modelo.json de cada pasta - o que o Vero importa. */
+/** O template.json de cada pasta - o que o Vero importa. */
 export const importJson = (meta: Meta, slug: string, template: TemplateV2) => ({
   format: 'vero-template', schemaVersion: 2, id: `${meta.author.name}/${slug}`, version: meta.version, name: meta.name, author: meta.author.name, template,
 })
