@@ -1,6 +1,6 @@
 version: 2
 updates:
-  # As acções estão presas a um commit (SHA); o Dependabot propõe as actualizações.
+  # Actions are pinned to a commit SHA; Dependabot proposes the updates.
   - package-ecosystem: github-actions
     directory: /
     schedule:

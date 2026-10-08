@@ -1,46 +1,50 @@
-# Contribuir
+# Contributing
 
-Obrigado por quereres contribuir. A forma mais comum é publicar um modelo na galeria.
+Thanks for wanting to contribute. The most common way is publishing a template to the gallery.
 
-## Publicar um modelo
+Portuguese is welcome in issues and pull requests.
 
-1. Faz fork do repositório e cria um ramo.
-2. Cria a pasta `templates/<nome>/` (minúsculas, números e hífenes) com `meta.json` e `modelo.tsx` - copia um dos modelos existentes como ponto de partida.
-3. Vê-o enquanto o desenhas:
+## Publishing a template
+
+1. Fork the repository and create a branch.
+2. Create the folder `templates/<name>/` (lowercase letters, numbers and hyphens) with `meta.json` and `modelo.tsx` - copy one of the existing templates as a starting point.
+3. Preview it while you design:
    ```bash
    npm install
    npx @veroao/invoice dev templates
    ```
-4. Gera o `modelo.json` e as pré-visualizações (não se editam à mão) e corre as verificações:
+4. Build `modelo.json` and the previews (never edit them by hand) and run the checks:
    ```bash
-   npm run templates -w packages/invoice -- <nome>
-   npm run check:templates -w packages/invoice -- <nome>
+   npm run templates -w packages/invoice -- <name>
+   npm run check:templates -w packages/invoice -- <name>
    ```
-5. Abre o pull request. A CI repete as verificações e a equipa revê o modelo antes de entrar.
+5. Open the pull request. CI runs the same checks and a maintainer reviews the template before it is merged.
 
-### O `meta.json`
+### `meta.json`
 
-- `author.name`: o teu utilizador do GitHub.
-- `collection`: `"comunidade"` (`vero` e `exemplos` são da equipa).
-- `version`: começa em `1`; ao alterar um modelo que já existe, sobe-a. O Vero prende cada factura emitida à versão com que foi feita.
+- `author.name`: your GitHub username.
+- `collection`: `"comunidade"` (`vero` and `exemplos` belong to the maintainers).
+- `version`: starts at `1`; bump it whenever you change an existing template. Vero pins every issued invoice to the version it was made with.
 - `license`: `"MIT"`.
 
-### O que a CI verifica
+See [templates/README.md](templates/README.md) for the full format.
 
-Os modelos vão parar às facturas de outras empresas, por isso a CI é exigente:
+### What CI checks
 
-- **Âmbito**: um PR de fora da equipa só mexe em `templates/<nome>/`, num só modelo, e só altera modelos que são seus.
-- **Ficheiros**: só `meta.json`, `modelo.tsx`, `modelo.json` e `preview-<tipo>.webp`; sem subpastas nem ligações; com limites de tamanho.
-- **Código**: o `modelo.tsx` é lido antes de ser executado. Só pode importar de `react` e `@veroao/invoice`; não pode usar `process`, `fetch`, `eval`, `require`, temporizadores, `import()` nem acessos como `obj["con" + "structor"]`. Um modelo só descreve o aspecto - não precisa de mais nada.
-- **Conteúdo**: os textos escritos no modelo não podem ter números de conta (IBAN), telefones, NIF ou outros números longos, ligações, e-mails, caracteres invisíveis, nem frases que imitem as menções fiscais ("processado por programa certificado", ATCUD, AGT, isenções, "Original", "Pago"). Isso vem sempre dos dados do documento e dos componentes (`<BankAccounts />`, `<LegalNotes />`, `<Atcud />`…). Para dados da empresa usa as variáveis: `{{org.name}}`, `{{org.website}}`, `{{org.email}}`, `{{org.phone}}`, `{{customer.name}}`, `{{document.number}}`…
-- **Correspondência**: o `modelo.json` enviado tem de ser exactamente o que o `modelo.tsx` gera.
-- **AGT**: cada tipo de documento declarado desenha-se sem avisos (todos os elementos obrigatórios, contraste e tamanho mínimos).
+Templates end up on other companies' invoices, so CI is strict:
 
-Mesmo com a CI verde, um modelo só entra com a aprovação de alguém da equipa.
+- **Scope**: a pull request from outside the team only touches `templates/<name>/`, a single template, and only templates you authored.
+- **Files**: only `meta.json`, `modelo.tsx`, `modelo.json` and `preview-<type>.webp`; no subfolders or symlinks; size limits apply.
+- **Code**: `modelo.tsx` is read before it is run. It may only import from `react` and `@veroao/invoice`, and cannot use `process`, `fetch`, `eval`, `require`, timers, `import()` or tricks like `obj["con" + "structor"]`. A template only describes how the document looks - it needs nothing else.
+- **Content**: text written in the template cannot contain bank accounts (IBAN), phone numbers, tax IDs (NIF) or other long numbers, links, e-mails, invisible characters, or phrases imitating fiscal mentions ("processado por programa certificado", ATCUD, AGT, exemptions, "Original", "Pago"). Those always come from the document data and the components (`<BankAccounts />`, `<LegalNotes />`, `<Atcud />`…). For company data use the variables `{{org.name}}`, `{{org.website}}`, `{{org.email}}`, `{{org.phone}}`, `{{customer.name}}`, `{{document.number}}`…
+- **Match**: the committed `modelo.json` must be exactly what `modelo.tsx` produces.
+- **AGT**: every declared document type renders without warnings (all mandatory elements, minimum contrast and size).
 
-## Alterar a biblioteca ou o site
+Even with green CI, a template is only merged after a maintainer approves it.
 
-Abre primeiro um issue a explicar o que queres mudar. Antes do PR:
+## Changing the library or the website
+
+Open an issue first describing what you want to change. Before the pull request:
 
 ```bash
 npm run typecheck -w packages/invoice
@@ -48,4 +52,6 @@ npm test -w packages/invoice
 npm run build
 ```
 
-Ao contribuir, aceitas que o teu trabalho é publicado com a licença MIT.
+Code identifiers are in English; text shown to end users (PDF labels, library messages, website) is in Portuguese.
+
+By contributing, you agree that your work is published under the MIT license.

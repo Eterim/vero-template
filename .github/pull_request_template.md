@@ -1,17 +1,17 @@
-## O que muda
+## What changes
 
-<!-- Um modelo novo? Uma correcção? Descreve em poucas linhas. -->
+<!-- A new template? A fix? Describe it in a few lines. Portuguese is fine. -->
 
-## Modelo (se for um)
+## Template (if this is one)
 
-- [ ] Um só modelo, em `templates/<nome>/`
-- [ ] `meta.json` com o meu utilizador do GitHub em `author.name` e `"collection": "comunidade"`
-- [ ] `modelo.json` e pré-visualizações gerados com `npm run templates -w packages/invoice -- <nome>` (não editados à mão)
-- [ ] `npm run check:templates -w packages/invoice -- <nome>` passa
-- [ ] Se alterei um modelo que já existia, subi `version` no `meta.json`
-- [ ] Sem textos com números de conta, telefones, NIF, ligações, e-mails ou menções fiscais - isso vem sempre dos dados da empresa e dos componentes
-- [ ] Sem logótipo, nome ou dados de uma empresa real
+- [ ] A single template, in `templates/<name>/`
+- [ ] `meta.json` with my GitHub username in `author.name` and `"collection": "comunidade"`
+- [ ] `modelo.json` and previews built with `npm run templates -w packages/invoice -- <name>` (not edited by hand)
+- [ ] `npm run check:templates -w packages/invoice -- <name>` passes
+- [ ] If I changed an existing template, I bumped `version` in `meta.json`
+- [ ] No text with bank accounts, phone numbers, tax IDs, links, e-mails or fiscal mentions - those always come from the company data and the components
+- [ ] No logo, name or data of a real company
 
-## Capturas
+## Screenshots
 
-<!-- Opcional: a pré-visualização mais importante. -->
+<!-- Optional: the most important preview. -->

@@ -1,32 +1,33 @@
 # Vero Template
 
-Facturas, recibos e notas angolanas desenhadas em **React** e **Tailwind CSS** - como o React Email, mas para documentos fiscais.
+Angolan invoices, receipts and credit/debit notes designed with **React** and **Tailwind CSS** - like React Email, but for tax documents. AGT (Angolan tax authority) rules included.
 
 [![npm](https://img.shields.io/npm/v/@veroao/invoice)](https://www.npmjs.com/package/@veroao/invoice) [![CI](https://github.com/Eterim/vero-template/actions/workflows/ci.yml/badge.svg)](https://github.com/Eterim/vero-template/actions/workflows/ci.yml)
 
-Site e documentação: https://eterim.github.io/vero-template/
+Website and docs (Portuguese): https://eterim.github.io/vero-template/ · [Português](README.pt.md)
 
 ```bash
 npm install @veroao/invoice react
-npx @veroao/invoice dev        # pré-visualização ao vivo dos teus modelos
+npx @veroao/invoice dev        # live preview of your templates
 ```
 
-- `apps/site` - site (landing, galeria de modelos, documentação)
-- `packages/invoice` - a biblioteca `@veroao/invoice` (ver o README dela)
-- `templates/` - os modelos da galeria (cada um: `meta.json`, `modelo.tsx`, `modelo.json`, `preview-<tipo>.webp`)
+- `apps/site` - website (landing page, template gallery, documentation)
+- `packages/invoice` - the `@veroao/invoice` library (see its README)
+- `templates/` - the gallery templates (each one: `meta.json`, `modelo.tsx`, `modelo.json`, `preview-<type>.webp`)
+- `examples/` - one example per component, used by the website
 
-Licença MIT.
+MIT licensed.
 
-## Desenvolver
+## Development
 
 ```bash
 npm install
-npm run dev                                 # site em http://localhost:5200
-npm test -w packages/invoice                # testes da biblioteca (inclui os modelos da galeria)
-npm run templates -w packages/invoice       # gera modelo.json e pré-visualizações a partir de modelo.tsx
-npm run check:templates -w packages/invoice # as verificações que a CI faz a cada pull request
+npm run dev                                 # website at http://localhost:5200
+npm test -w packages/invoice                # library tests (includes the gallery templates)
+npm run templates -w packages/invoice       # builds modelo.json and previews from modelo.tsx
+npm run check:templates -w packages/invoice # the checks CI runs on every pull request
 ```
 
-## Contribuir
+## Contributing
 
-Modelos novos entram por pull request - ver [CONTRIBUTING.md](CONTRIBUTING.md). Problemas de segurança: [SECURITY.md](SECURITY.md).
+New templates come in through pull requests - see [CONTRIBUTING.md](CONTRIBUTING.md). Security issues: [SECURITY.md](SECURITY.md).

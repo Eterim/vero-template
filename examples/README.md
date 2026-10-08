@@ -1,14 +1,13 @@
-# Exemplos dos componentes
+# Component examples
 
-Um exemplo por ficheiro: `<componente>/<variante>.tsx`. São os exemplos da página Componentes
-do site (`/componentes`); as imagens `<variante>.webp` e as miniaturas `<variante>.thumb.webp` são
-geradas a partir deles:
+One example per file: `<component>/<variant>.tsx`. These are the examples on the website's Components page
+(`/componentes`); the `<variant>.webp` images and `<variant>.thumb.webp` thumbnails are built from them:
 
 ```bash
 npm run examples -w packages/invoice
 ```
 
-Um exemplo devolve só o pedaço que mostra; o script põe-no numa página A4 branca
-(`<Document className="bg-white px-12 pt-10 text-[11px]">`). Com `export const page = true`, o
-exemplo devolve o modelo inteiro (`<Tailwind>` / `<Document>`) e a imagem mostra a página toda.
-`export const docType = "FT"` escolhe o tipo de documento dos dados de exemplo (por omissão FR).
+An example returns only the piece it shows; the script places it on a white A4 page
+(`<Document className="bg-white px-12 pt-10 text-[11px]">`). With `export const page = true`, the
+example returns the whole template (`<Tailwind>` / `<Document>`) and the image shows the full page.
+`export const docType = "FT"` picks the document type of the sample data (FR by default).

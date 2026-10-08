@@ -1,8 +1,8 @@
-# Verificação de cada pull request e de cada envio para a main.
+# Checks every pull request and every push to main.
 #
-# Segurança: `pull_request` (nunca pull_request_target) - o código de um fork corre sem
-# segredos e com o token só de leitura. Os modelos são lidos sem executar antes de
-# serem compilados (packages/invoice/scripts/audit-source.ts).
+# Security: `pull_request` (never pull_request_target) - code from a fork runs without
+# secrets and with a read-only token. Templates are read without running them before
+# they are compiled (packages/invoice/scripts/audit-source.ts).
 name: CI
 
 on:
@@ -19,7 +19,7 @@ concurrency:
 
 jobs:
   scope:
-    name: Âmbito do PR
+    name: PR scope
     runs-on: ubuntu-latest
     timeout-minutes: 5
     outputs:
@@ -39,7 +39,7 @@ jobs:
           PR_ASSOCIATION: ${{ github.event.pull_request.author_association }}
 
   library:
-    name: Biblioteca
+    name: Library
     needs: scope
     runs-on: ubuntu-latest
     timeout-minutes: 15
@@ -57,7 +57,7 @@ jobs:
       - run: npm run build -w packages/invoice
 
   templates:
-    name: Modelos
+    name: Templates
     needs: scope
     runs-on: ubuntu-latest
     timeout-minutes: 15
@@ -70,7 +70,7 @@ jobs:
           node-version: 22
           cache: npm
       - run: npm ci --ignore-scripts
-      # Num PR, só os modelos alterados (nenhum = nada a fazer); na main, todos.
+      # On a PR, only the changed templates (none = nothing to do); on main, all of them.
       - if: github.event_name != 'pull_request' || needs.scope.outputs.templates != ''
         run: npm run check:templates -w packages/invoice -- $TEMPLATES
         env:

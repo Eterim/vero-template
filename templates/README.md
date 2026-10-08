@@ -1,26 +1,26 @@
-# Modelos
+# Templates
 
-Cada pasta é um modelo da galeria. Para publicar o teu, abre um pull request com uma pasta nova:
+Each folder is a gallery template. To publish yours, open a pull request with a new folder:
 
 ```
-templates/<nome>/
-  meta.json         nome, descrição, autor, versão, tipos de documento, etiquetas
-  modelo.tsx        o modelo em React + Tailwind (@veroao/invoice)
-  modelo.json       o mesmo modelo compilado - é isto que o Vero importa
-  preview-ft.webp   pré-visualização de cada tipo de documento
-  preview-fr.webp   (ft, fr, nc, nd, rc), 900 px de largura
+templates/<name>/
+  meta.json         name, description, author, version, document types, tags
+  modelo.tsx        the template in React + Tailwind (@veroao/invoice)
+  modelo.json       the same template compiled - this is what Vero imports
+  preview-ft.webp   a preview for each document type
+  preview-fr.webp   (ft, fr, nc, nd, rc), 900 px wide
   …
 ```
 
-`modelo.json` e as imagens são gerados a partir de `modelo.tsx` com `npm run templates -w packages/invoice` - não se editam à mão. Para ver o teu enquanto o desenhas: `npx @veroao/invoice dev templates`.
+`modelo.json` and the images are built from `modelo.tsx` with `npm run templates -w packages/invoice` - never edit them by hand. To see yours while you design it: `npx @veroao/invoice dev templates`.
 
-## Regras
+## Rules
 
-- O modelo só define o **aspecto**. Números, NIF, ATCUD, a menção do programa certificado, o QR e os dados de pagamento vêm sempre dos componentes - nunca escritos como texto.
-- Todos os elementos obrigatórios da AGT têm de estar presentes.
-- Antes do pull request: `npm run check:templates -w packages/invoice -- <nome>`. A CI corre o mesmo - ver [CONTRIBUTING.md](../CONTRIBUTING.md) para a lista completa.
-- Não uses o logótipo, o nome ou os dados de uma empresa real - o logótipo vem da empresa que usar o modelo.
-- Licença MIT.
+- The template only defines the **look**. Numbers, tax IDs, ATCUD, the certified software mention, the QR code and payment details always come from the components - never written as text.
+- All mandatory AGT elements must be present.
+- Before the pull request: `npm run check:templates -w packages/invoice -- <name>`. CI runs the same checks - see [CONTRIBUTING.md](../CONTRIBUTING.md) for the full list.
+- Don't use the logo, name or data of a real company - the logo comes from the company using the template.
+- MIT license.
 
 ## `meta.json`
 
@@ -39,4 +39,4 @@ templates/<nome>/
 }
 ```
 
-`collection`: `comunidade` para quem contribui; `vero` (modelos oficiais) e `exemplos` são da equipa.
+`collection`: `comunidade` for contributors; `vero` (official templates) and `exemplos` belong to the maintainers. Name, description and tags are shown on the website, so write them in Portuguese.
