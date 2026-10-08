@@ -17,7 +17,7 @@ npm install @veroao/invoice react
 
 ```tsx
 import { Tailwind, Document, Row, Logo, DocumentTitle, DocumentNumber,
-  Customer, Issuer, Items, Totals, LegalNotes } from "@veroao/invoice"
+  DocumentDate, Customer, Issuer, Items, Totals, LegalNotes } from "@veroao/invoice"
 
 export default function MyInvoice() {
   return (
@@ -31,7 +31,10 @@ export default function MyInvoice() {
           <Customer className="flex-1 border border-zinc-200 p-3" labelClassName="font-bold text-brand" />
           <Issuer className="flex-1" />
         </Row>
-        <DocumentNumber className="mt-6 font-bold" />
+        <Row className="mt-6 justify-between">
+          <DocumentNumber className="font-bold" />
+          <DocumentDate />
+        </Row>
         <Items className="mt-3" rowClassName="border-b border-zinc-200 even:bg-zinc-50" />
         <Totals className="ml-auto mt-4 w-1/2" totalClassName="text-xl font-bold text-brand" />
         <LegalNotes className="mt-6 text-[9px] text-zinc-500" />
@@ -47,7 +50,7 @@ export default function MyInvoice() {
 npx @veroao/invoice dev
 ```
 
-Abre `http://localhost:3200` com os templates da pasta `templates/` ou `templates/` (senão, a pasta actual):
+Abre `http://localhost:3200` com os templates da pasta `templates/` (senão, a pasta actual):
 cada `.tsx` com `export default`, ou `<pasta>/<nome>/template.tsx`. O PDF volta a ser desenhado sempre que
 gravas, com os cinco tipos de documento (FT, FR, NC, ND, RC). Se o Tailwind ou o código tiver um erro,
 aparece o componente e o motivo, e fica à vista a última versão boa. O botão **JSON para o Vero** copia

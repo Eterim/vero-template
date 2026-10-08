@@ -126,7 +126,7 @@ function Parties() {
       <>
         <PageTitle eyebrow="Começar" lead="Um servidor local que desenha os teus templates e os volta a desenhar sempre que gravas.">Ver ao vivo</PageTitle>
         <Code className="mt-8" file="terminal" code="npx @veroao/invoice dev" copyable />
-        <P>Procura os templates na pasta <C>templates/</C> ou <C>templates/</C> (senão, na pasta actual): cada ficheiro <C>.tsx</C> com <C>export default</C>, ou <C>{'<pasta>/<nome>/template.tsx'}</C>, como na galeria.</P>
+        <P>Procura os templates na pasta <C>templates/</C> (senão, na pasta actual): cada ficheiro <C>.tsx</C> com <C>export default</C>, ou <C>{'<pasta>/<nome>/template.tsx'}</C>, como na galeria.</P>
         <H2>O que mostra</H2>
         <Ul>
           <li>O PDF com dados de exemplo, nos cinco tipos de documento: FT, FR, NC, ND e RC.</li>
@@ -136,7 +136,7 @@ function Parties() {
         </Ul>
         <H2>Opções</H2>
         <Table head={['Opção', 'Por omissão', 'O que faz']} rows={[
-          [<C>[pasta]</C>, 'templates/ ou templates/', 'Pasta dos templates.'],
+          [<C>[pasta]</C>, 'templates/ (senão, a pasta actual)', 'Pasta dos templates.'],
           [<C>--port</C>, '3200', 'Porta do servidor.'],
           [<C>--help</C>, '', 'Ajuda.'],
           [<C>--version</C>, '', 'Versão.'],
