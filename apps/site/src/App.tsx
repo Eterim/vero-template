@@ -61,9 +61,10 @@ function OldTemplateLink() {
   return <Navigate to={`/templates/${slug ?? ''}`} replace />
 }
 
-export default function App() {
+/** O site sem o router - o browser usa BrowserRouter, o pré-render usa StaticRouter. */
+export function AppShell() {
   return (
-    <BrowserRouter basename={import.meta.env.BASE_URL}>
+    <>
       <ScrollManager />
       <Nav />
       <main>
@@ -82,6 +83,14 @@ export default function App() {
         </Routes>
       </main>
       <Footer />
+    </>
+  )
+}
+
+export default function App() {
+  return (
+    <BrowserRouter basename={import.meta.env.BASE_URL}>
+      <AppShell />
     </BrowserRouter>
   )
 }

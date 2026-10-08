@@ -25,56 +25,55 @@ function Title({ children, sub, center }: { children: React.ReactNode; sub?: Rea
 
 // ── 1. Tailwind | Estilos ─────────────────────────────────────────────────────
 
-const TAILWIND = `import { Document, Section, Row, Logo, DocumentTitle, DocumentNumber,
+const TAILWIND = `import { Document, Row, Logo, DocumentTitle, DocumentNumber, DocumentDate,
   Customer, Issuer, Items, Totals, LegalNotes } from "@veroao/invoice"
 
 export default function Moderno() {
   return (
-    <Document className="bg-white font-sans text-[11px] text-zinc-900">
-      <Section className="px-12 pt-10">
-        <Row className="items-start justify-between">
-          <Logo className="h-12" />
-          <DocumentTitle className="text-4xl font-bold uppercase text-teal-900" />
-        </Row>
-      </Section>
+    <Document className="bg-white px-12 pt-10 text-[11px] text-zinc-900">
+      <Row className="items-start justify-between">
+        <Logo className="h-12" />
+        <DocumentTitle className="text-4xl font-bold uppercase text-teal-900" />
+      </Row>
 
-      <Section className="px-12 py-6">
-        <Row className="gap-6">
-          <Customer className="flex-1 border border-zinc-300 p-3" />
-          <Issuer className="flex-1" />
-        </Row>
-        <DocumentNumber className="mt-6 font-bold uppercase" />
-        <Items className="mt-3" headerClassName="bg-zinc-100 font-bold"
-          rowClassName="border-b border-zinc-200 even:bg-zinc-50" />
-        <Totals className="ml-auto mt-4 w-1/2 border border-zinc-300" />
-        <LegalNotes className="mt-6 text-[9px] text-zinc-500" />
-      </Section>
+      <Row className="mt-8 gap-6">
+        <Customer className="flex-1 border border-zinc-300 p-3" />
+        <Issuer className="flex-1" />
+      </Row>
+      <Row className="mt-6 justify-between">
+        <DocumentNumber className="font-bold uppercase" />
+        <DocumentDate />
+      </Row>
+      <Items className="mt-3" headerClassName="bg-zinc-100 font-bold"
+        rowClassName="border-b border-zinc-200 even:bg-zinc-50" />
+      <Totals className="ml-auto mt-4 w-1/2 border border-zinc-300" />
+      <LegalNotes className="mt-6 text-[9px] text-zinc-500" />
     </Document>
   )
 }`
 
-const INLINE = `import { Document, Section, Row, Logo, DocumentTitle, DocumentNumber,
+const INLINE = `import { Document, Row, Logo, DocumentTitle, DocumentNumber, DocumentDate,
   Customer, Issuer, Items, Totals, LegalNotes } from "@veroao/invoice"
 
 export default function Moderno() {
   return (
-    <Document style={{ backgroundColor: "#fff", fontSize: 11 }}>
-      <Section style={{ paddingHorizontal: 48, paddingTop: 40 }}>
-        <Row style={{ alignItems: "flex-start", justifyContent: "space-between" }}>
-          <Logo style={{ height: 48 }} />
-          <DocumentTitle style={{ fontSize: 36, fontWeight: 700, color: "#134e4a" }} />
-        </Row>
-      </Section>
+    <Document style={{ backgroundColor: "#ffffff", paddingHorizontal: 36, paddingTop: 30, fontSize: 8.25 }}>
+      <Row style={{ alignItems: "flex-start", justifyContent: "space-between" }}>
+        <Logo style={{ height: 36 }} />
+        <DocumentTitle style={{ fontSize: 27, fontWeight: "bold", color: "#134e4a" }} />
+      </Row>
 
-      <Section style={{ paddingHorizontal: 48, paddingVertical: 24 }}>
-        <Row style={{ gap: 24 }}>
-          <Customer style={{ flex: 1, borderWidth: 1, padding: 12 }} />
-          <Issuer style={{ flex: 1 }} />
-        </Row>
-        <Items style={{ marginTop: 12 }} />
-        <Totals style={{ marginLeft: "auto", width: "50%" }} />
-        <LegalNotes style={{ marginTop: 24, fontSize: 9 }} />
-      </Section>
+      <Row style={{ marginTop: 24, gap: 18 }}>
+        <Customer style={{ flex: 1, borderWidth: 0.75, borderColor: "#d4d4d8", padding: 9 }} />
+        <Issuer style={{ flex: 1 }} />
+      </Row>
+      <Row style={{ marginTop: 18, justifyContent: "space-between" }}>
+        <DocumentNumber style={{ fontWeight: "bold" }} />
+        <DocumentDate />
+      </Row>
+      <Items style={{ marginTop: 9 }} />
+      <Totals style={{ marginLeft: "auto", marginTop: 12, width: "50%" }} />
+      <LegalNotes style={{ marginTop: 18, fontSize: 7 }} />
     </Document>
   )
 }`

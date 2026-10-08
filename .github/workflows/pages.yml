@@ -32,8 +32,8 @@ jobs:
         env:
           # /vero-template/ on github.io; / with a custom domain.
           SITE_BASE: ${{ steps.pages.outputs.base_path }}/
-      # React routes opened directly (e.g. /templates/azul): Pages serves 404.html.
-      - run: cp apps/site/dist/index.html apps/site/dist/404.html
+      # The build pre-renders every page (apps/site/scripts/prerender.mjs) and writes
+      # 404.html as the empty shell for unknown routes.
       - uses: actions/upload-pages-artifact@fc324d3547104276b827a68afc52ff2a11cc49c9 # v5.0.0
         with:
           path: apps/site/dist
