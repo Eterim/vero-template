@@ -130,7 +130,7 @@ export const Totals = marker<Styled & {
   ruleClassName?: string
   /** Linha entre valores, ex.: "border-b border-zinc-200". */
   rowClassName?: string
-  /** Fundo da linha do total. */
+  /** Fundo e cor do texto da linha do total, ex.: "bg-zinc-900 text-white". */
   totalRowClassName?: string
 }>('totals', 'Totals')
 

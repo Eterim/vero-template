@@ -6,31 +6,19 @@
  *   npm run templates -w packages/invoice -- azul    (só um)
  */
 import { readFileSync, readdirSync, writeFileSync } from 'node:fs'
-import { dirname, join } from 'node:path'
-import { createRequire } from 'node:module'
+import { join } from 'node:path'
 import { createElement, type FC } from 'react'
-import * as pdfjs from 'pdfjs-dist/legacy/build/pdf.mjs'
-import { createCanvas } from '@napi-rs/canvas'
 import sharp from 'sharp'
 import { compile, render, sampleDocument } from '../src/index.js'
+import { rasterize } from './raster.js'
 
 const ROOT = new URL('../../../templates/', import.meta.url).pathname
-// Letras-padrão do PDF (Helvetica, Times…) que vêm com o pdf.js
-const STANDARD_FONTS = join(dirname(createRequire(import.meta.url).resolve('pdfjs-dist/package.json')), 'standard_fonts') + '/'
 const only = process.argv.slice(2)
 const slugs = readdirSync(ROOT, { withFileTypes: true }).filter((d) => d.isDirectory()).map((d) => d.name)
   .filter((s) => !only.length || only.includes(s))
 
 async function toWebp(pdfBytes: Uint8Array, width = 900): Promise<Buffer> {
-  const doc = await pdfjs.getDocument({ data: pdfBytes, standardFontDataUrl: STANDARD_FONTS, useSystemFonts: false, disableFontFace: true }).promise
-  const page = await doc.getPage(1)
-  const base = page.getViewport({ scale: 1 })
-  const viewport = page.getViewport({ scale: (width * 1.5) / base.width })
-  const canvas = createCanvas(Math.ceil(viewport.width), Math.ceil(viewport.height))
-  const ctx = canvas.getContext('2d')
-  ctx.fillStyle = '#ffffff'
-  ctx.fillRect(0, 0, canvas.width, canvas.height)
-  await page.render({ canvas: canvas as never, canvasContext: ctx as never, viewport }).promise
+  const canvas = await rasterize(pdfBytes, width * 1.5)
   return sharp(canvas.toBuffer('image/png')).resize({ width }).webp({ quality: 84, effort: 6 }).toBuffer()
 }
 

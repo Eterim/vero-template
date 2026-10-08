@@ -120,7 +120,7 @@ function Sidebar({ t }: { t: Template }) {
       <div className="border border-zinc-800 bg-zinc-950 p-5">
         <h2 className="flex items-center gap-2 text-sm font-bold"><Code2 className="size-4 text-sky-400" /> No teu projecto</h2>
         <div className="mt-4 [&_button]:w-full"><CopyCommand command="npm install @veroao/invoice" /></div>
-        <p className="mt-3 text-[12px] leading-snug text-zinc-500">Copia o <span className="font-mono text-zinc-300">modelo.tsx</span> para o teu projecto e gera o PDF com <span className="font-mono text-zinc-300">render()</span>. <a href={LINKS.docs} className="text-sky-400 hover:text-sky-300">Ver a documentação</a></p>
+        <p className="mt-3 text-[12px] leading-snug text-zinc-500">Copia o <span className="font-mono text-zinc-300">modelo.tsx</span> para o teu projecto e gera o PDF com <span className="font-mono text-zinc-300">render()</span>. <Link to="/docs/pdf" className="text-sky-400 hover:text-sky-300">Ver a documentação</Link></p>
       </div>
       <dl className="divide-y divide-zinc-900 border border-zinc-800 bg-zinc-950 px-5 text-[13px]">
         {info.map(([k, v]) => (

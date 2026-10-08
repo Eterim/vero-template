@@ -88,6 +88,8 @@ export type Block =
       rowRule?: ColorRef
       /** Fundo da linha do total. */
       totalBackground?: ColorRef
+      /** Cor do texto da linha do total (rótulo e valor, se o valor não tiver cor própria). */
+      totalColor?: ColorRef
       showCurrency?: boolean
     })
   | (Base & { type: 'notes'; label?: string; labelStyle?: StyleRef; inline?: boolean })

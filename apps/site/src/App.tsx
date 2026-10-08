@@ -6,6 +6,9 @@ import { LINKS } from './lib/links'
 import Home from './pages/Home'
 import Templates from './pages/Templates'
 import TemplateDetail from './pages/TemplateDetail'
+import DocPage from './pages/docs/DocPage'
+import ComponentsIndex from './pages/docs/ComponentsIndex'
+import ComponentPage from './pages/docs/ComponentPage'
 
 /** Ao mudar de página vai para o topo; com #âncora, vai à secção. */
 function ScrollManager() {
@@ -24,10 +27,10 @@ function Nav() {
       <nav className="mx-auto flex h-16 max-w-6xl items-center justify-between px-4 sm:px-6">
         <Link to="/" aria-label="Vero Template - início"><Logo /></Link>
         <div className="flex items-center gap-1 text-sm font-semibold text-zinc-400 sm:gap-6">
-          <Link to="/#componentes" className={`hidden sm:block ${link}`}>Componentes</Link>
+          <Link to="/componentes" className={`hidden sm:block ${link}`}>Componentes</Link>
           <Link to="/modelos" className={link}>Modelos</Link>
           <Link to="/#como-funciona" className={`hidden md:block ${link}`}>Como funciona</Link>
-          <a href={LINKS.docs} className={`hidden md:block ${link}`}>Documentação</a>
+          <Link to="/docs" className={`hidden md:block ${link}`}>Documentação</Link>
           <a href={LINKS.github} aria-label="GitHub" title="GitHub" className="p-2 transition-colors hover:text-white"><GithubIcon className="size-[18px]" /></a>
         </div>
       </nav>
@@ -44,7 +47,7 @@ function Footer() {
           <div className="flex gap-5 font-semibold text-zinc-400">
             <a href={LINKS.github} className="hover:text-white">GitHub</a>
             <a href={LINKS.npm} className="hover:text-white">npm</a>
-            <a href={LINKS.docs} className="hover:text-white">Documentação</a>
+            <Link to="/docs" className="hover:text-white">Documentação</Link>
           </div>
           <p>Open source, licença MIT. Feito pelo <a href="https://vero.ao" className="font-semibold text-zinc-200 hover:text-white">Vero</a>.</p>
         </div>
@@ -63,6 +66,10 @@ export default function App() {
           <Route path="/" element={<Home />} />
           <Route path="/modelos" element={<Templates />} />
           <Route path="/modelos/:slug" element={<TemplateDetail />} />
+          <Route path="/docs" element={<DocPage />} />
+          <Route path="/docs/:slug" element={<DocPage />} />
+          <Route path="/componentes" element={<ComponentsIndex />} />
+          <Route path="/componentes/:slug" element={<ComponentPage />} />
           <Route path="*" element={<TemplateDetail />} />
         </Routes>
       </main>

@@ -80,3 +80,12 @@ describe('compile()', () => {
     expect(() => compile(<Text>x</Text>)).toThrow('<Document>')
   })
 })
+
+describe('Totals totalRowClassName', () => {
+  it('passes background and text colour of the total row', () => {
+    const t = compile(<Document><Totals totalRowClassName="bg-zinc-900 text-white" /></Document>)
+    const totals = t.body.find((b) => b.type === 'totals') as Extract<(typeof t.body)[number], { type: 'totals' }>
+    expect(totals.totalBackground).toBe('#18181b')
+    expect(totals.totalColor).toBe('#ffffff')
+  })
+})

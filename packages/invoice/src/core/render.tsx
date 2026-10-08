@@ -265,7 +265,7 @@ function Totals({ b }: { b: Extract<Block, { type: 'totals' }> }) {
           <FiscalText element="Os totais">{v}</FiscalText>
         </View>
       ))}
-      <Box style={totalBg ? { background: b.totalBackground } : undefined}
+      <Box style={totalBg || b.totalColor ? { background: b.totalBackground, color: b.totalColor } : undefined}
         extra={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', paddingTop: 8, paddingBottom: totalBg ? 8 : 0, marginTop: rule ? 0 : 4,
           ...(totalBg ? { marginHorizontal: -8, paddingHorizontal: 8 } : { borderTopWidth: 1, borderTopColor: color(t, b.ruleColor) ?? t.theme.colors.foreground }) }}>
         <FiscalText element="O total" style={{ weight: 700 }}>{b.totalLabel ?? (paid ? 'TOTAL PAGO' : 'TOTAL A PAGAR')}</FiscalText>

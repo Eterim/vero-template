@@ -151,9 +151,9 @@ export function AgtRules() {
 
 const bar = (w: string, c = 'bg-zinc-700') => <span className={`block h-1.5 rounded-full ${c}`} style={{ width: w }} />
 
-const COMPONENTS: { name: string; tag: string; art: React.ReactNode }[] = [
+const COMPONENTS: { name: string; slug: string; tag: string; art: React.ReactNode }[] = [
   {
-    name: 'Cabeçalho', tag: '<DocumentTitle />',
+    name: 'Cabeçalho', slug: 'document-title', tag: '<DocumentTitle />',
     art: (
       <div className="flex w-40 items-start justify-between rounded border border-zinc-800 bg-zinc-900/60 p-3">
         <span className="size-5 rounded bg-zinc-600" />
@@ -162,7 +162,7 @@ const COMPONENTS: { name: string; tag: string; art: React.ReactNode }[] = [
     ),
   },
   {
-    name: 'Partes', tag: '<Customer /> <Issuer />',
+    name: 'Partes', slug: 'customer', tag: '<Customer /> <Issuer />',
     art: (
       <div className="flex gap-2">
         {[0, 1].map((i) => (
@@ -174,7 +174,7 @@ const COMPONENTS: { name: string; tag: string; art: React.ReactNode }[] = [
     ),
   },
   {
-    name: 'Artigos', tag: '<Items />',
+    name: 'Artigos', slug: 'items', tag: '<Items />',
     art: (
       <div className="w-44 overflow-hidden rounded border border-zinc-800">
         <div className="flex gap-2 bg-zinc-800 px-2.5 py-1.5">{bar('50%', 'bg-zinc-500')}{bar('20%', 'bg-zinc-500')}</div>
@@ -185,7 +185,7 @@ const COMPONENTS: { name: string; tag: string; art: React.ReactNode }[] = [
     ),
   },
   {
-    name: 'Totais', tag: '<Totals />',
+    name: 'Totais', slug: 'totals', tag: '<Totals />',
     art: (
       <div className="flex w-36 flex-col gap-1.5 rounded border border-zinc-800 p-3">
         {[0, 1, 2].map((i) => <div key={i} className="flex justify-between">{bar('40px')}{bar('22px')}</div>)}
@@ -194,7 +194,7 @@ const COMPONENTS: { name: string; tag: string; art: React.ReactNode }[] = [
     ),
   },
   {
-    name: 'Menções legais', tag: '<LegalNotes />',
+    name: 'Menções legais', slug: 'legal-notes', tag: '<LegalNotes />',
     art: (
       <div className="flex w-44 items-end gap-3">
         <div className="flex flex-1 flex-col gap-1.5">{bar('100%')}{bar('85%')}{bar('60%')}</div>
@@ -205,7 +205,7 @@ const COMPONENTS: { name: string; tag: string; art: React.ReactNode }[] = [
     ),
   },
   {
-    name: 'Faixas e secções', tag: '<Section /> <Row />',
+    name: 'Faixas e secções', slug: 'row', tag: '<Header /> <Row />',
     art: (
       <div className="flex w-40 flex-col gap-1.5">
         <div className="h-5 rounded-sm bg-sky-500/80" />
@@ -223,17 +223,17 @@ export function Components() {
         <Eyebrow icon={Blocks}>Componentes</Eyebrow>
         <div className="mt-4 flex flex-col justify-between gap-6 sm:flex-row sm:items-end">
           <Title sub="Os dados vêm de cada documento: linhas, IVA, totais, NIF. O componente desenha; o aspecto é seu.">Componentes que já sabem o que é uma factura.</Title>
-          <a href={LINKS.docs} className="inline-flex shrink-0 items-center gap-2 text-sm font-semibold text-zinc-300 hover:text-white">Ler a documentação <ArrowRight className="size-4" /></a>
+          <Link to="/componentes" className="inline-flex shrink-0 items-center gap-2 text-sm font-semibold text-zinc-300 hover:text-white">Ver todos os componentes <ArrowRight className="size-4" /></Link>
         </div>
         <div className="mt-12 grid gap-px border border-zinc-800 bg-zinc-800 sm:grid-cols-2 lg:grid-cols-3">
           {COMPONENTS.map((c) => (
-            <article key={c.name} className="group bg-black">
+            <Link key={c.name} to={`/componentes/${c.slug}`} className="group bg-black">
               <div className="flex h-40 items-center justify-center bg-[radial-gradient(circle_at_50%_50%,#111113,#000)] transition-colors group-hover:bg-[radial-gradient(circle_at_50%_50%,#16161a,#000)]">{c.art}</div>
               <div className="border-t border-zinc-900 px-5 py-4">
                 <h3 className="text-sm font-bold">{c.name}</h3>
                 <p className="mt-1 font-mono text-[11px] text-zinc-500">{c.tag}</p>
               </div>
-            </article>
+            </Link>
           ))}
         </div>
       </div>
@@ -436,7 +436,7 @@ export function OpenSource() {
         <div className="mt-9 flex justify-center"><CopyCommand command="npm install @veroao/invoice" /></div>
         <div className="mt-6 flex justify-center gap-3">
           <a href={LINKS.github} className="inline-flex h-10 items-center gap-2 border border-zinc-800 px-4 text-sm font-semibold text-zinc-200 hover:border-zinc-600"><GithubIcon /> GitHub</a>
-          <a href={LINKS.npm} className="inline-flex h-10 items-center gap-2 border border-zinc-800 px-4 text-sm font-semibold text-zinc-200 hover:border-zinc-600">npm · v0.1.0</a>
+          <a href={LINKS.npm} className="inline-flex h-10 items-center gap-2 border border-zinc-800 px-4 text-sm font-semibold text-zinc-200 hover:border-zinc-600">npm · v0.2.0</a>
         </div>
       </div>
     </section>

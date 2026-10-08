@@ -25,6 +25,7 @@
     "test": "vitest run",
     "typecheck": "tsc --noEmit",
     "templates": "tsx --tsconfig tsconfig.scripts.json scripts/build-templates.tsx",
+    "examples": "tsx --tsconfig tsconfig.scripts.json scripts/build-examples.tsx",
     "prepublishOnly": "npm run build && npm test"
   },
   "keywords": [

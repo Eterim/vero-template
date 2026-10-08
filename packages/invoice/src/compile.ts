@@ -223,6 +223,7 @@ class Compiler {
           ruleColor: p.ruleClassName ? borderColor('ruleClassName') : undefined,
           rowRule: rowRule.borderBottom?.color ?? rowRule.border?.color,
           totalBackground: totalRow.background,
+          totalColor: totalRow.color,
         })
       }
       case 'notes': return withStyle({ type: 'notes', label: str('label'), inline: bool('inline'), labelStyle: sub('labelClassName') })
