@@ -12,7 +12,7 @@ templates/<nome>/
   …
 ```
 
-`modelo.json` e as imagens são gerados a partir de `modelo.tsx` pela CLI (`npx @veroao/invoice publish`, com a versão 0.1) - não se editam à mão.
+`modelo.json` e as imagens são gerados a partir de `modelo.tsx` com `npm run templates -w packages/invoice` - não se editam à mão. Para ver o teu enquanto o desenhas: `npx @veroao/invoice dev templates`.
 
 ## Regras
 

@@ -37,6 +37,21 @@ export default function MyInvoice() {
 }
 ```
 
+## Ver ao vivo
+
+```bash
+npx @veroao/invoice dev
+```
+
+Abre `http://localhost:3200` com os modelos da pasta `templates/` ou `modelos/` (senão, a pasta actual):
+cada `.tsx` com `export default`, ou `<pasta>/<nome>/modelo.tsx`. O PDF volta a ser desenhado sempre que
+gravas, com os cinco tipos de documento (FT, FR, NC, ND, RC). Se o Tailwind ou o código tiver um erro,
+aparece o componente e o motivo, e fica à vista a última versão boa. O botão **JSON para o Vero** copia
+o modelo pronto a importar.
+
+Não precisa de nada instalado no projecto: o React e a biblioteca vêm com a CLI.
+Outra pasta ou porta: `npx @veroao/invoice dev modelos --port 3300`.
+
 ## PDF
 
 ```ts
