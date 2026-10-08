@@ -37,7 +37,15 @@
     "invoice",
     "angola",
     "agt",
-    "facturação electrónica"
+    "facturação electrónica",
+    "tailwindcss",
+    "react-pdf",
+    "invoice-template",
+    "fatura",
+    "facturacao",
+    "facturação",
+    "pdf-invoice",
+    "agt-angola"
   ],
   "author": "Eterim Prestação de Serviços",
   "license": "MIT",
@@ -46,7 +54,7 @@
     "url": "git+https://github.com/Eterim/vero-template.git",
     "directory": "packages/invoice"
   },
-  "homepage": "https://github.com/Eterim/vero-template",
+  "homepage": "https://template.vero.ao",
   "peerDependencies": {
     "react": ">=18"
   },
