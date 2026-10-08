@@ -147,7 +147,7 @@ export const COMPONENT_DOCS: ComponentDoc[] = [
   },
   {
     slug: 'atcud', name: 'Atcud', group: 'Documento',
-    summary: 'O código ATCUD. Se não o usares, aparece nas menções legais.',
+    summary: 'O código ATCUD. Se não o usares, aparece nas menções legais. Na pró-forma não aparece.',
     props: [{ name: 'prefix', type: 'string', default: '"ATCUD:"', description: 'Texto antes do código.' }, ...STYLED],
     examples: [{ id: 'default', title: 'Por omissão' }],
   },
@@ -195,7 +195,7 @@ export const COMPONENT_DOCS: ComponentDoc[] = [
       { id: 'grid', title: 'Com grelha' },
       { id: 'columns', title: 'Colunas à escolha', description: 'width é o peso da coluna (como flex).' },
     ],
-    notes: ['A coluna do IVA mostra o código de isenção (M04…) nas linhas isentas.'],
+    notes: ['A coluna do IVA mostra o código de isenção (M04…) nas linhas isentas, e "Não sujeito" nas linhas M02.'],
   },
   {
     slug: 'totals', name: 'Totals', group: 'Conteúdo', required: true,
@@ -213,6 +213,7 @@ export const COMPONENT_DOCS: ComponentDoc[] = [
       ...STYLED,
     ],
     examples: [{ id: 'default', title: 'Por omissão' }, { id: 'highlight', title: 'Total em destaque' }],
+    notes: ['Com retenção na fonte nos dados, acrescenta a linha da retenção e o "Valor líquido a pagar" - o total não muda.', 'Se a empresa estiver no regime simplificado, escreve "IVA - Regime Simplificado" a seguir aos totais.', 'Nunca se parte entre duas páginas.'],
   },
   {
     slug: 'notes', name: 'Notes', group: 'Conteúdo',
@@ -238,6 +239,7 @@ export const COMPONENT_DOCS: ComponentDoc[] = [
       ...STYLED,
     ],
     examples: [{ id: 'default', title: 'Lista' }, { id: 'table', title: 'Tabela' }],
+    notes: ['Mostra banco, IBAN e titular e, quando existem, o número de conta, o SWIFT e as notas de cada conta.'],
   },
   {
     slug: 'legal-notes', name: 'LegalNotes', group: 'Conteúdo', required: true,

@@ -144,7 +144,7 @@ function Parties() {
         <Code className="mt-5" file="terminal" code="npx @veroao/invoice dev modelos --port 3300" />
         <H2>Verificar antes de publicar</H2>
         <Code className="mt-5" file="terminal" code="npx @veroao/invoice check" copyable />
-        <P>Faz as verificações do Vero e da galeria a todos os modelos da pasta: compilam, desenham os cinco tipos de documento sem avisos da AGT e não têm dados fiscais ou de pagamento escritos à mão (IBAN, telefones, NIF, ligações, e-mails, menções de certificação). Termina com erro se algum falhar - dá para usar na tua CI.</P>
+        <P>Faz as verificações do Vero e da galeria a todos os modelos da pasta: compilam, desenham os seis tipos de documento (com a pró-forma) sem avisos da AGT e não têm dados fiscais ou de pagamento escritos à mão (IBAN, telefones, NIF, ligações, e-mails, menções de certificação). Termina com erro se algum falhar - dá para usar na tua CI.</P>
       </>
     ),
   },
