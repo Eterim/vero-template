@@ -1,6 +1,6 @@
 {
   "name": "@veroao/invoice",
-  "version": "0.0.0",
+  "version": "0.1.0",
   "description": "Facturas, recibos e notas angolanas em React e Tailwind CSS - com as regras da AGT incluídas",
   "type": "module",
   "main": "./dist/index.js",
@@ -14,7 +14,9 @@
   },
   "files": [
     "dist",
-    "fonts"
+    "fonts",
+    "README.md",
+    "LICENSE"
   ],
   "sideEffects": false,
   "scripts": {
@@ -22,7 +24,8 @@
     "dev": "tsc -p tsconfig.build.json --watch",
     "test": "vitest run",
     "typecheck": "tsc --noEmit",
-    "templates": "tsx --tsconfig tsconfig.scripts.json scripts/build-templates.tsx"
+    "templates": "tsx --tsconfig tsconfig.scripts.json scripts/build-templates.tsx",
+    "prepublishOnly": "npm run build && npm test"
   },
   "keywords": [
     "react",
@@ -59,5 +62,11 @@
     "tsx": "^4.20.0",
     "typescript": "~5.9.3",
     "vitest": "^3.2.4"
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "publishConfig": {
+    "access": "public"
   }
 }
