@@ -53,7 +53,7 @@ export function Hero() {
             </a>
             <CopyCommand command="npx @veroao/invoice dev" />
           </div>
-          <p className="mt-4 font-mono text-[11px] text-zinc-600">// disponível com a versão 0.1</p>
+          <p className="mt-4 font-mono text-[11px] text-zinc-600">// a pré-visualização ao vivo (dev) chega na 0.2 · já disponível: npm install @veroao/invoice</p>
         </div>
       </div>
       {/* Telemóvel e tablet: o leque por baixo do texto. */}

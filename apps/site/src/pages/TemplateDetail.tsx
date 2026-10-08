@@ -4,6 +4,7 @@ import { ArrowLeft, ArrowRight, Braces, Check, Code2, Copy, Download, Eye, FileT
 import { Code } from '../components/Code'
 import { CopyCommand } from '../components/CopyCommand'
 import { DOC_TYPE_LABEL, findTemplate, type DocType, type Template } from '../lib/templates'
+import { LINKS } from '../lib/links'
 
 type Tab = 'preview' | 'code' | 'json'
 
@@ -119,7 +120,7 @@ function Sidebar({ t }: { t: Template }) {
       <div className="border border-zinc-800 bg-zinc-950 p-5">
         <h2 className="flex items-center gap-2 text-sm font-bold"><Code2 className="size-4 text-sky-400" /> No teu projecto</h2>
         <div className="mt-4 [&_button]:w-full"><CopyCommand command="npm install @veroao/invoice" /></div>
-        <p className="mt-3 font-mono text-[11px] text-zinc-600">// pacote com a versão 0.1</p>
+        <p className="mt-3 text-[12px] leading-snug text-zinc-500">Copia o <span className="font-mono text-zinc-300">modelo.tsx</span> para o teu projecto e gera o PDF com <span className="font-mono text-zinc-300">render()</span>. <a href={LINKS.docs} className="text-sky-400 hover:text-sky-300">Ver a documentação</a></p>
       </div>
       <dl className="divide-y divide-zinc-900 border border-zinc-800 bg-zinc-950 px-5 text-[13px]">
         {info.map(([k, v]) => (

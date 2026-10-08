@@ -1,6 +1,8 @@
 import { useEffect } from 'react'
 import { BrowserRouter, Link, Route, Routes, useLocation } from 'react-router-dom'
 import { Logo } from './components/Logo'
+import { GithubIcon } from './components/GithubIcon'
+import { LINKS } from './lib/links'
 import Home from './pages/Home'
 import Templates from './pages/Templates'
 import TemplateDetail from './pages/TemplateDetail'
@@ -25,7 +27,8 @@ function Nav() {
           <Link to="/#componentes" className={`hidden sm:block ${link}`}>Componentes</Link>
           <Link to="/modelos" className={link}>Modelos</Link>
           <Link to="/#como-funciona" className={`hidden md:block ${link}`}>Como funciona</Link>
-          <span className="hidden px-2 py-2 text-zinc-700 md:block" title="Com a versão 0.1">Documentação</span>
+          <a href={LINKS.docs} className={`hidden md:block ${link}`}>Documentação</a>
+          <a href={LINKS.github} aria-label="GitHub" title="GitHub" className="p-2 transition-colors hover:text-white"><GithubIcon className="size-[18px]" /></a>
         </div>
       </nav>
     </header>
@@ -37,7 +40,14 @@ function Footer() {
     <footer className="border-t border-zinc-900">
       <div className="mx-auto flex max-w-6xl flex-col gap-4 px-4 py-10 text-sm text-zinc-500 sm:flex-row sm:items-center sm:justify-between sm:px-6">
         <Logo />
-        <p>Open source, licença MIT. Feito pelo <a href="https://vero.ao" className="font-semibold text-zinc-200 hover:text-white">Vero</a>.</p>
+        <div className="flex flex-col gap-2 sm:items-end">
+          <div className="flex gap-5 font-semibold text-zinc-400">
+            <a href={LINKS.github} className="hover:text-white">GitHub</a>
+            <a href={LINKS.npm} className="hover:text-white">npm</a>
+            <a href={LINKS.docs} className="hover:text-white">Documentação</a>
+          </div>
+          <p>Open source, licença MIT. Feito pelo <a href="https://vero.ao" className="font-semibold text-zinc-200 hover:text-white">Vero</a>.</p>
+        </div>
       </div>
     </footer>
   )

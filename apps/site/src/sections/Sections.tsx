@@ -6,6 +6,8 @@ import {
 import { Code } from '../components/Code'
 import { CopyCommand } from '../components/CopyCommand'
 import { Eyebrow } from '../components/Logo'
+import { GithubIcon } from '../components/GithubIcon'
+import { LINKS } from '../lib/links'
 import { Link } from 'react-router-dom'
 import { TEMPLATES } from '../lib/templates'
 import { TemplateCard } from '../pages/Templates'
@@ -221,7 +223,7 @@ export function Components() {
         <Eyebrow icon={Blocks}>Componentes</Eyebrow>
         <div className="mt-4 flex flex-col justify-between gap-6 sm:flex-row sm:items-end">
           <Title sub="Os dados vêm de cada documento: linhas, IVA, totais, NIF. O componente desenha; o aspecto é seu.">Componentes que já sabem o que é uma factura.</Title>
-          <span className="shrink-0 font-mono text-xs text-zinc-600">// documentação com a v0.1</span>
+          <a href={LINKS.docs} className="inline-flex shrink-0 items-center gap-2 text-sm font-semibold text-zinc-300 hover:text-white">Ler a documentação <ArrowRight className="size-4" /></a>
         </div>
         <div className="mt-12 grid gap-px border border-zinc-800 bg-zinc-800 sm:grid-cols-2 lg:grid-cols-3">
           {COMPONENTS.map((c) => (
@@ -432,7 +434,10 @@ export function OpenSource() {
           Licença MIT. Funciona sem o Vero - gere PDFs com os seus dados, no seu servidor. Com o Vero, importa qualquer modelo da galeria.
         </p>
         <div className="mt-9 flex justify-center"><CopyCommand command="npm install @veroao/invoice" /></div>
-        <p className="mt-4 font-mono text-[11px] text-zinc-600">// GitHub e npm com a versão 0.1</p>
+        <div className="mt-6 flex justify-center gap-3">
+          <a href={LINKS.github} className="inline-flex h-10 items-center gap-2 border border-zinc-800 px-4 text-sm font-semibold text-zinc-200 hover:border-zinc-600"><GithubIcon /> GitHub</a>
+          <a href={LINKS.npm} className="inline-flex h-10 items-center gap-2 border border-zinc-800 px-4 text-sm font-semibold text-zinc-200 hover:border-zinc-600">npm · v0.1.0</a>
+        </div>
       </div>
     </section>
   )
