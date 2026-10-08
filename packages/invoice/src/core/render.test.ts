@@ -2,7 +2,7 @@ import { readFileSync } from 'node:fs'
 import { createRequire } from 'node:module'
 import { dirname, join } from 'node:path'
 import * as pdfjs from 'pdfjs-dist/legacy/build/pdf.mjs'
-import { describe, expect, it } from 'vitest'
+import { describe, expect, it, vi } from 'vitest'
 import { render } from '../render.js'
 import { sampleDocument } from './sample.js'
 import type { DocumentData, TemplateV2 } from './types.js'
@@ -38,6 +38,19 @@ describe('elementos fiscais do motor', () => {
     }
     expect(ps.slice(0, -1).some((p) => p.includes('Verificar factura - AGT'))).toBe(false)
     expect(ps.at(-1)).toContain('Verificar factura - AGT')
+  })
+
+  it.each(['limpo', 'classico'])('factura longa (%s): a tabela continua nas páginas seguintes, sem apertar', async (slug) => {
+    const ft = sampleDocument('FT')
+    const lines = Array.from({ length: 60 }, (_, i) => ({ ...ft.lines[1], description: `Artigo ${i + 1}` }))
+    const warn = vi.spyOn(console, 'warn').mockImplementation(() => {})
+    const ps = await pages({ ...ft, lines }, slug)
+    const warnings = warn.mock.calls.map((c) => String(c[0]))
+    warn.mockRestore()
+    expect(warnings.filter((w) => w.includes("can't wrap"))).toEqual([])
+    expect(ps.length).toBeGreaterThanOrEqual(3)
+    const all = ps.join(' ')
+    for (let i = 1; i <= 60; i++) expect(all).toContain(`Artigo ${i} `)
   })
 
   it('a menção do programa certificado aparece uma só vez por página, mesmo que o modelo a peça', async () => {

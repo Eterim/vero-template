@@ -96,7 +96,8 @@ function Box({ style, children, row, fixed, wrap, extra }: { style?: StyleRef; c
   const bg = color(ctx.t, s.background)
   const fg = color(ctx.t, s.color)
   const view = (
-    <View fixed={fixed} wrap={wrap} style={{ ...(row ? { flexDirection: 'row' } : {}), ...pdfStyle(ctx.t, s), ...extra }}>{children}</View>
+    // wrap só quando pedido: o react-pdf trata wrap={undefined} como "não partir entre páginas".
+    <View fixed={fixed} {...(wrap === undefined ? {} : { wrap })} style={{ ...(row ? { flexDirection: 'row' } : {}), ...pdfStyle(ctx.t, s), ...extra }}>{children}</View>
   )
   return bg || fg ? <RenderCtx.Provider value={{ ...ctx, bg: bg ?? ctx.bg, fg: fg ?? ctx.fg }}>{view}</RenderCtx.Provider> : view
 }
