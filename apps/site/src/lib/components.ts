@@ -241,10 +241,10 @@ export const COMPONENT_DOCS: ComponentDoc[] = [
   },
   {
     slug: 'legal-notes', name: 'LegalNotes', group: 'Conteúdo', required: true,
-    summary: 'ATCUD, motivos de isenção, texto legal e a menção do programa certificado.',
-    props: [{ name: 'parts', type: 'FiscalPart[]', default: 'todas', description: 'Que menções mostrar: atcud, exemptions, legal, certification. Podes dividi-las por vários LegalNotes.' }, ...STYLED],
+    summary: 'ATCUD, motivos de isenção e o texto legal.',
+    props: [{ name: 'parts', type: 'FiscalPart[]', default: 'todas', description: 'Que menções mostrar: atcud, exemptions, legal. Podes dividi-las por vários LegalNotes.' }, ...STYLED],
     examples: [{ id: 'default', title: 'Todas as menções' }, { id: 'parts', title: 'Divididas em duas colunas' }],
-    notes: ['O texto fiscal nunca fica abaixo de 7 pt nem com pouco contraste: se for preciso, o Vero corrige e avisa.'],
+    notes: ['O texto fiscal nunca fica abaixo de 7 pt nem com pouco contraste: se for preciso, o Vero corrige e avisa.', 'A menção do programa certificado não é daqui: o motor escreve-a sozinho no rodapé de todas as páginas, com o número do documento.'],
   },
   {
     slug: 'page-number', name: 'PageNumber', group: 'Conteúdo',

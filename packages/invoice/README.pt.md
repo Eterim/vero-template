@@ -62,7 +62,7 @@ Outra pasta ou porta: `npx @veroao/invoice dev modelos --port 3300`.
 npx @veroao/invoice check
 ```
 
-Faz o que o Vero e a galeria verificam a cada modelo da pasta: compila, desenha os cinco tipos de documento
+Faz o que o Vero e a galeria verificam a cada modelo da pasta: compila, desenha os seis tipos de documento (com a pró-forma)
 sem avisos da AGT e não tem dados fiscais ou de pagamento escritos à mão. Termina com código 1 se houver problemas.
 
 ## PDF
@@ -89,7 +89,10 @@ O React corre uma vez, do teu lado. O Vero só recebe JSON e nunca executa códi
 
 ## O que a biblioteca garante (AGT)
 
-- O **código QR** fica sempre no canto inferior direito da última página.
+- O **código QR** fica sempre no canto inferior direito da última página (a pró-forma não leva).
+- O **rodapé AGT** ("XXXX-Processado por programa válido nº …" e o número do documento) está em todas as páginas.
+- Desenhado a partir dos dados, quando é preciso: retenção na fonte e valor líquido, a menção do regime simplificado,
+  "Não sujeito" nas linhas M02, marca de água nos anulados e o aviso da pró-forma (`documentType: "PF"`).
 - Os elementos obrigatórios (tipo, número, data, NIF das partes, artigos, totais, menções legais) nunca
   faltam: se o modelo não os tiver, são acrescentados e vêm nos `warnings`.
 - Texto fiscal com **contraste** mínimo (4,5) e nunca abaixo de 7 pt.

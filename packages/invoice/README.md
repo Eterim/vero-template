@@ -62,8 +62,8 @@ Another folder or port: `npx @veroao/invoice dev modelos --port 3300`.
 npx @veroao/invoice check
 ```
 
-Runs what Vero and the gallery check on every template in the folder: it compiles, renders all five document
-types without AGT warnings, and has no fiscal or payment data written by hand. Exits with code 1 on problems.
+Runs what Vero and the gallery check on every template in the folder: it compiles, renders all six document
+types (pro-forma included) without AGT warnings, and has no fiscal or payment data written by hand. Exits with code 1 on problems.
 
 ## PDF
 
@@ -89,7 +89,10 @@ React runs once, on your side. Vero only receives JSON and never runs third-part
 
 ## What the library guarantees (AGT)
 
-- The **QR code** is always in the bottom-right corner of the last page.
+- The **QR code** is always in the bottom-right corner of the last page (not on pro-forma invoices).
+- The **AGT footer** ("XXXX-Processado por programa válido nº …" and the document number) is on every page.
+- Drawn from the data when needed: withholding tax and net amount, the simplified VAT regime mention,
+  "Não sujeito" for M02 lines, a watermark on cancelled documents, and the pro-forma notice (`documentType: "PF"`).
 - Mandatory elements (type, number, date, tax IDs, items, totals, legal notes) are never missing:
   if the template doesn't have them, they are added and reported in `warnings`.
 - Fiscal text keeps a minimum **contrast** (4.5) and is never smaller than 7 pt.

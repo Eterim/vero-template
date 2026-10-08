@@ -1,4 +1,4 @@
-import { FISCAL_PARTS, type Block, type BlockType, type FiscalPart, type RenderWarning, type TemplateV2 } from './types.js'
+import { REQUIRED_FISCAL_PARTS, type Block, type BlockType, type FiscalPart, type RenderWarning, type TemplateV2 } from './types.js'
 
 /**
  * Blocos que o documento fiscal tem de ter. Quem desenha decide onde ficam e com
@@ -42,7 +42,7 @@ export function ensureFiscalBlocks(template: TemplateV2, opts: { insert?: boolea
       const key = b.type === 'party' ? `party:${b.role}` : b.type
       found.add(key)
       counts.set(key, (counts.get(key) ?? 0) + 1)
-      if (b.type === 'fiscal') (b.parts ?? FISCAL_PARTS).forEach((p) => parts.add(p))
+      if (b.type === 'fiscal') (b.parts ?? REQUIRED_FISCAL_PARTS).forEach((p) => parts.add(p))
       if (b.type === 'atcud') parts.add('atcud')
     })
   }
@@ -66,9 +66,9 @@ export function ensureFiscalBlocks(template: TemplateV2, opts: { insert?: boolea
       fix: { label: 'Acrescentar', addBlock: block, atStart },
     })
   }
-  const missingParts = FISCAL_PARTS.filter((p) => !parts.has(p))
+  const missingParts = REQUIRED_FISCAL_PARTS.filter((p) => !parts.has(p))
   if (missingParts.length) {
-    tail.push(missingParts.length === FISCAL_PARTS.length ? { type: 'fiscal' } : { type: 'fiscal', parts: missingParts })
+    tail.push(missingParts.length === REQUIRED_FISCAL_PARTS.length ? { type: 'fiscal' } : { type: 'fiscal', parts: [...missingParts] })
     const names: Record<FiscalPart, string> = { atcud: 'ATCUD', exemptions: 'motivos de isenção', legal: 'texto legal', certification: 'programa certificado' }
     const detail = missingParts.map((p) => names[p]).join(', ')
     warnings.push({

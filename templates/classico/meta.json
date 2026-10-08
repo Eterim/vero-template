@@ -7,7 +7,7 @@
     "url": "https://vero.ao"
   },
   "collection": "vero",
-  "version": 1,
+  "version": 2,
   "license": "MIT",
   "docTypes": [
     "FT",

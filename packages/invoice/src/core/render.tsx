@@ -4,11 +4,15 @@ import QRCode from 'qrcode'
 import { legible } from './color.js'
 import { AGT_LOGO_DATA_URL } from './agt-logo.js'
 import { ensureFiscalBlocks } from './fiscal.js'
-import { FISCAL_PARTS, type Block, type DocumentData, type FiscalPart, type RenderWarning, type Style, type StyleRef, type TemplateV2 } from './types.js'
+import { FISCAL_PARTS, type BankAccount, type Block, type DocumentData, type FiscalPart, type RenderWarning, type Style, type StyleRef, type TemplateV2 } from './types.js'
 
 const PAGE_W = 595.28
 const LEGAL_TITLE: Record<DocumentData['documentType'], string> = {
-  FT: 'Factura', FR: 'Factura-Recibo', NC: 'Nota de Crédito', ND: 'Nota de Débito', RC: 'Recibo',
+  FT: 'Factura', FR: 'Factura-Recibo', NC: 'Nota de Crédito', ND: 'Nota de Débito', RC: 'Recibo', PF: 'Factura Pró-forma',
+}
+const PROFORMA_NOTICE = {
+  title: 'DOCUMENTO NÃO VÁLIDO COMO FACTURA',
+  body: 'Este documento é uma factura pró-forma e não tem valor fiscal. Apenas a factura definitiva emitida após confirmação do pagamento serve como comprovativo fiscal.',
 }
 const STATUS_TEXT = { paid: 'PAGO', pending: 'POR PAGAR', cancelled: 'ANULADO' } as const
 
@@ -86,13 +90,13 @@ function pdfStyle(t: TemplateV2, s: Style): Record<string, unknown> {
 }
 
 /** Caixa com estilo; se tiver fundo, passa-o aos filhos para o controlo de contraste. */
-function Box({ style, children, row, fixed, extra }: { style?: StyleRef; children?: ReactNode; row?: boolean; fixed?: boolean; extra?: Record<string, unknown> }) {
+function Box({ style, children, row, fixed, wrap, extra }: { style?: StyleRef; children?: ReactNode; row?: boolean; fixed?: boolean; wrap?: boolean; extra?: Record<string, unknown> }) {
   const ctx = useCtx()
   const s = merge(ctx.t, style)
   const bg = color(ctx.t, s.background)
   const fg = color(ctx.t, s.color)
   const view = (
-    <View fixed={fixed} style={{ ...(row ? { flexDirection: 'row' } : {}), ...pdfStyle(ctx.t, s), ...extra }}>{children}</View>
+    <View fixed={fixed} wrap={wrap} style={{ ...(row ? { flexDirection: 'row' } : {}), ...pdfStyle(ctx.t, s), ...extra }}>{children}</View>
   )
   return bg || fg ? <RenderCtx.Provider value={{ ...ctx, bg: bg ?? ctx.bg, fg: fg ?? ctx.fg }}>{view}</RenderCtx.Provider> : view
 }
@@ -154,6 +158,8 @@ const moneyNumber = (cents: number) => {
   return `${cents < 0 ? '-' : ''}${grouped},${dec}`
 }
 const pad = (n: number) => String(n).padStart(2, '0')
+/** 6.5 → "6,5" */
+const percent = (n: number) => String(Math.round(n * 100) / 100).replace('.', ',')
 const date = (d: Date) => `${pad(d.getDate())}/${pad(d.getMonth() + 1)}/${d.getFullYear()}`
 const time = (d: Date) => `${pad(d.getHours())}:${pad(d.getMinutes())}`
 
@@ -204,7 +210,7 @@ function Items({ b }: { b: Extract<Block, { type: 'items' }> }) {
       case 'quantity': return String(l.quantity)
       case 'unitPrice': return money(l.unitPrice, data.currency, sym)
       case 'lineDiscount': return l.lineDiscount ? `${l.lineDiscount}%` : '-'
-      case 'taxRate': return l.taxRate ? `${l.taxRate}%` : `Isento${l.taxExemptionCode ? ` (${l.taxExemptionCode})` : ''}`
+      case 'taxRate': return l.taxRate ? `${l.taxRate}%` : l.taxExemptionCode === 'M02' ? 'Não sujeito' : `Isento${l.taxExemptionCode ? ` (${l.taxExemptionCode})` : ''}`
       case 'taxAmount': return money(l.taxAmount, data.currency, sym)
       case 'lineTotal': return money(l.lineTotal, data.currency, sym)
       default: return l.description
@@ -248,16 +254,20 @@ function Totals({ b }: { b: Extract<Block, { type: 'totals' }> }) {
   const taxRows: [string, string][] = b.byRate === false
     ? [['Valor de impostos', m(tot.tax)]]
     : tot.byRate.map((r): [string, string] => [r.rate ? `IVA ${r.rate}% (base ${m(r.base)})` : `Isento (base ${m(r.base)})`, m(r.tax)])
+  const wht = data.withholding
   const rows: [string, string][] = [
     ['Totais sem impostos', m(tot.net)],
     ...taxRows,
     ['Valor de descontos', m(tot.discount)],
+    // Informativa: não altera o total, que continua o valor fiscal.
+    ...(wht ? [[`Retenção na fonte (${wht.type} ${percent(wht.rate)}%)`, `-${m(wht.amount)}`] as [string, string]] : []),
   ]
   const paid = data.status === 'paid' || data.documentType === 'FR'
   const rule = color(t, b.rowRule)
   const totalBg = color(t, b.totalBackground)
+  // Os totais nunca se partem entre duas páginas.
   return (
-    <Box style={b.style}>
+    <Box style={b.style} wrap={false}>
       {b.title && <Box style={b.titleStyle ?? 'label'}><Text>{b.title}</Text></Box>}
       {rows.map(([k, v]) => (
         <View key={k} style={{ flexDirection: 'row', justifyContent: 'space-between', ...(rule ? { paddingVertical: 6, borderBottomWidth: 0.4, borderBottomColor: rule } : { marginBottom: 6 }) }}>
@@ -271,6 +281,15 @@ function Totals({ b }: { b: Extract<Block, { type: 'totals' }> }) {
         <FiscalText element="O total" style={{ weight: 700 }}>{b.totalLabel ?? (paid ? 'TOTAL PAGO' : 'TOTAL A PAGAR')}</FiscalText>
         <FiscalText element="O total" style={b.totalStyle ?? { weight: 700, size: 16 }}>{m(tot.total)}</FiscalText>
       </Box>
+      {wht && (
+        <View style={{ flexDirection: 'row', justifyContent: 'space-between', paddingTop: 6 }}>
+          <FiscalText element="Os totais" style={{ weight: 700 }}>Valor líquido a pagar</FiscalText>
+          <FiscalText element="Os totais" style={{ weight: 700 }}>{m(tot.total - wht.amount)}</FiscalText>
+        </View>
+      )}
+      {data.org.ivaRegime === 'simplificado' && (
+        <View style={{ paddingTop: 6 }}><FiscalText element="As menções legais" style={{ weight: 700 }}>IVA - Regime Simplificado</FiscalText></View>
+      )}
     </Box>
   )
 }
@@ -278,6 +297,10 @@ function Totals({ b }: { b: Extract<Block, { type: 'totals' }> }) {
 function Fiscal({ b }: { b: Extract<Block, { type: 'fiscal' }> }) {
   const { data } = useCtx()
   const parts = new Set<FiscalPart>(b.parts ?? FISCAL_PARTS)
+  // A menção do programa certificado é do motor (rodapé de todas as páginas); a pró-forma
+  // não tem ATCUD nem a menção de entrega dos bens.
+  parts.delete('certification')
+  if (data.documentType === 'PF') { parts.delete('atcud'); parts.delete('legal') }
   const exemptions = [...new Set(data.lines.filter((l) => !l.taxRate && l.taxExemptionCode).map((l) => l.taxExemptionCode))]
   return (
     <Box style={b.style}>
@@ -288,7 +311,6 @@ function Fiscal({ b }: { b: Extract<Block, { type: 'fiscal' }> }) {
           Os bens e serviços foram colocados à disposição do adquirente em {data.org.city ?? 'Angola'}, na data {date(data.issuedAt)} às {time(data.issuedAt)}.
         </FiscalText>
       )}
-      {parts.has('certification') && <FiscalText element="A menção do programa certificado">{data.hashChars}-Processado por programa válido nº {data.certificationNumber}</FiscalText>}
     </Box>
   )
 }
@@ -301,9 +323,16 @@ function Fiscal({ b }: { b: Extract<Block, { type: 'fiscal' }> }) {
 export const AGT_QR = { size: 96, caption: 'Verificar factura - AGT' } as const
 
 const QR_TILE_H = AGT_QR.size + 12 + 9
-/** O QR fica 8 pt acima da faixa do rodapé, e o conteúdo acaba pelo menos 6 pt acima do QR. */
-const QR_ABOVE_FOOTER = 8
+/** Linha AGT (programa certificado + número), 6 pt acima da faixa do rodapé do modelo, em todas as páginas. */
+const AGT_LINE_BOTTOM = 6
+const AGT_LINE_H = 10
+/** O QR fica 4 pt acima da linha AGT, e o conteúdo acaba pelo menos 6 pt acima do QR. */
+const QR_ABOVE_LINE = 4
 const QR_GAP = 6
+/** Espaço livre por baixo do conteúdo, acima da linha AGT. */
+const CONTENT_ABOVE_LINE = 10
+/** Margem de cima das páginas de continuação (a 1.ª usa page.marginTop e a faixa do topo). */
+const CONTINUATION_TOP = 36
 
 /**
  * Código QR da AGT. Sem props de estilo nem de posição: é igual em todos os modelos.
@@ -357,14 +386,21 @@ function Bank({ b }: { b: Extract<Block, { type: 'bank' }> }) {
           <View key={i} style={{ marginBottom: 3 }}>
             <Text style={{ fontWeight: 700 }}>{a.bank}{a.holder ? ` · ${a.holder}` : ''}</Text>
             <Text>IBAN {a.iban}</Text>
+            {a.account && <Text>Conta {a.account}</Text>}
+            {a.swift && <Text>SWIFT {a.swift}</Text>}
+            {a.notes && <Text>{a.notes}</Text>}
           </View>
         ))}
       </Labelled>
     )
   }
   const grid = b.grid ? { width: b.grid.width, color: color(t, b.grid.color) ?? t.theme.colors.foreground } : null
-  const cols: [string, number, (a: (typeof accounts)[number]) => string][] = [
-    ['Banco', 1.2, (a) => a.bank], ['IBAN', 2.4, (a) => a.iban], ['Titular', 2, (a) => a.holder ?? data.org.name],
+  type Col = [string, number, (a: BankAccount) => string]
+  const cols: Col[] = [
+    ['Banco', 1.2, (a) => a.bank], ['IBAN', 2.4, (a) => a.iban],
+    ...(accounts.some((a) => a.account) ? [['Conta', 1.4, (a) => a.account ?? ''] as Col] : []),
+    ...(accounts.some((a) => a.swift) ? [['SWIFT', 1, (a) => a.swift ?? ''] as Col] : []),
+    ['Titular', 2, (a) => a.holder ?? data.org.name],
   ]
   const cellExtra = (i: number) => ({ paddingVertical: 6, paddingHorizontal: 6, ...(grid && i > 0 ? { borderLeftWidth: grid.width, borderLeftColor: grid.color } : {}) })
   return (
@@ -380,6 +416,7 @@ function Bank({ b }: { b: Extract<Block, { type: 'bank' }> }) {
           </View>
         ))}
       </View>
+      {accounts.filter((a) => a.notes).map((a, i) => <Text key={i} style={{ marginTop: 3 }}>{a.bank}: {a.notes}</Text>)}
     </Box>
   )
 }
@@ -398,6 +435,42 @@ function Corner({ hex }: { hex: string | null }) {
       <Polygon points="65,0 190,0 190,68 140,68" fill={c2} />
       <Polygon points="125,0 190,0 190,95" fill={c3} />
     </Svg>
+  )
+}
+
+/**
+ * Linha AGT de todas as páginas: "XXXX-Processado por programa válido nº …" à esquerda e o
+ * número do documento à direita. É do motor, como o QR: nenhum modelo a tira ou muda de sítio.
+ */
+function AgtLine({ marginX, bottom }: { marginX: number; bottom: number }) {
+  const { data, t } = useCtx()
+  const muted = t.theme.colors.muted
+  const style: Style = { size: 7, ...(muted ? { color: muted } : {}) }
+  const cert = `${data.hashChars ? `${data.hashChars}-` : ''}Processado por programa válido nº ${data.certificationNumber}`
+  return (
+    <View fixed style={{ position: 'absolute', left: marginX, right: marginX, bottom, height: AGT_LINE_H, flexDirection: 'row', justifyContent: 'space-between' }}>
+      <FiscalText element="A menção do programa certificado" style={style}>{cert}</FiscalText>
+      <FiscalText element="O número do documento" style={style}>{data.number}</FiscalText>
+    </View>
+  )
+}
+
+/** Marca de água de um documento anulado, em todas as páginas. */
+function CancelledMark({ label }: { label: string }) {
+  return (
+    <View fixed style={{ position: 'absolute', top: 0, left: 0, right: 0, bottom: 0, alignItems: 'center', justifyContent: 'center' }}>
+      <Text style={{ fontSize: 80, fontFamily: 'Helvetica-Bold', color: '#dc2626', opacity: 0.1, letterSpacing: 8, transform: 'rotate(-45deg)' }}>{label}</Text>
+    </View>
+  )
+}
+
+/** Aviso obrigatório da pró-forma, no fim do corpo. */
+function ProformaNotice() {
+  return (
+    <View wrap={false} style={{ marginTop: 16, padding: 12, borderWidth: 0.8, borderColor: '#d1d5db' }}>
+      <FiscalText element="O aviso da pró-forma" style={{ weight: 700 }}>{PROFORMA_NOTICE.title}</FiscalText>
+      <View style={{ marginTop: 6 }}><FiscalText element="O aviso da pró-forma">{PROFORMA_NOTICE.body}</FiscalText></View>
+    </View>
   )
 }
 
@@ -430,7 +503,9 @@ function BlockView({ b, at }: { b: Block; at: At }) {
     case 'documentTitle': return <FiscalText style={b.style} element="O tipo do documento">{LEGAL_TITLE[data.documentType]}{b.withCode ? ` - ${data.documentType}` : ''}</FiscalText>
     case 'documentNumber': return <FiscalText style={b.style} element="O número do documento">{b.prefix ? `${interpolate(b.prefix, data)} ` : ''}{data.number}</FiscalText>
     case 'documentDate': return <FiscalText style={b.style} element="A data de emissão">{b.prefix ? `${b.prefix} ` : ''}{date(data.issuedAt)}{b.withTime === false ? '' : ` ${time(data.issuedAt)}`}</FiscalText>
-    case 'atcud': return <FiscalText style={b.style} element="O ATCUD">{b.prefix ?? 'ATCUD:'} {data.atcud}</FiscalText>
+    case 'atcud':
+      if (!data.atcud) return null // pró-forma
+      return <FiscalText style={b.style} element="O ATCUD">{b.prefix ?? 'ATCUD:'} {data.atcud}</FiscalText>
     case 'statusBadge': {
       if (!data.status) return null
       return <Box style={b.style}><Text>{STATUS_TEXT[data.status]}</Text></Box>
@@ -543,7 +618,8 @@ export interface RenderV2Result { document: ReactNode; warnings: RenderWarning[]
 export async function buildDocumentV2(input: TemplateV2, data: DocumentData, opts: { insertMissing?: boolean } = {}): Promise<RenderV2Result> {
   registerFonts()
   const { template: t, warnings } = ensureFiscalBlocks(input, { insert: opts.insertMissing })
-  const qr = qrFor(data.qrUrl)
+  const isProforma = data.documentType === 'PF'
+  const qr = isProforma || !data.qrUrl ? { n: 1, runs: [] } : qrFor(data.qrUrl)
   const pageBg = color(t, t.page?.background ?? 'background') ?? '#FFFFFF'
   const marginX = t.page?.marginX ?? 48
   let bottomH = t.bottom ? t.bottom.height ?? 60 : 0
@@ -572,22 +648,33 @@ export async function buildDocumentV2(input: TemplateV2, data: DocumentData, opt
     entry.message = warningMessage(t, entry)
   } }
   const base = merge(t, 'body')
+  const lineBottom = bottomH + AGT_LINE_BOTTOM
+  const qrBottom = lineBottom + AGT_LINE_H + QR_ABOVE_LINE
+  const contentBottom = lineBottom + AGT_LINE_H + CONTENT_ABOVE_LINE
+  // Espaço do QR no fim do corpo (o que passa do fundo da área de conteúdo).
+  const qrReserve = isProforma ? 0 : qrBottom + QR_TILE_H + QR_GAP - contentBottom
 
   const document = (
     <RenderCtx.Provider value={ctx}>
       <Document title={`${LEGAL_TITLE[data.documentType]} ${data.number}`} creator="Vero" producer="Vero">
-        <Page size="A4" style={{ backgroundColor: pageBg, paddingBottom: bottomH + 24, fontFamily: t.theme.fonts?.body ?? 'Helvetica', fontSize: 9, color: t.theme.colors.foreground, ...pdfStyle(t, base) }}>
+        <Page size="A4" style={{ backgroundColor: pageBg, paddingTop: CONTINUATION_TOP, paddingBottom: contentBottom, fontFamily: t.theme.fonts?.body ?? 'Helvetica', fontSize: 9, color: t.theme.colors.foreground, ...pdfStyle(t, base) }}>
           {t.page?.corner && <Corner hex={t.page.cornerColor ? color(t, t.page.cornerColor) ?? null : null} />}
-          {t.top && <Box style={t.top.style}>{t.top.children.map((c, i) => <Node key={i} b={c} at={{ zone: 'top', path: [i] }} />)}</Box>}
-          <View style={{ paddingHorizontal: marginX, marginTop: t.page?.marginTop ?? 28 }}>
+          {/* A 1.ª página começa no topo: a faixa do topo (ou o corpo) sobe o que a margem de cima das continuações desceu. */}
+          {t.top && <Box style={t.top.style} extra={{ marginTop: -CONTINUATION_TOP }}>{t.top.children.map((c, i) => <Node key={i} b={c} at={{ zone: 'top', path: [i] }} />)}</Box>}
+          <View style={{ paddingHorizontal: marginX, marginTop: (t.page?.marginTop ?? 28) - (t.top ? 0 : CONTINUATION_TOP) }}>
             {t.body.map((c, i) => <Node key={i} b={c} at={{ zone: 'body', path: [i] }} />)}
+            {isProforma && <ProformaNotice />}
             {/* Espaço do QR no fim do corpo: se o conteúdo lhe fosse tocar, o QR passa para uma página nova. */}
-            <View wrap={false} style={{ height: QR_TILE_H + QR_GAP - (24 - QR_ABOVE_FOOTER) }} />
+            {qrReserve > 0 && <View wrap={false} style={{ height: qrReserve }} />}
           </View>
-          {/* QR da AGT: canto inferior direito, só na última página. */}
-          <View fixed style={{ position: 'absolute', right: marginX, bottom: bottomH + QR_ABOVE_FOOTER }}
-            // O react-pdf passa totalPages a todos os `render` (os tipos só o declaram no Text).
-            render={(({ pageNumber, totalPages }: { pageNumber: number; totalPages?: number }) => (pageNumber === totalPages ? <AgtQr qr={qr} /> : null)) as never} />
+          {/* QR da AGT: canto inferior direito, só na última página (a pró-forma não leva). */}
+          {!isProforma && (
+            <View fixed style={{ position: 'absolute', right: marginX, bottom: qrBottom }}
+              // O react-pdf passa totalPages a todos os `render` (os tipos só o declaram no Text).
+              render={(({ pageNumber, totalPages }: { pageNumber: number; totalPages?: number }) => (pageNumber === totalPages ? <AgtQr qr={qr} /> : null)) as never} />
+          )}
+          <AgtLine marginX={marginX} bottom={lineBottom} />
+          {data.status === 'cancelled' && <CancelledMark label={data.cancelledLabel || 'ANULADO'} />}
           {t.bottom && (
             <Box fixed style={t.bottom.style} extra={{ position: 'absolute', bottom: 0, left: 0, width: PAGE_W, height: bottomH }}>
               {t.bottom.children.map((c, i) => <Node key={i} b={c} at={{ zone: 'bottom', path: [i] }} />)}

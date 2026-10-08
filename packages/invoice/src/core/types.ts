@@ -102,6 +102,11 @@ export type BlockType = Block['type']
 
 export const FISCAL_PARTS = ['atcud', 'exemptions', 'legal', 'certification'] as const
 export type FiscalPart = (typeof FISCAL_PARTS)[number]
+/**
+ * Partes que o modelo tem de colocar. A menção do programa certificado ('certification')
+ * já não: o motor desenha-a sozinho no rodapé de todas as páginas, com o número do documento.
+ */
+export const REQUIRED_FISCAL_PARTS = ['atcud', 'exemptions', 'legal'] as const satisfies readonly FiscalPart[]
 
 export interface TemplateV2 {
   version: 2
@@ -144,22 +149,49 @@ export interface DocumentLine {
   lineTotal: number // cêntimos, sem IVA
 }
 
+export interface BankAccount {
+  bank: string
+  iban: string
+  holder?: string | null
+  /** Número de conta (além do IBAN). */
+  account?: string | null
+  swift?: string | null
+  notes?: string | null
+}
+
 export interface DocumentData {
-  documentType: 'FT' | 'FR' | 'NC' | 'ND' | 'RC'
+  /** PF = factura pró-forma: sem valor fiscal - sem QR, ATCUD nem assinatura, com o aviso obrigatório. */
+  documentType: 'FT' | 'FR' | 'NC' | 'ND' | 'RC' | 'PF'
   number: string
   issuedAt: Date
+  /** Vazio numa pró-forma. */
   atcud: string
-  /** 4 caracteres da assinatura, para o rodapé AGT. */
+  /** 4 caracteres da assinatura, para o rodapé AGT (vazio numa pró-forma). */
   hashChars: string
   certificationNumber: string
+  /** Vazio numa pró-forma (não leva QR). */
   qrUrl: string
   status?: 'paid' | 'pending' | 'cancelled'
+  /** Marca de água de um documento anulado (status 'cancelled'). Por omissão "ANULADO". */
+  cancelledLabel?: string | null
   reference?: string | null
-  org: DocumentParty & { logoUrl?: string | null; website?: string | null; city?: string | null; bankAccounts?: { bank: string; iban: string; holder?: string | null }[] }
+  org: DocumentParty & {
+    logoUrl?: string | null
+    website?: string | null
+    city?: string | null
+    bankAccounts?: BankAccount[]
+    /** 'simplificado' acrescenta a menção obrigatória "IVA - Regime Simplificado". */
+    ivaRegime?: string | null
+  }
   customer: DocumentParty
   payment?: { method: string; reference?: string | null; date?: Date | null }
   lines: DocumentLine[]
   totals: { net: number; tax: number; discount: number; total: number; byRate: { rate: number; base: number; tax: number }[] }
+  /**
+   * Retenção na fonte (Art. 67.º do CII). Informativa: não altera o total, que continua o
+   * valor fiscal; acrescenta a linha da retenção e o "Valor líquido a pagar".
+   */
+  withholding?: { type: string; /** Percentagem, ex.: 6.5 */ rate: number; /** Cêntimos. */ amount: number } | null
   notes?: string | null
   /** Total por extenso, escrito pelo Vero. */
   amountInWords?: string | null

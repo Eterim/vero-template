@@ -192,17 +192,19 @@ function Parties() {
         <PageTitle eyebrow="Guias" lead="O modelo só tem aspecto. Tudo o que é fiscal chega em cada documento, já calculado e assinado.">Os dados do documento</PageTitle>
         <P>Os dados são um <C>DocumentData</C>. No Vero, é o Vero que os passa; fora do Vero, quem chama <C>render()</C>. Para experimentar, <C>sampleDocument("FT")</C> devolve um documento fictício completo.</P>
         <Table head={['Campo', 'O que é']} rows={[
-          [<C>documentType</C>, 'FT, FR, NC, ND ou RC.'],
+          [<C>documentType</C>, 'FT, FR, NC, ND, RC ou PF (pró-forma, sem valor fiscal).'],
           [<C>number</C>, 'Série e número, ex.: FT VERO2026/128.'],
           [<C>issuedAt</C>, 'Data e hora de emissão.'],
           [<C>atcud</C>, 'Código ATCUD.'],
           [<C>hashChars</C>, 'Os 4 caracteres da assinatura, para a menção do programa certificado.'],
           [<C>certificationNumber</C>, 'Número de certificação do programa que emite.'],
           [<C>qrUrl</C>, 'O URL do código QR da AGT.'],
-          [<C>org</C>, 'A empresa: nome, NIF, morada, contactos, logótipo, contas bancárias.'],
+          [<C>org</C>, 'A empresa: nome, NIF, morada, contactos, logótipo, contas bancárias (banco, IBAN, conta, SWIFT, titular, notas) e regime de IVA (ivaRegime).'],
           [<C>customer</C>, 'O cliente: nome, NIF (opcional), morada, contactos.'],
           [<C>lines</C>, 'As linhas: descrição, quantidade, preço, desconto, IVA ou código de isenção, total.'],
           [<C>totals</C>, 'Sem impostos, impostos, descontos, total e IVA por taxa.'],
+          [<C>withholding</C>, 'Retenção na fonte (tipo, taxa em %, valor). Informativa: o total não muda; acrescenta a linha da retenção e o valor líquido a pagar.'],
+          [<C>status</C>, 'paid, pending ou cancelled. Anulado leva marca de água (cancelledLabel, por omissão ANULADO).'],
           [<C>payment</C>, 'Método, referência e data (documentos pagos).'],
           [<C>notes</C>, 'Observações.'],
           [<C>amountInWords</C>, 'O total por extenso.'],
@@ -277,7 +279,17 @@ const template = compile(<MyInvoice />)   // só aspecto, sem código`} />
       <>
         <PageTitle eyebrow="Guias" lead="O que a biblioteca garante em qualquer modelo - para que nenhum aspecto ponha um documento fora da lei.">Regras da AGT</PageTitle>
         <H2>O código QR</H2>
-        <P>Fica sempre no canto inferior direito da última página, acima do rodapé, com 96 pt e a marca da AGT ao centro. Não é um componente: nenhum modelo o pode mover, esconder ou deformar. Se o conteúdo lhe fosse tocar, passa para uma página nova.</P>
+        <P>Fica sempre no canto inferior direito da última página, acima do rodapé, com 96 pt e a marca da AGT ao centro. Não é um componente: nenhum modelo o pode mover, esconder ou deformar. Se o conteúdo lhe fosse tocar, passa para uma página nova. A pró-forma não leva QR.</P>
+        <H2>O rodapé AGT</H2>
+        <P>Em todas as páginas, por cima da faixa do rodapé do modelo: <C>XXXX-Processado por programa válido nº …</C> à esquerda (os 4 caracteres da assinatura e o número de certificação) e o número do documento à direita. Também é do motor, como o QR.</P>
+        <H2>Desenhado pelo motor quando os dados o pedem</H2>
+        <Ul>
+          <li>Retenção na fonte e "Valor líquido a pagar", nos totais.</li>
+          <li>"IVA - Regime Simplificado", a seguir aos totais, quando a empresa está nesse regime.</li>
+          <li>"Não sujeito" nas linhas com o código M02 (as outras isenções: "Isento").</li>
+          <li>Marca de água num documento anulado.</li>
+          <li>Na pró-forma, o aviso "Documento não válido como factura", sem ATCUD nem QR.</li>
+        </Ul>
         <H2>Elementos obrigatórios</H2>
         <Table head={['Elemento', 'Componente']} rows={[
           ['Tipo do documento', <C>DocumentTitle</C>],
@@ -287,7 +299,7 @@ const template = compile(<MyInvoice />)   // só aspecto, sem código`} />
           ['Cliente (nome e NIF)', <C>Customer</C>],
           ['Linhas com IVA', <C>Items</C>],
           ['Totais', <C>Totals</C>],
-          ['ATCUD, isenções, texto legal, programa certificado', <><C>LegalNotes</C> (e <C>Atcud</C>)</>],
+          ['ATCUD, isenções e texto legal', <><C>LegalNotes</C> (e <C>Atcud</C>)</>],
         ]} />
         <P>Se faltar algum, o documento emitido acrescenta-o e <C>render()</C> avisa. Cada um só pode aparecer uma vez.</P>
         <H2>Legibilidade</H2>

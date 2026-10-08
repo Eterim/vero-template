@@ -1,5 +1,5 @@
 import {
-  Tailwind, Document, CornerDecoration, Footer, Row, Column, Text, Logo,
+  Tailwind, Document, CornerDecoration, Row, Column, Text, Logo,
   DocumentTitle, DocumentNumber, DocumentDate, Atcud, Issuer, Customer,
   Items, Totals, Notes, BankAccounts, LegalNotes,
 } from "@veroao/invoice"
@@ -107,12 +107,6 @@ export default function Modern() {
           parts={["exemptions","legal"]}
           className="text-[9.5px] text-muted mt-[13px]"
         />
-        <Footer className="px-[53px] py-[13px] justify-end h-[64px]">
-          <Row className="text-[9.5px] text-muted py-2 border-t-[0.75px] border-line-light justify-between">
-            <LegalNotes parts={["certification"]} />
-            <Text>{"{{document.number}}"}</Text>
-          </Row>
-        </Footer>
       </Document>
     </Tailwind>
   )

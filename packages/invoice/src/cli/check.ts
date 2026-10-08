@@ -1,6 +1,6 @@
 /**
  * `npx @veroao/invoice check [pasta]` - o que o Vero e a galeria verificam, antes de publicar:
- * o modelo compila, desenha os cinco tipos de documento sem avisos da AGT e passa a
+ * o modelo compila, desenha os seis tipos de documento (com a pró-forma) sem avisos da AGT e passa a
  * verificação de segurança (checkTemplate).
  */
 import { relative } from 'node:path'
@@ -10,7 +10,7 @@ import { render } from '../render.js'
 import { findDir, findTemplates } from './dev.js'
 import { loadTemplate } from './load.js'
 
-const DOC_TYPES = ['FT', 'FR', 'NC', 'ND', 'RC'] as const
+const DOC_TYPES = ['FT', 'FR', 'NC', 'ND', 'RC', 'PF'] as const
 
 /** Devolve o número de modelos com problemas. */
 export async function check(dir?: string): Promise<number> {

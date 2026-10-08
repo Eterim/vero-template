@@ -2,7 +2,7 @@
   "format": "vero-template",
   "schemaVersion": 2,
   "id": "vero/moderno",
-  "version": 1,
+  "version": 2,
   "name": "Moderno",
   "author": "vero",
   "template": {
@@ -349,41 +349,6 @@
           "marginTop": 9.75
         }
       }
-    ],
-    "bottom": {
-      "height": 48,
-      "style": {
-        "paddingX": 39.75,
-        "paddingY": 9.75,
-        "justify": "end"
-      },
-      "children": [
-        {
-          "type": "row",
-          "children": [
-            {
-              "type": "fiscal",
-              "parts": [
-                "certification"
-              ]
-            },
-            {
-              "type": "text",
-              "text": "{{document.number}}"
-            }
-          ],
-          "style": {
-            "size": 7.125,
-            "color": "muted",
-            "paddingY": 6,
-            "justify": "between",
-            "borderTop": {
-              "width": 0.563,
-              "color": "line-light"
-            }
-          }
-        }
-      ]
-    }
+    ]
   }
 }

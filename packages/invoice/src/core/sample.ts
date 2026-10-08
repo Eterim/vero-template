@@ -2,12 +2,13 @@ import type { DocumentData } from './types.js'
 
 type DocType = DocumentData['documentType']
 
-const SERIES: Record<DocType, string> = { FT: 'FT VERO2026/128', FR: 'FR VERO2026/57', NC: 'NC VERO2026/9', ND: 'ND VERO2026/3', RC: 'RC VERO2026/41' }
+const SERIES: Record<DocType, string> = { FT: 'FT VERO2026/128', FR: 'FR VERO2026/57', NC: 'NC VERO2026/9', ND: 'ND VERO2026/3', RC: 'RC VERO2026/41', PF: 'PF-K3J9QX' }
 
 /** Documento fictício para a pré-visualização - toca em tudo: desconto, isenção, notas, pagamento. */
 export function sampleDocument(documentType: DocType = 'FT'): DocumentData {
   const issuedAt = new Date('2026-10-07T14:32:00')
   const isReceipt = documentType === 'RC'
+  const isProforma = documentType === 'PF'
   const lines: DocumentData['lines'] = isReceipt
     ? [{ description: 'Pagamento da factura FT VERO2026/120', quantity: 1, unitPrice: 41_942_31, taxRate: 0, taxExemptionCode: 'M02', taxAmount: 0, lineTotal: 41_942_31 }]
     : [
@@ -22,10 +23,10 @@ export function sampleDocument(documentType: DocType = 'FT'): DocumentData {
     documentType,
     number: SERIES[documentType],
     issuedAt,
-    atcud: `${SERIES[documentType].split(' ')[1].replace('/', '-')}`,
-    hashChars: 'Ab3x',
+    atcud: isProforma ? '' : `${SERIES[documentType].split(' ')[1].replace('/', '-')}`,
+    hashChars: isProforma ? '' : 'Ab3x',
     certificationNumber: 'FE/271/AGT/2026',
-    qrUrl: `https://quiosqueagt.minfin.gov.ao/facturacao-eletronica/consultar-fe?emissor=5000000000&document=${encodeURIComponent(SERIES[documentType])}`,
+    qrUrl: isProforma ? '' : `https://quiosqueagt.minfin.gov.ao/facturacao-eletronica/consultar-fe?emissor=5000000000&document=${encodeURIComponent(SERIES[documentType])}`,
     status: documentType === 'FR' || isReceipt ? 'paid' : documentType === 'FT' ? 'pending' : undefined,
     reference: 'AO-656704',
     org: {
