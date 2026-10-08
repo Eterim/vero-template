@@ -83,6 +83,6 @@
     "access": "public"
   },
   "bin": {
-    "veroao-invoice": "./dist/cli/index.js"
+    "veroao-invoice": "dist/cli/index.js"
   }
 }
