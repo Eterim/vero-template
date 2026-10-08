@@ -105,7 +105,7 @@ const joinPt = (xs: string[]) => (xs.length < 2 ? xs.join('') : `${xs.slice(0, -
 /** Como descrever uma cor a quem não vê o código: pelo papel no tema, ou pelo nome. */
 function describeColor(t: TemplateV2, hex: string): string {
   const h = hex.toUpperCase()
-  if (t.theme.colors.texto?.toUpperCase() === h) return 'a cor do texto do tema'
+  if (t.theme.colors.foreground?.toUpperCase() === h) return 'a cor do texto do tema'
   const token = Object.entries(t.theme.colors).find(([, v]) => v.toUpperCase() === h)?.[0]
   if (token) return `a cor "${token}" do tema`
   if (h === '#000000') return 'preto'
@@ -131,7 +131,7 @@ function FiscalText({ style, children, element }: { style?: StyleRef; children: 
   const ctx = useCtx()
   const s = merge(ctx.t, style)
   const requested = color(ctx.t, s.color) ?? ctx.fg
-  const { color: c, adjusted } = legible(requested, ctx.bg, [ctx.t.theme.colors.texto])
+  const { color: c, adjusted } = legible(requested, ctx.bg, [ctx.t.theme.colors.foreground])
   if (adjusted) {
     ctx.warn({ kind: 'contrast', element, at: ctx.at, colors: { chosen: requested, background: ctx.bg, used: c }, message: '' })
   }
@@ -174,7 +174,7 @@ function Party({ b }: { b: Extract<Block, { type: 'party' }> }) {
   const label = b.label ?? (b.role === 'issuer' ? 'Emitente' : 'Cliente')
   return (
     <Box style={b.style}>
-      {label !== '' && <Box style={b.labelStyle ?? 'rotulo'}><Text>{label}</Text></Box>}
+      {label !== '' && <Box style={b.labelStyle ?? 'label'}><Text>{label}</Text></Box>}
       <FiscalText style={b.nameStyle ?? { weight: 700 }} element="O nome">{p.name}</FiscalText>
       <FiscalText element="O NIF">{p.taxId ? `${b.taxIdLabel ?? 'NIF:'} ${p.taxId}` : 'Consumidor final'}</FiscalText>
       {p.addressLines?.map((l, i) => <Text key={i}>{l}</Text>)}
@@ -212,7 +212,7 @@ function Items({ b }: { b: Extract<Block, { type: 'items' }> }) {
   }
   const align = (field: string) => (field === 'description' || field === 'details' ? 'left' : field === 'quantity' || field === 'taxRate' ? 'center' : 'right')
   // Grelha: linha à esquerda de cada coluna menos a primeira, e contorno da tabela.
-  const grid = b.grid ? { width: b.grid.width, color: color(t, b.grid.color) ?? t.theme.colors.texto } : null
+  const grid = b.grid ? { width: b.grid.width, color: color(t, b.grid.color) ?? t.theme.colors.foreground } : null
   // Com grelha, o espaço vai para dentro de cada célula (senão as linhas verticais encostavam ao texto).
   const cellExtra = (i: number, padY: number) => (grid
     ? { paddingVertical: padY, paddingHorizontal: 6, ...(i > 0 ? { borderLeftWidth: grid.width, borderLeftColor: grid.color } : {}) }
@@ -220,7 +220,7 @@ function Items({ b }: { b: Extract<Block, { type: 'items' }> }) {
   const zebra = color(t, b.zebra)
   return (
     <Box style={b.style} extra={grid ? { borderWidth: grid.width, borderColor: grid.color } : undefined}>
-      <Box row style={b.headerStyle ?? 'cabecalhoTabela'} extra={grid ? { paddingVertical: 0, paddingHorizontal: 0 } : undefined}>
+      <Box row style={b.headerStyle ?? 'tableHeader'} extra={grid ? { paddingVertical: 0, paddingHorizontal: 0 } : undefined}>
         {cols.map((c, i) => (
           <Box key={c.field} style={join({ flex: c.flex ?? 1, align: align(c.field) }, c.style)} extra={cellExtra(i, 6)}>
             <Text>{c.label ?? c.field}</Text>
@@ -228,11 +228,11 @@ function Items({ b }: { b: Extract<Block, { type: 'items' }> }) {
         ))}
       </Box>
       {data.lines.map((l, li) => (
-        <Box key={li} row style={b.rowStyle ?? 'linhaTabela'} extra={{ ...(grid ? { paddingVertical: 0, paddingHorizontal: 0 } : {}), ...(zebra && li % 2 === 1 ? { backgroundColor: zebra } : {}) }}>
+        <Box key={li} row style={b.rowStyle ?? 'tableRow'} extra={{ ...(grid ? { paddingVertical: 0, paddingHorizontal: 0 } : {}), ...(zebra && li % 2 === 1 ? { backgroundColor: zebra } : {}) }}>
           {cols.map((c, i) => (
             <Box key={c.field} style={join({ flex: c.flex ?? 1, align: align(c.field) }, c.style)} extra={cellExtra(i, 7)}>
               <FiscalText element="O texto das linhas da tabela">{cell(c.field, l)}</FiscalText>
-              {c.field === 'description' && !hasDetailsColumn && l.details && <Box style={b.detailsStyle ?? 'detalhe'}><Text>{l.details}</Text></Box>}
+              {c.field === 'description' && !hasDetailsColumn && l.details && <Box style={b.detailsStyle ?? 'details'}><Text>{l.details}</Text></Box>}
             </Box>
           ))}
         </Box>
@@ -258,7 +258,7 @@ function Totals({ b }: { b: Extract<Block, { type: 'totals' }> }) {
   const totalBg = color(t, b.totalBackground)
   return (
     <Box style={b.style}>
-      {b.title && <Box style={b.titleStyle ?? 'rotulo'}><Text>{b.title}</Text></Box>}
+      {b.title && <Box style={b.titleStyle ?? 'label'}><Text>{b.title}</Text></Box>}
       {rows.map(([k, v]) => (
         <View key={k} style={{ flexDirection: 'row', justifyContent: 'space-between', ...(rule ? { paddingVertical: 6, borderBottomWidth: 0.4, borderBottomColor: rule } : { marginBottom: 6 }) }}>
           <FiscalText element="Os totais">{k}</FiscalText>
@@ -267,7 +267,7 @@ function Totals({ b }: { b: Extract<Block, { type: 'totals' }> }) {
       ))}
       <Box style={totalBg ? { background: b.totalBackground } : undefined}
         extra={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', paddingTop: 8, paddingBottom: totalBg ? 8 : 0, marginTop: rule ? 0 : 4,
-          ...(totalBg ? { marginHorizontal: -8, paddingHorizontal: 8 } : { borderTopWidth: 1, borderTopColor: color(t, b.ruleColor) ?? t.theme.colors.texto }) }}>
+          ...(totalBg ? { marginHorizontal: -8, paddingHorizontal: 8 } : { borderTopWidth: 1, borderTopColor: color(t, b.ruleColor) ?? t.theme.colors.foreground }) }}>
         <FiscalText element="O total" style={{ weight: 700 }}>{b.totalLabel ?? (paid ? 'TOTAL PAGO' : 'TOTAL A PAGAR')}</FiscalText>
         <FiscalText element="O total" style={b.totalStyle ?? { weight: 700, size: 16 }}>{m(tot.total)}</FiscalText>
       </Box>
@@ -339,7 +339,7 @@ function Labelled({ label, labelStyle, inline, style, children }: { label: strin
   if (label === '') return <Box style={style}>{children}</Box>
   return (
     <Box row={inline} style={style}>
-      <Box style={join(labelStyle ?? 'rotulo', inline ? { marginBottom: 0 } : undefined)} extra={inline ? { width: 80 } : undefined}><Text>{label}</Text></Box>
+      <Box style={join(labelStyle ?? 'label', inline ? { marginBottom: 0 } : undefined)} extra={inline ? { width: 80 } : undefined}><Text>{label}</Text></Box>
       <View style={inline ? { flex: 1 } : {}}>{children}</View>
     </Box>
   )
@@ -362,16 +362,16 @@ function Bank({ b }: { b: Extract<Block, { type: 'bank' }> }) {
       </Labelled>
     )
   }
-  const grid = b.grid ? { width: b.grid.width, color: color(t, b.grid.color) ?? t.theme.colors.texto } : null
+  const grid = b.grid ? { width: b.grid.width, color: color(t, b.grid.color) ?? t.theme.colors.foreground } : null
   const cols: [string, number, (a: (typeof accounts)[number]) => string][] = [
     ['Banco', 1.2, (a) => a.bank], ['IBAN', 2.4, (a) => a.iban], ['Titular', 2, (a) => a.holder ?? data.org.name],
   ]
   const cellExtra = (i: number) => ({ paddingVertical: 6, paddingHorizontal: 6, ...(grid && i > 0 ? { borderLeftWidth: grid.width, borderLeftColor: grid.color } : {}) })
   return (
     <Box style={b.style}>
-      {label !== '' && <Box style={b.labelStyle ?? 'rotulo'}><Text>{label}</Text></Box>}
+      {label !== '' && <Box style={b.labelStyle ?? 'label'}><Text>{label}</Text></Box>}
       <View style={grid ? { borderWidth: grid.width, borderColor: grid.color } : {}}>
-        <Box row style={b.headerStyle ?? 'cabecalhoTabela'} extra={{ paddingVertical: 0, paddingHorizontal: 0 }}>
+        <Box row style={b.headerStyle ?? 'tableHeader'} extra={{ paddingVertical: 0, paddingHorizontal: 0 }}>
           {cols.map(([h, f], i) => <Box key={h} style={{ flex: f }} extra={cellExtra(i)}><Text>{h.toUpperCase()}</Text></Box>)}
         </Box>
         {accounts.map((a, r) => (
@@ -418,7 +418,7 @@ function BlockView({ b, at }: { b: Block; at: At }) {
     case 'stack': return <Box style={b.style}>{b.children.map((c, i) => <Node key={i} b={c} at={child(at, i)} />)}</Box>
     case 'text': return <Box style={b.style}><Text>{interpolate(b.text, data)}</Text></Box>
     case 'spacer': return <View style={{ height: b.size }} />
-    case 'divider': return <View style={{ borderTopWidth: b.width ?? 0.5, borderTopColor: color(t, b.color) ?? t.theme.colors.texto }} />
+    case 'divider': return <View style={{ borderTopWidth: b.width ?? 0.5, borderTopColor: color(t, b.color) ?? t.theme.colors.foreground }} />
     case 'logo':
       return (
         <Box style={b.style}>
@@ -440,7 +440,7 @@ function BlockView({ b, at }: { b: Block; at: At }) {
       if (!data.payment) return null
       return (
         <Box style={b.style}>
-          {b.label !== '' && <Box style={b.labelStyle ?? 'rotulo'}><Text>{b.label ?? 'Pagamento'}</Text></Box>}
+          {b.label !== '' && <Box style={b.labelStyle ?? 'label'}><Text>{b.label ?? 'Pagamento'}</Text></Box>}
           <Text style={{ fontWeight: 700 }}>Método: {data.payment.method}</Text>
           {data.payment.reference && <Text>Referência: {data.payment.reference}</Text>}
           {data.payment.date && <Text>Data: {date(data.payment.date)}</Text>}
@@ -544,7 +544,7 @@ export async function buildDocumentV2(input: TemplateV2, data: DocumentData, opt
   registerFonts()
   const { template: t, warnings } = ensureFiscalBlocks(input, { insert: opts.insertMissing })
   const qr = qrFor(data.qrUrl)
-  const pageBg = color(t, t.page?.background ?? 'fundo') ?? '#FFFFFF'
+  const pageBg = color(t, t.page?.background ?? 'background') ?? '#FFFFFF'
   const marginX = t.page?.marginX ?? 48
   let bottomH = t.bottom ? t.bottom.height ?? 60 : 0
   if (t.bottom) {
@@ -558,7 +558,7 @@ export async function buildDocumentV2(input: TemplateV2, data: DocumentData, opt
     }
   }
   const merged = new Map<string, RenderWarning & { elements: string[] }>()
-  const ctx: Ctx = { t, data, qr, bg: pageBg, fg: t.theme.colors.texto, warn: (w) => {
+  const ctx: Ctx = { t, data, qr, bg: pageBg, fg: t.theme.colors.foreground, warn: (w) => {
     // O mesmo problema no mesmo bloco (ex.: nome e NIF de uma parte) é um só aviso.
     const key = `${w.kind}|${JSON.stringify(w.at)}|${w.colors?.chosen}|${w.colors?.background}`
     let entry = merged.get(key)
@@ -576,7 +576,7 @@ export async function buildDocumentV2(input: TemplateV2, data: DocumentData, opt
   const document = (
     <RenderCtx.Provider value={ctx}>
       <Document title={`${LEGAL_TITLE[data.documentType]} ${data.number}`} creator="Vero" producer="Vero">
-        <Page size="A4" style={{ backgroundColor: pageBg, paddingBottom: bottomH + 24, fontFamily: t.theme.fonts?.body ?? 'Helvetica', fontSize: 9, color: t.theme.colors.texto, ...pdfStyle(t, base) }}>
+        <Page size="A4" style={{ backgroundColor: pageBg, paddingBottom: bottomH + 24, fontFamily: t.theme.fonts?.body ?? 'Helvetica', fontSize: 9, color: t.theme.colors.foreground, ...pdfStyle(t, base) }}>
           {t.page?.corner && <Corner hex={t.page.cornerColor ? color(t, t.page.cornerColor) ?? null : null} />}
           {t.top && <Box style={t.top.style}>{t.top.children.map((c, i) => <Node key={i} b={c} at={{ zone: 'top', path: [i] }} />)}</Box>}
           <View style={{ paddingHorizontal: marginX, marginTop: t.page?.marginTop ?? 28 }}>

@@ -26,10 +26,10 @@ const FONTS = new Set(['Inter', 'Playfair Display', 'Helvetica', 'Times-Roman'])
  * (ex.: <Customer /> sem labelClassName). O renderizador procura-os por estes nomes.
  */
 const DEFAULT_STYLES: Record<string, Style> = {
-  rotulo: { size: 7, weight: 700, uppercase: true, letterSpacing: 0.4, color: '#71717a', marginBottom: 4 },
-  cabecalhoTabela: { size: 7.5, weight: 700, color: '#52525b', paddingX: 6, paddingY: 6, borderBottom: { width: 0.75, color: '#d4d4d8' } },
-  linhaTabela: { paddingX: 6, paddingY: 6, borderBottom: { width: 0.5, color: '#e4e4e7' } },
-  detalhe: { size: 7, color: '#71717a', marginTop: 2 },
+  label: { size: 7, weight: 700, uppercase: true, letterSpacing: 0.4, color: '#71717a', marginBottom: 4 },
+  tableHeader: { size: 7.5, weight: 700, color: '#52525b', paddingX: 6, paddingY: 6, borderBottom: { width: 0.75, color: '#d4d4d8' } },
+  tableRow: { paddingX: 6, paddingY: 6, borderBottom: { width: 0.5, color: '#e4e4e7' } },
+  details: { size: 7, color: '#71717a', marginTop: 2 },
 }
 
 /** Estilos em objecto (pt) → estilo do modelo. */
@@ -254,7 +254,7 @@ class Compiler {
     const t: TemplateV2 = {
       version: 2,
       theme: clean({
-        colors: { fundo: '#FFFFFF', texto: '#111111', ...colors },
+        colors: { background: '#FFFFFF', foreground: '#111111', ...colors },
         fonts: clean({ body: fonts.body as never, display: (fonts.display ?? fonts.body) as never }),
         styles: { ...DEFAULT_STYLES, ...(isEmpty(base) ? {} : { body: base }) },
       }),

@@ -8,11 +8,11 @@ const config = {
   theme: {
     extend: {
       colors: {
-        "fundo": "#FFFFFF",
-        "texto": "#000000",
-        "texto-suave": "#525252",
-        "cinzento-claro": "#F5F5F5",
-        "linhas": "#D4D4D4",
+        background: "#FFFFFF",
+        foreground: "#000000",
+        muted: "#525252",
+        surface: "#F5F5F5",
+        line: "#D4D4D4",
       },
       fontFamily: {
         sans: ["Helvetica"],
@@ -22,16 +22,16 @@ const config = {
 }
 
 // Estilos usados em vários sítios
-const rotulo = "text-[8.5px] font-bold uppercase text-texto-suave mb-[3px]"
-const cabecalhoTabela = "text-[8.5px] font-bold uppercase bg-cinzento-claro px-[5px] py-[5px]"
-const linhaTabela = "px-[5px] py-[5px] border-b-[0.5px] border-linhas"
-const detalhe = "text-[8.5px] text-texto-suave"
+const label = "text-[8.5px] font-bold uppercase text-muted mb-[3px]"
+const tableHeader = "text-[8.5px] font-bold uppercase bg-surface px-[5px] py-[5px]"
+const tableRow = "px-[5px] py-[5px] border-b-[0.5px] border-line"
+const details = "text-[8.5px] text-muted"
 
-export default function Compacto() {
+export default function Compact() {
   return (
     <Tailwind config={config}>
-      <Document className="bg-fundo font-sans text-texto px-[37px] pt-[35px]">
-        <Row className="py-2 mb-[13px] border-b-[1.25px] border-texto items-start justify-between">
+      <Document className="bg-background font-sans text-foreground px-[37px] pt-[35px]">
+        <Row className="py-2 mb-[13px] border-b-[1.25px] border-foreground items-start justify-between">
           <Logo className="h-[37px]" fallbackClassName="text-base font-bold" />
           <Column className="gap-[1px] items-end">
             <DocumentTitle className="text-[17.5px] font-bold uppercase" />
@@ -40,30 +40,30 @@ export default function Compacto() {
           </Column>
         </Row>
         <Row className="text-[10px] mb-[13px] gap-4">
-          <Issuer label="Emitente" className="flex-1" labelClassName={rotulo} />
-          <Customer label="Cliente" className="flex-1" labelClassName={rotulo} />
-          <Payment label="Pagamento" className="flex-1" labelClassName={rotulo} />
+          <Issuer label="Emitente" className="flex-1" labelClassName={label} />
+          <Customer label="Cliente" className="flex-1" labelClassName={label} />
+          <Payment label="Pagamento" className="flex-1" labelClassName={label} />
         </Row>
         <Items
           className="text-[10px]"
-          headerClassName={cabecalhoTabela}
-          rowClassName={linhaTabela}
-          detailsClassName={detalhe}
+          headerClassName={tableHeader}
+          rowClassName={tableRow}
+          detailsClassName={details}
         />
         <Row className="text-[10px] mt-[11px] gap-[21px]">
           <Column className="gap-2 flex-1">
-            <AmountInWords labelClassName={rotulo} />
-            <Notes labelClassName={rotulo} />
-            <BankAccounts labelClassName={rotulo} headerClassName={cabecalhoTabela} />
+            <AmountInWords labelClassName={label} />
+            <Notes labelClassName={label} />
+            <BankAccounts labelClassName={label} headerClassName={tableHeader} />
           </Column>
           <Totals
             className="flex-1"
-            titleClassName={rotulo}
+            titleClassName={label}
             totalClassName="text-[14.5px] font-bold"
-            ruleClassName="border-texto"
+            ruleClassName="border-foreground"
           />
         </Row>
-        <LegalNotes className="text-[9.5px] leading-[1.35] text-texto-suave mt-[13px] gap-[3px]" />
+        <LegalNotes className="text-[9.5px] leading-[1.35] text-muted mt-[13px] gap-[3px]" />
       </Document>
     </Tailwind>
   )

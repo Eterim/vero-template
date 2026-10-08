@@ -15,21 +15,21 @@ npm install @veroao/invoice react
 import { Tailwind, Document, Row, Logo, DocumentTitle, DocumentNumber,
   Customer, Issuer, Items, Totals, LegalNotes } from "@veroao/invoice"
 
-export default function Minha() {
+export default function MyInvoice() {
   return (
-    <Tailwind config={{ theme: { extend: { colors: { marca: "#0E4C63" } } } }}>
+    <Tailwind config={{ theme: { extend: { colors: { brand: "#0E4C63" } } } }}>
       <Document className="bg-white px-12 pt-10 text-[11px]">
         <Row className="items-start justify-between">
           <Logo className="h-12" />
-          <DocumentTitle className="text-3xl font-bold uppercase text-marca" />
+          <DocumentTitle className="text-3xl font-bold uppercase text-brand" />
         </Row>
         <Row className="mt-8 gap-6">
-          <Customer className="flex-1 border border-zinc-200 p-3" labelClassName="font-bold text-marca" />
+          <Customer className="flex-1 border border-zinc-200 p-3" labelClassName="font-bold text-brand" />
           <Issuer className="flex-1" />
         </Row>
         <DocumentNumber className="mt-6 font-bold" />
         <Items className="mt-3" rowClassName="border-b border-zinc-200 even:bg-zinc-50" />
-        <Totals className="ml-auto mt-4 w-1/2" totalClassName="text-xl font-bold text-marca" />
+        <Totals className="ml-auto mt-4 w-1/2" totalClassName="text-xl font-bold text-brand" />
         <LegalNotes className="mt-6 text-[9px] text-zinc-500" />
       </Document>
     </Tailwind>
@@ -42,7 +42,7 @@ export default function Minha() {
 ```ts
 import { render } from "@veroao/invoice"
 
-const { pdf, warnings } = await render(<Minha />, documento)   // pdf: Uint8Array
+const { pdf, warnings } = await render(<MyInvoice />, documento)   // pdf: Uint8Array
 ```
 
 `documento` (`DocumentData`) traz tudo o que é fiscal - número, data, ATCUD, os 4 caracteres da
@@ -54,7 +54,7 @@ O modelo nunca o contém. Para experimentar: `sampleDocument("FT")`.
 ```ts
 import { compile } from "@veroao/invoice"
 
-const modelo = compile(<Minha />)   // JSON só com o aspecto - é isto que o Vero importa
+const modelo = compile(<MyInvoice />)   // JSON só com o aspecto - é isto que o Vero importa
 ```
 
 O React corre uma vez, do teu lado. O Vero só recebe JSON e nunca executa código de terceiros.

@@ -52,7 +52,7 @@ const UNSUPPORTED: [RegExp, string][] = [
   [/^(space-[xy])/, 'use gap-* em vez de space-*'],
 ]
 
-/** Resolve uma cor: do config (fica com o nome, ex.: "destaque"), da paleta ou livre ([#hex]). */
+/** Resolve uma cor: do config (fica com o nome, ex.: "accent"), da paleta ou livre ([#hex]). */
 function colorOf(v: string, theme: Record<string, string>): string | undefined {
   if (v in theme) return v
   if (v in PALETTE) return PALETTE[v]

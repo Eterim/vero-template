@@ -4,7 +4,7 @@
  * movidos e estilizados, nunca escondidos (ver fiscal.ts).
  */
 
-/** Cor: nome de uma cor do tema ("destaque") ou hex ("#C9A227"). */
+/** Cor: nome de uma cor do tema ("accent") ou hex ("#C9A227"). */
 export type ColorRef = string
 
 export interface Border { width: number; color: ColorRef }
@@ -104,8 +104,8 @@ export type FiscalPart = (typeof FISCAL_PARTS)[number]
 export interface TemplateV2 {
   version: 2
   theme: {
-    /** `fundo` (página) e `texto` (texto principal) existem sempre; o resto tem os nomes que quiser. */
-    colors: Record<string, string> & { fundo: string; texto: string }
+    /** `background` (página) e `foreground` (texto principal) existem sempre; o resto tem os nomes que quiser. */
+    colors: Record<string, string> & { background: string; foreground: string }
     fonts?: { body?: FontFamily; display?: FontFamily }
     styles?: Record<string, Style>
   }

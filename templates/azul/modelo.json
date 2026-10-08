@@ -9,19 +9,19 @@
     "version": 2,
     "theme": {
       "colors": {
-        "fundo": "#FFFFFF",
-        "texto": "#0F172A",
-        "texto-suave": "#64748B",
-        "azul": "#1D4ED8",
-        "azul-claro": "#EFF6FF",
-        "linhas": "#E2E8F0"
+        "background": "#FFFFFF",
+        "foreground": "#0F172A",
+        "muted": "#64748B",
+        "brand": "#1D4ED8",
+        "brand-light": "#EFF6FF",
+        "line": "#E2E8F0"
       },
       "fonts": {
         "body": "Inter",
         "display": "Inter"
       },
       "styles": {
-        "rotulo": {
+        "label": {
           "size": 7,
           "weight": 700,
           "uppercase": true,
@@ -29,7 +29,7 @@
           "color": "#71717a",
           "marginBottom": 4
         },
-        "cabecalhoTabela": {
+        "tableHeader": {
           "size": 7.5,
           "weight": 700,
           "color": "#52525b",
@@ -40,7 +40,7 @@
             "color": "#d4d4d8"
           }
         },
-        "linhaTabela": {
+        "tableRow": {
           "paddingX": 6,
           "paddingY": 6,
           "borderBottom": {
@@ -48,18 +48,18 @@
             "color": "#e4e4e7"
           }
         },
-        "detalhe": {
+        "details": {
           "size": 7,
           "color": "#71717a",
           "marginTop": 2
         },
         "body": {
-          "color": "texto"
+          "color": "foreground"
         }
       }
     },
     "page": {
-      "background": "fundo",
+      "background": "background",
       "marginX": 39.75,
       "marginTop": 26.25
     },
@@ -76,11 +76,11 @@
               "weight": 700,
               "uppercase": true,
               "letterSpacing": 0.563,
-              "color": "azul",
+              "color": "brand",
               "marginBottom": 5.25
             },
             "style": {
-              "background": "azul-claro",
+              "background": "brand-light",
               "padding": 14.25,
               "gap": 2.25,
               "radius": 9.75,
@@ -96,11 +96,11 @@
               "weight": 700,
               "uppercase": true,
               "letterSpacing": 0.563,
-              "color": "azul",
+              "color": "brand",
               "marginBottom": 5.25
             },
             "style": {
-              "background": "azul-claro",
+              "background": "brand-light",
               "padding": 14.25,
               "gap": 2.25,
               "radius": 9.75,
@@ -115,11 +115,11 @@
               "weight": 700,
               "uppercase": true,
               "letterSpacing": 0.563,
-              "color": "azul",
+              "color": "brand",
               "marginBottom": 5.25
             },
             "style": {
-              "background": "azul-claro",
+              "background": "brand-light",
               "padding": 14.25,
               "gap": 2.25,
               "radius": 9.75,
@@ -138,7 +138,7 @@
           "size": 7.5,
           "weight": 700,
           "color": "#ffffff",
-          "background": "azul",
+          "background": "brand",
           "paddingX": 12,
           "paddingY": 8.25,
           "radius": 6
@@ -148,12 +148,12 @@
           "paddingY": 9,
           "borderBottom": {
             "width": 0.563,
-            "color": "linhas"
+            "color": "line"
           }
         },
         "detailsStyle": {
           "size": 7.5,
-          "color": "texto-suave",
+          "color": "muted",
           "marginTop": 2.25
         }
       },
@@ -170,7 +170,7 @@
                   "weight": 700,
                   "uppercase": true,
                   "letterSpacing": 0.563,
-                  "color": "azul",
+                  "color": "brand",
                   "marginBottom": 5.25
                 },
                 "style": {
@@ -184,11 +184,11 @@
                   "weight": 700,
                   "uppercase": true,
                   "letterSpacing": 0.563,
-                  "color": "azul",
+                  "color": "brand",
                   "marginBottom": 5.25
                 },
                 "style": {
-                  "color": "texto-suave"
+                  "color": "muted"
                 }
               },
               {
@@ -198,14 +198,14 @@
                   "weight": 700,
                   "uppercase": true,
                   "letterSpacing": 0.563,
-                  "color": "azul",
+                  "color": "brand",
                   "marginBottom": 5.25
                 },
                 "headerStyle": {
                   "size": 7.5,
                   "weight": 700,
                   "color": "#ffffff",
-                  "background": "azul",
+                  "background": "brand",
                   "paddingX": 12,
                   "paddingY": 8.25,
                   "radius": 6
@@ -227,16 +227,16 @@
               "weight": 700,
               "uppercase": true,
               "letterSpacing": 0.563,
-              "color": "azul",
+              "color": "brand",
               "marginBottom": 5.25
             },
             "totalStyle": {
               "size": 16.875,
               "weight": 700,
-              "color": "azul"
+              "color": "brand"
             },
             "style": {
-              "background": "azul-claro",
+              "background": "brand-light",
               "padding": 14.25,
               "gap": 2.25,
               "radius": 9.75,
@@ -254,7 +254,7 @@
         "style": {
           "size": 7.125,
           "lineHeight": 1.35,
-          "color": "texto-suave",
+          "color": "muted",
           "marginTop": 18,
           "gap": 2.25
         }
@@ -262,7 +262,7 @@
     ],
     "top": {
       "style": {
-        "background": "azul",
+        "background": "brand",
         "paddingX": 39.75,
         "paddingY": 26.25
       },

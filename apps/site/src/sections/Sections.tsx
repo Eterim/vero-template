@@ -381,7 +381,7 @@ const JSON_SAMPLE = `{
   "version": 3,
   "author": "@fulano",
   "schemaVersion": 2,
-  "theme": { "colors": { "terracota": "#9A3412" } },
+  "theme": { "colors": { "brand": "#9A3412" } },
   "body": [ … ]
 }`
 

@@ -9,17 +9,17 @@
     "version": 2,
     "theme": {
       "colors": {
-        "fundo": "#FFFFFF",
-        "texto": "#1C1917",
-        "texto-suave": "#78716C",
-        "linhas": "#E7E5E4"
+        "background": "#FFFFFF",
+        "foreground": "#1C1917",
+        "muted": "#78716C",
+        "line": "#E7E5E4"
       },
       "fonts": {
         "body": "Inter",
         "display": "Playfair Display"
       },
       "styles": {
-        "rotulo": {
+        "label": {
           "size": 7,
           "weight": 700,
           "uppercase": true,
@@ -27,7 +27,7 @@
           "color": "#71717a",
           "marginBottom": 4
         },
-        "cabecalhoTabela": {
+        "tableHeader": {
           "size": 7.5,
           "weight": 700,
           "color": "#52525b",
@@ -38,7 +38,7 @@
             "color": "#d4d4d8"
           }
         },
-        "linhaTabela": {
+        "tableRow": {
           "paddingX": 6,
           "paddingY": 6,
           "borderBottom": {
@@ -46,18 +46,18 @@
             "color": "#e4e4e7"
           }
         },
-        "detalhe": {
+        "details": {
           "size": 7,
           "color": "#71717a",
           "marginTop": 2
         },
         "body": {
-          "color": "texto"
+          "color": "foreground"
         }
       }
     },
     "page": {
-      "background": "fundo",
+      "background": "background",
       "marginX": 56.25,
       "marginTop": 56.25
     },
@@ -76,14 +76,14 @@
             "type": "documentNumber",
             "style": {
               "size": 9,
-              "color": "texto-suave"
+              "color": "muted"
             }
           },
           {
             "type": "documentDate",
             "style": {
               "size": 9,
-              "color": "texto-suave"
+              "color": "muted"
             }
           }
         ],
@@ -104,7 +104,7 @@
               "size": 7.125,
               "uppercase": true,
               "letterSpacing": 1.125,
-              "color": "texto-suave",
+              "color": "muted",
               "marginBottom": 6
             },
             "style": {
@@ -120,7 +120,7 @@
               "size": 7.125,
               "uppercase": true,
               "letterSpacing": 1.125,
-              "color": "texto-suave",
+              "color": "muted",
               "marginBottom": 6
             },
             "style": {
@@ -140,23 +140,23 @@
           "size": 7.125,
           "uppercase": true,
           "letterSpacing": 0.938,
-          "color": "texto-suave",
+          "color": "muted",
           "paddingY": 8.25,
           "borderBottom": {
             "width": 0.563,
-            "color": "texto"
+            "color": "foreground"
           }
         },
         "rowStyle": {
           "paddingY": 9.75,
           "borderBottom": {
             "width": 0.563,
-            "color": "linhas"
+            "color": "line"
           }
         },
         "detailsStyle": {
           "size": 7.5,
-          "color": "texto-suave",
+          "color": "muted",
           "marginTop": 2.25
         }
       },
@@ -172,7 +172,7 @@
                   "size": 7.125,
                   "uppercase": true,
                   "letterSpacing": 1.125,
-                  "color": "texto-suave",
+                  "color": "muted",
                   "marginBottom": 6
                 }
               },
@@ -182,7 +182,7 @@
                   "size": 7.125,
                   "uppercase": true,
                   "letterSpacing": 1.125,
-                  "color": "texto-suave",
+                  "color": "muted",
                   "marginBottom": 6
                 }
               },
@@ -192,24 +192,24 @@
                   "size": 7.125,
                   "uppercase": true,
                   "letterSpacing": 1.125,
-                  "color": "texto-suave",
+                  "color": "muted",
                   "marginBottom": 6
                 },
                 "headerStyle": {
                   "size": 7.125,
                   "uppercase": true,
                   "letterSpacing": 0.938,
-                  "color": "texto-suave",
+                  "color": "muted",
                   "paddingY": 8.25,
                   "borderBottom": {
                     "width": 0.563,
-                    "color": "texto"
+                    "color": "foreground"
                   }
                 }
               }
             ],
             "style": {
-              "color": "texto-suave",
+              "color": "muted",
               "gap": 12,
               "flex": 1
             }
@@ -220,7 +220,7 @@
               "size": 7.125,
               "uppercase": true,
               "letterSpacing": 1.125,
-              "color": "texto-suave",
+              "color": "muted",
               "marginBottom": 6
             },
             "totalStyle": {
@@ -246,13 +246,13 @@
         "style": {
           "size": 7.125,
           "lineHeight": 1.35,
-          "color": "texto-suave",
+          "color": "muted",
           "paddingY": 14.25,
           "marginTop": 0,
           "gap": 2.25,
           "borderTop": {
             "width": 0.563,
-            "color": "linhas"
+            "color": "line"
           }
         }
       }

@@ -9,18 +9,18 @@
     "version": 2,
     "theme": {
       "colors": {
-        "fundo": "#FFFFFF",
-        "texto": "#000000",
-        "texto-suave": "#525252",
-        "cinzento-claro": "#F5F5F5",
-        "linhas": "#D4D4D4"
+        "background": "#FFFFFF",
+        "foreground": "#000000",
+        "muted": "#525252",
+        "surface": "#F5F5F5",
+        "line": "#D4D4D4"
       },
       "fonts": {
         "body": "Helvetica",
         "display": "Helvetica"
       },
       "styles": {
-        "rotulo": {
+        "label": {
           "size": 7,
           "weight": 700,
           "uppercase": true,
@@ -28,7 +28,7 @@
           "color": "#71717a",
           "marginBottom": 4
         },
-        "cabecalhoTabela": {
+        "tableHeader": {
           "size": 7.5,
           "weight": 700,
           "color": "#52525b",
@@ -39,7 +39,7 @@
             "color": "#d4d4d8"
           }
         },
-        "linhaTabela": {
+        "tableRow": {
           "paddingX": 6,
           "paddingY": 6,
           "borderBottom": {
@@ -47,18 +47,18 @@
             "color": "#e4e4e7"
           }
         },
-        "detalhe": {
+        "details": {
           "size": 7,
           "color": "#71717a",
           "marginTop": 2
         },
         "body": {
-          "color": "texto"
+          "color": "foreground"
         }
       }
     },
     "page": {
-      "background": "fundo",
+      "background": "background",
       "marginX": 27.75,
       "marginTop": 26.25
     },
@@ -112,7 +112,7 @@
           "justify": "between",
           "borderBottom": {
             "width": 0.938,
-            "color": "texto"
+            "color": "foreground"
           }
         }
       },
@@ -127,7 +127,7 @@
               "size": 6.375,
               "weight": 700,
               "uppercase": true,
-              "color": "texto-suave",
+              "color": "muted",
               "marginBottom": 2.25
             },
             "style": {
@@ -142,7 +142,7 @@
               "size": 6.375,
               "weight": 700,
               "uppercase": true,
-              "color": "texto-suave",
+              "color": "muted",
               "marginBottom": 2.25
             },
             "style": {
@@ -156,7 +156,7 @@
               "size": 6.375,
               "weight": 700,
               "uppercase": true,
-              "color": "texto-suave",
+              "color": "muted",
               "marginBottom": 2.25
             },
             "style": {
@@ -176,7 +176,7 @@
           "size": 6.375,
           "weight": 700,
           "uppercase": true,
-          "background": "cinzento-claro",
+          "background": "surface",
           "paddingX": 3.75,
           "paddingY": 3.75
         },
@@ -185,12 +185,12 @@
           "paddingY": 3.75,
           "borderBottom": {
             "width": 0.375,
-            "color": "linhas"
+            "color": "line"
           }
         },
         "detailsStyle": {
           "size": 6.375,
-          "color": "texto-suave"
+          "color": "muted"
         },
         "style": {
           "size": 7.5
@@ -208,7 +208,7 @@
                   "size": 6.375,
                   "weight": 700,
                   "uppercase": true,
-                  "color": "texto-suave",
+                  "color": "muted",
                   "marginBottom": 2.25
                 }
               },
@@ -218,7 +218,7 @@
                   "size": 6.375,
                   "weight": 700,
                   "uppercase": true,
-                  "color": "texto-suave",
+                  "color": "muted",
                   "marginBottom": 2.25
                 }
               },
@@ -228,14 +228,14 @@
                   "size": 6.375,
                   "weight": 700,
                   "uppercase": true,
-                  "color": "texto-suave",
+                  "color": "muted",
                   "marginBottom": 2.25
                 },
                 "headerStyle": {
                   "size": 6.375,
                   "weight": 700,
                   "uppercase": true,
-                  "background": "cinzento-claro",
+                  "background": "surface",
                   "paddingX": 3.75,
                   "paddingY": 3.75
                 }
@@ -252,7 +252,7 @@
               "size": 6.375,
               "weight": 700,
               "uppercase": true,
-              "color": "texto-suave",
+              "color": "muted",
               "marginBottom": 2.25
             },
             "totalStyle": {
@@ -275,7 +275,7 @@
         "style": {
           "size": 7.125,
           "lineHeight": 1.35,
-          "color": "texto-suave",
+          "color": "muted",
           "marginTop": 9.75,
           "gap": 2.25
         }

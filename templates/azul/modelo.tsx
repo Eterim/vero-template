@@ -8,12 +8,12 @@ const config = {
   theme: {
     extend: {
       colors: {
-        "fundo": "#FFFFFF",
-        "texto": "#0F172A",
-        "texto-suave": "#64748B",
-        "azul": "#1D4ED8",
-        "azul-claro": "#EFF6FF",
-        "linhas": "#E2E8F0",
+        background: "#FFFFFF",
+        foreground: "#0F172A",
+        muted: "#64748B",
+        brand: "#1D4ED8",
+        "brand-light": "#EFF6FF",
+        line: "#E2E8F0",
       },
       fontFamily: {
         sans: ["Inter"],
@@ -23,17 +23,17 @@ const config = {
 }
 
 // Estilos usados em vários sítios
-const rotulo = "text-[9.5px] font-bold uppercase tracking-[0.75px] text-azul mb-[7px]"
-const cabecalhoTabela = "text-[10px] font-bold text-[#ffffff] bg-azul px-4 py-[11px] rounded-[8px]"
-const linhaTabela = "px-4 py-3 border-b-[0.75px] border-linhas"
-const detalhe = "text-[10px] text-texto-suave mt-[3px]"
-const cartao = "bg-azul-claro p-[19px] gap-[3px] rounded-[13px]"
+const label = "text-[9.5px] font-bold uppercase tracking-[0.75px] text-brand mb-[7px]"
+const tableHeader = "text-[10px] font-bold text-[#ffffff] bg-brand px-4 py-[11px] rounded-[8px]"
+const tableRow = "px-4 py-3 border-b-[0.75px] border-line"
+const details = "text-[10px] text-muted mt-[3px]"
+const card = "bg-brand-light p-[19px] gap-[3px] rounded-[13px]"
 
-export default function Azul() {
+export default function Blue() {
   return (
     <Tailwind config={config}>
-      <Document className="bg-fundo font-sans text-texto px-[53px] pt-[35px]">
-        <Header className="bg-azul px-[53px] py-[35px]">
+      <Document className="bg-background font-sans text-foreground px-[53px] pt-[35px]">
+        <Header className="bg-brand px-[53px] py-[35px]">
           <Row className="items-center justify-between">
             <Logo className="h-[48px]" fallbackClassName="text-[26.5px] font-bold text-[#ffffff]" />
             <Column className="gap-1 items-end">
@@ -44,33 +44,33 @@ export default function Azul() {
           </Row>
         </Header>
         <Row className="mb-[27px] gap-[19px]">
-          <Issuer label="De" className={`${cartao} flex-1`} labelClassName={rotulo} />
-          <Customer label="Para" className={`${cartao} flex-1`} labelClassName={rotulo} />
-          <Payment label="Pagamento" className={`${cartao} flex-1`} labelClassName={rotulo} />
+          <Issuer label="De" className={`${card} flex-1`} labelClassName={label} />
+          <Customer label="Para" className={`${card} flex-1`} labelClassName={label} />
+          <Payment label="Pagamento" className={`${card} flex-1`} labelClassName={label} />
         </Row>
         <Items
-          headerClassName={cabecalhoTabela}
-          rowClassName={linhaTabela}
-          detailsClassName={detalhe}
+          headerClassName={tableHeader}
+          rowClassName={tableRow}
+          detailsClassName={details}
         />
         <Row className="mt-6 gap-8">
           <Column className="gap-[13px] flex-1">
-            <AmountInWords className="gap-[3px]" labelClassName={rotulo} />
-            <Notes className="text-texto-suave" labelClassName={rotulo} />
+            <AmountInWords className="gap-[3px]" labelClassName={label} />
+            <Notes className="text-muted" labelClassName={label} />
             <BankAccounts
               className="gap-[3px]"
-              labelClassName={rotulo}
-              headerClassName={cabecalhoTabela}
+              labelClassName={label}
+              headerClassName={tableHeader}
             />
           </Column>
           <Totals
-            className={`${cartao} flex-1`}
-            titleClassName={rotulo}
-            totalClassName="text-[22.5px] font-bold text-azul"
-            ruleClassName="border-azul"
+            className={`${card} flex-1`}
+            titleClassName={label}
+            totalClassName="text-[22.5px] font-bold text-brand"
+            ruleClassName="border-brand"
           />
         </Row>
-        <LegalNotes className="text-[9.5px] leading-[1.35] text-texto-suave mt-6 gap-[3px]" />
+        <LegalNotes className="text-[9.5px] leading-[1.35] text-muted mt-6 gap-[3px]" />
       </Document>
     </Tailwind>
   )

@@ -5,10 +5,10 @@ import { compile, CompileError, Column, Customer, Document, Footer, Items, Row, 
 describe('compile()', () => {
   it('transforma React + Tailwind no modelo JSON', () => {
     const t = compile(
-      <Tailwind config={{ theme: { extend: { colors: { destaque: '#0E4C63' }, fontFamily: { sans: ['Inter'] } } } }}>
+      <Tailwind config={{ theme: { extend: { colors: { accent: '#0E4C63' }, fontFamily: { sans: ['Inter'] } } } }}>
         <Document className="bg-white px-12 pt-8 text-[12px]">
           <Row className="gap-4">
-            <Customer label="Para" className="flex-1 border border-zinc-200 p-3" labelClassName="font-bold text-destaque" />
+            <Customer label="Para" className="flex-1 border border-zinc-200 p-3" labelClassName="font-bold text-accent" />
           </Row>
           <Items rowClassName="border-b border-zinc-200 even:bg-zinc-50" columns={[{ field: 'description', label: 'Artigo', width: 3 }, { field: 'quantity' }]} />
           <Totals className="ml-auto w-1/2" totalRowClassName="bg-zinc-100" />
@@ -16,14 +16,14 @@ describe('compile()', () => {
         </Document>
       </Tailwind>,
     )
-    expect(t.theme.colors).toEqual({ fundo: '#FFFFFF', texto: '#111111', destaque: '#0E4C63' })
+    expect(t.theme.colors).toEqual({ background: '#FFFFFF', foreground: '#111111', accent: '#0E4C63' })
     expect(t.theme.fonts).toEqual({ body: 'Inter', display: 'Inter' })
     expect(t.page).toEqual({ background: '#ffffff', marginX: 36, marginTop: 24 })
     expect(t.theme.styles?.body).toEqual({ size: 9 })
-    expect(Object.keys(t.theme.styles ?? {})).toEqual(['rotulo', 'cabecalhoTabela', 'linhaTabela', 'detalhe', 'body'])
+    expect(Object.keys(t.theme.styles ?? {})).toEqual(['label', 'tableHeader', 'tableRow', 'details', 'body'])
     expect(t.body[0]).toEqual({
       type: 'row', style: { gap: 12 },
-      children: [{ type: 'party', role: 'customer', label: 'Para', style: { padding: 9, border: { width: 0.75, color: '#e4e4e7' }, flex: 1 }, labelStyle: { weight: 700, color: 'destaque' } }],
+      children: [{ type: 'party', role: 'customer', label: 'Para', style: { padding: 9, border: { width: 0.75, color: '#e4e4e7' }, flex: 1 }, labelStyle: { weight: 700, color: 'accent' } }],
     })
     expect(t.body[1]).toMatchObject({ type: 'items', zebra: '#fafafa', rowStyle: { borderBottom: { width: 0.75, color: '#e4e4e7' } }, columns: [{ field: 'description', label: 'Artigo', flex: 3 }, { field: 'quantity' }] })
     expect(t.body[2]).toMatchObject({ type: 'totals', totalBackground: '#f4f4f5', style: { marginLeft: 'auto', width: '50%' } })
@@ -31,12 +31,12 @@ describe('compile()', () => {
   })
 
   it('aceita componentes próprios, listas e condições', () => {
-    const Rotulo = ({ children }: { children: string }) => <Text className="uppercase">{children}</Text>
-    const nomes = ['Um', 'Dois']
+    const Label = ({ children }: { children: string }) => <Text className="uppercase">{children}</Text>
+    const names = ['Um', 'Dois']
     const t = compile(
       <Document>
         <Column>
-          {nomes.map((n) => <Rotulo key={n}>{n}</Rotulo>)}
+          {names.map((n) => <Label key={n}>{n}</Label>)}
           {false && <Text>escondido</Text>}
           <>
             <Text>fragmento</Text>
@@ -53,7 +53,7 @@ describe('compile()', () => {
   })
 
   it('junta todos os problemas numa só mensagem', () => {
-    function ComHook() { const [v] = useState('x'); return <Text>{v}</Text> }
+    function WithHook() { const [v] = useState('x'); return <Text>{v}</Text> }
     let err: CompileError | undefined
     try {
       compile(
@@ -62,7 +62,7 @@ describe('compile()', () => {
             <div>html</div>
             <Text className="hover:underline">a</Text>
             solto
-            <ComHook />
+            <WithHook />
           </Document>
         </Tailwind>,
       )

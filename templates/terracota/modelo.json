@@ -9,19 +9,19 @@
     "version": 2,
     "theme": {
       "colors": {
-        "fundo": "#FFFBF5",
-        "texto": "#292524",
-        "texto-suave": "#78716C",
-        "terracota": "#9A3412",
-        "areia": "#F3E5D3",
-        "linhas": "#E7D8C6"
+        "background": "#FFFBF5",
+        "foreground": "#292524",
+        "muted": "#78716C",
+        "brand": "#9A3412",
+        "sand": "#F3E5D3",
+        "line": "#E7D8C6"
       },
       "fonts": {
         "body": "Inter",
         "display": "Playfair Display"
       },
       "styles": {
-        "rotulo": {
+        "label": {
           "size": 7,
           "weight": 700,
           "uppercase": true,
@@ -29,7 +29,7 @@
           "color": "#71717a",
           "marginBottom": 4
         },
-        "cabecalhoTabela": {
+        "tableHeader": {
           "size": 7.5,
           "weight": 700,
           "color": "#52525b",
@@ -40,7 +40,7 @@
             "color": "#d4d4d8"
           }
         },
-        "linhaTabela": {
+        "tableRow": {
           "paddingX": 6,
           "paddingY": 6,
           "borderBottom": {
@@ -48,18 +48,18 @@
             "color": "#e4e4e7"
           }
         },
-        "detalhe": {
+        "details": {
           "size": 7,
           "color": "#71717a",
           "marginTop": 2
         },
         "body": {
-          "color": "texto"
+          "color": "foreground"
         }
       }
     },
     "page": {
-      "background": "fundo",
+      "background": "background",
       "marginX": 45.75,
       "marginTop": 44.25
     },
@@ -81,7 +81,7 @@
                 "type": "documentNumber",
                 "style": {
                   "size": 9.375,
-                  "color": "texto-suave"
+                  "color": "muted"
                 }
               }
             ],
@@ -98,14 +98,14 @@
                 "fallbackStyle": {
                   "font": "display",
                   "size": 16.125,
-                  "color": "terracota"
+                  "color": "brand"
                 }
               },
               {
                 "type": "documentDate",
                 "style": {
                   "size": 8.625,
-                  "color": "texto-suave"
+                  "color": "muted"
                 }
               }
             ],
@@ -133,7 +133,7 @@
               "weight": 700,
               "uppercase": true,
               "letterSpacing": 0.563,
-              "color": "terracota",
+              "color": "brand",
               "marginBottom": 5.25
             },
             "style": {
@@ -142,7 +142,7 @@
               "flex": 1,
               "borderLeft": {
                 "width": 3,
-                "color": "terracota"
+                "color": "brand"
               }
             }
           },
@@ -155,7 +155,7 @@
               "weight": 700,
               "uppercase": true,
               "letterSpacing": 0.563,
-              "color": "terracota",
+              "color": "brand",
               "marginBottom": 5.25
             },
             "style": {
@@ -164,7 +164,7 @@
               "flex": 1,
               "borderLeft": {
                 "width": 3,
-                "color": "terracota"
+                "color": "brand"
               }
             }
           }
@@ -180,12 +180,12 @@
           "size": 7.125,
           "weight": 700,
           "uppercase": true,
-          "color": "terracota",
+          "color": "brand",
           "paddingX": 9.75,
           "paddingY": 8.25,
           "borderBottom": {
             "width": 1.5,
-            "color": "terracota"
+            "color": "brand"
           }
         },
         "rowStyle": {
@@ -193,12 +193,12 @@
           "paddingY": 9,
           "borderBottom": {
             "width": 0.563,
-            "color": "linhas"
+            "color": "line"
           }
         },
         "detailsStyle": {
           "size": 7.5,
-          "color": "texto-suave",
+          "color": "muted",
           "marginTop": 2.25
         }
       },
@@ -215,7 +215,7 @@
                   "weight": 700,
                   "uppercase": true,
                   "letterSpacing": 0.563,
-                  "color": "terracota",
+                  "color": "brand",
                   "marginBottom": 5.25
                 }
               },
@@ -226,11 +226,11 @@
                   "weight": 700,
                   "uppercase": true,
                   "letterSpacing": 0.563,
-                  "color": "terracota",
+                  "color": "brand",
                   "marginBottom": 5.25
                 },
                 "style": {
-                  "color": "texto-suave"
+                  "color": "muted"
                 }
               },
               {
@@ -240,7 +240,7 @@
                   "weight": 700,
                   "uppercase": true,
                   "letterSpacing": 0.563,
-                  "color": "terracota",
+                  "color": "brand",
                   "marginBottom": 5.25
                 }
               },
@@ -251,19 +251,19 @@
                   "weight": 700,
                   "uppercase": true,
                   "letterSpacing": 0.563,
-                  "color": "terracota",
+                  "color": "brand",
                   "marginBottom": 5.25
                 },
                 "headerStyle": {
                   "size": 7.125,
                   "weight": 700,
                   "uppercase": true,
-                  "color": "terracota",
+                  "color": "brand",
                   "paddingX": 9.75,
                   "paddingY": 8.25,
                   "borderBottom": {
                     "width": 1.5,
-                    "color": "terracota"
+                    "color": "brand"
                   }
                 }
               }
@@ -280,16 +280,16 @@
               "weight": 700,
               "uppercase": true,
               "letterSpacing": 0.563,
-              "color": "terracota",
+              "color": "brand",
               "marginBottom": 5.25
             },
             "totalStyle": {
               "size": 16.875,
               "weight": 700,
-              "color": "terracota"
+              "color": "brand"
             },
             "style": {
-              "background": "areia",
+              "background": "sand",
               "padding": 15.75,
               "radius": 3.75,
               "flex": 1
@@ -306,7 +306,7 @@
         "style": {
           "size": 7.125,
           "lineHeight": 1.35,
-          "color": "texto-suave",
+          "color": "muted",
           "marginTop": 18,
           "gap": 2.25
         }
@@ -315,7 +315,7 @@
     "bottom": {
       "height": 33.75,
       "style": {
-        "background": "terracota",
+        "background": "brand",
         "paddingX": 45.75,
         "justify": "center"
       },

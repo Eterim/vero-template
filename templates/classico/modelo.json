@@ -9,14 +9,14 @@
     "version": 2,
     "theme": {
       "colors": {
-        "fundo": "#FFFFFF",
-        "texto": "#111827",
-        "texto-suave": "#6B7280",
-        "cinzento": "#374151",
-        "destaque": "#000000",
-        "linhas": "#C8CCD1",
-        "linhas-claras": "#E5E7EB",
-        "fundo-cinzento": "#F3F4F6",
+        "background": "#FFFFFF",
+        "foreground": "#111827",
+        "muted": "#6B7280",
+        "secondary": "#374151",
+        "accent": "#000000",
+        "line": "#C8CCD1",
+        "line-light": "#E5E7EB",
+        "surface": "#F3F4F6",
         "zebra": "#F9FAFB"
       },
       "fonts": {
@@ -24,7 +24,7 @@
         "display": "Helvetica"
       },
       "styles": {
-        "rotulo": {
+        "label": {
           "size": 7,
           "weight": 700,
           "uppercase": true,
@@ -32,7 +32,7 @@
           "color": "#71717a",
           "marginBottom": 4
         },
-        "cabecalhoTabela": {
+        "tableHeader": {
           "size": 7.5,
           "weight": 700,
           "color": "#52525b",
@@ -43,7 +43,7 @@
             "color": "#d4d4d8"
           }
         },
-        "linhaTabela": {
+        "tableRow": {
           "paddingX": 6,
           "paddingY": 6,
           "borderBottom": {
@@ -51,18 +51,18 @@
             "color": "#e4e4e7"
           }
         },
-        "detalhe": {
+        "details": {
           "size": 7,
           "color": "#71717a",
           "marginTop": 2
         },
         "body": {
-          "color": "texto"
+          "color": "foreground"
         }
       }
     },
     "page": {
-      "background": "fundo",
+      "background": "background",
       "marginX": 39.75,
       "marginTop": 9.75,
       "corner": true
@@ -87,7 +87,7 @@
               "weight": 700,
               "uppercase": true,
               "align": "right",
-              "color": "destaque"
+              "color": "accent"
             }
           }
         ],
@@ -97,7 +97,7 @@
           "justify": "end",
           "borderBottom": {
             "width": 0.938,
-            "color": "linhas"
+            "color": "line"
           }
         }
       },
@@ -111,7 +111,7 @@
             "labelStyle": {
               "size": 7.125,
               "weight": 700,
-              "color": "cinzento",
+              "color": "secondary",
               "marginBottom": 2.25
             },
             "nameStyle": {
@@ -125,7 +125,7 @@
               "flex": 4.9,
               "border": {
                 "width": 0.75,
-                "color": "linhas"
+                "color": "line"
               }
             }
           },
@@ -168,7 +168,7 @@
             "prefix": "Data de emissão:",
             "style": {
               "size": 7.5,
-              "color": "texto-suave"
+              "color": "muted"
             }
           },
           {
@@ -176,7 +176,7 @@
             "prefix": "ATCUD (Código Único do Documento):",
             "style": {
               "size": 7.5,
-              "color": "texto-suave"
+              "color": "muted"
             }
           }
         ],
@@ -191,13 +191,13 @@
         "headerStyle": {
           "size": 7.5,
           "weight": 700,
-          "color": "cinzento",
-          "background": "fundo-cinzento"
+          "color": "secondary",
+          "background": "surface"
         },
         "zebra": "zebra",
         "grid": {
           "width": 0.563,
-          "color": "linhas"
+          "color": "line"
         },
         "showCurrency": false,
         "columns": [
@@ -222,7 +222,7 @@
             "flex": 2.9,
             "style": {
               "size": 7.125,
-              "color": "cinzento"
+              "color": "secondary"
             }
           },
           {
@@ -259,7 +259,7 @@
                 "style": {
                   "size": 7.875,
                   "weight": 700,
-                  "color": "cinzento"
+                  "color": "secondary"
                 }
               },
               {
@@ -271,14 +271,14 @@
                   "size": 9,
                   "weight": 700
                 },
-                "rowRule": "linhas-claras",
-                "totalBackground": "fundo-cinzento",
+                "rowRule": "line-light",
+                "totalBackground": "surface",
                 "style": {
                   "size": 7.875,
                   "paddingX": 8.25,
                   "border": {
                     "width": 0.75,
-                    "color": "linhas"
+                    "color": "line"
                   }
                 }
               }
@@ -302,7 +302,7 @@
             "inline": true,
             "labelStyle": {
               "weight": 700,
-              "color": "texto-suave"
+              "color": "muted"
             }
           },
           {
@@ -311,7 +311,7 @@
             "inline": true,
             "labelStyle": {
               "weight": 700,
-              "color": "texto-suave"
+              "color": "muted"
             }
           }
         ],
@@ -333,12 +333,12 @@
         "headerStyle": {
           "size": 7.125,
           "weight": 700,
-          "color": "texto-suave",
-          "background": "fundo-cinzento"
+          "color": "muted",
+          "background": "surface"
         },
         "grid": {
           "width": 0.563,
-          "color": "linhas"
+          "color": "line"
         },
         "style": {
           "size": 7.875,
@@ -353,7 +353,7 @@
         ],
         "style": {
           "size": 7.125,
-          "color": "texto-suave",
+          "color": "muted",
           "marginTop": 9.75
         }
       }
@@ -382,12 +382,12 @@
           ],
           "style": {
             "size": 7.125,
-            "color": "texto-suave",
+            "color": "muted",
             "paddingY": 6,
             "justify": "between",
             "borderTop": {
               "width": 0.563,
-              "color": "linhas-claras"
+              "color": "line-light"
             }
           }
         }
