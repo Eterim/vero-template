@@ -4,7 +4,7 @@ Facturas, recibos e notas angolanas desenhadas em **React** e **Tailwind CSS** -
 
 [![npm](https://img.shields.io/npm/v/@veroao/invoice)](https://www.npmjs.com/package/@veroao/invoice) [![CI](https://github.com/Eterim/vero-template/actions/workflows/ci.yml/badge.svg)](https://github.com/Eterim/vero-template/actions/workflows/ci.yml)
 
-Site e documentação: https://eterim.github.io/vero-template/ · [English](README.md)
+Site e documentação: https://template.vero.ao/ · [English](README.md)
 
 ```bash
 npx @veroao/invoice init       # projecto novo com um template de partida

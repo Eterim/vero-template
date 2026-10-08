@@ -43,7 +43,7 @@ npm run dev      # pré-visualização ao vivo em http://localhost:3200
 npm run check    # as verificações da AGT e de segurança, antes de publicar
 \`\`\`
 
-Cada ficheiro \`.tsx\` em \`templates/\` é um template. Documentação: https://eterim.github.io/vero-template/docs
+Cada ficheiro \`.tsx\` em \`templates/\` é um template. Documentação: https://template.vero.ao/docs
 `
 
 const STARTER = `import {

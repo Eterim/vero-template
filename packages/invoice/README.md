@@ -3,7 +3,7 @@
 Angolan invoices, receipts and credit/debit notes in **React** and **Tailwind CSS** - with the AGT (Angolan tax authority) rules built in.
 Works without Vero: design the template, pass your data, get a PDF.
 
-[Português](https://github.com/Eterim/vero-template/blob/main/packages/invoice/README.pt.md) · [Docs](https://eterim.github.io/vero-template/docs)
+[Português](https://github.com/Eterim/vero-template/blob/main/packages/invoice/README.pt.md) · [Docs](https://template.vero.ao/docs)
 
 > In development (0.x). The API may change until 1.0. Messages and document labels are in Portuguese, the language of the documents.
 

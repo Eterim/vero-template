@@ -4,7 +4,7 @@ Angolan invoices, receipts and credit/debit notes designed with **React** and **
 
 [![npm](https://img.shields.io/npm/v/@veroao/invoice)](https://www.npmjs.com/package/@veroao/invoice) [![CI](https://github.com/Eterim/vero-template/actions/workflows/ci.yml/badge.svg)](https://github.com/Eterim/vero-template/actions/workflows/ci.yml)
 
-Website and docs (Portuguese): https://eterim.github.io/vero-template/ · [Português](README.pt.md)
+Website and docs (Portuguese): https://template.vero.ao/ · [Português](README.pt.md)
 
 ```bash
 npx @veroao/invoice init       # new project with a starter template
