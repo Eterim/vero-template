@@ -11,42 +11,70 @@
       "colors": {
         "fundo": "#FFFFFF",
         "texto": "#111827",
-        "textoSuave": "#6B7280",
+        "texto-suave": "#6B7280",
         "cinzento": "#374151",
         "destaque": "#0E4C63",
         "linhas": "#C8CCD1",
-        "linhasClaras": "#E5E7EB",
-        "fundoCinzento": "#F3F4F6",
+        "linhas-claras": "#E5E7EB",
+        "fundo-cinzento": "#F3F4F6",
         "zebra": "#F9FAFB"
       },
       "fonts": {
         "body": "Helvetica",
         "display": "Helvetica"
+      },
+      "styles": {
+        "rotulo": {
+          "size": 7,
+          "weight": 700,
+          "uppercase": true,
+          "letterSpacing": 0.4,
+          "color": "#71717a",
+          "marginBottom": 4
+        },
+        "cabecalhoTabela": {
+          "size": 7.5,
+          "weight": 700,
+          "color": "#52525b",
+          "paddingX": 6,
+          "paddingY": 6,
+          "borderBottom": {
+            "width": 0.75,
+            "color": "#d4d4d8"
+          }
+        },
+        "linhaTabela": {
+          "paddingX": 6,
+          "paddingY": 6,
+          "borderBottom": {
+            "width": 0.5,
+            "color": "#e4e4e7"
+          }
+        },
+        "detalhe": {
+          "size": 7,
+          "color": "#71717a",
+          "marginTop": 2
+        },
+        "body": {
+          "color": "texto"
+        }
       }
     },
     "page": {
       "background": "fundo",
-      "marginX": 40,
-      "marginTop": 10,
+      "marginX": 39.75,
+      "marginTop": 9.75,
       "corner": true,
       "cornerColor": "destaque"
     },
     "body": [
       {
         "type": "row",
-        "style": {
-          "justify": "end",
-          "paddingY": 6,
-          "marginBottom": 8,
-          "borderBottom": {
-            "width": 1,
-            "color": "linhas"
-          }
-        },
         "children": [
           {
             "type": "logo",
-            "height": 46,
+            "height": 45.75,
             "fallback": "none",
             "style": {
               "flex": 1
@@ -58,42 +86,46 @@
             "style": {
               "size": 30,
               "weight": 700,
-              "color": "destaque",
               "uppercase": true,
-              "align": "right"
+              "align": "right",
+              "color": "destaque"
             }
           }
-        ]
+        ],
+        "style": {
+          "paddingY": 6,
+          "marginBottom": 8.25,
+          "justify": "end",
+          "borderBottom": {
+            "width": 0.938,
+            "color": "linhas"
+          }
+        }
       },
       {
         "type": "row",
-        "style": {
-          "gap": 15,
-          "marginBottom": 14,
-          "alignItems": "start"
-        },
         "children": [
           {
             "type": "party",
             "role": "customer",
             "label": "Contribuinte:",
             "labelStyle": {
-              "size": 7,
+              "size": 7.125,
               "weight": 700,
               "color": "cinzento",
-              "marginBottom": 2
+              "marginBottom": 2.25
             },
             "nameStyle": {
-              "weight": 700,
-              "size": 10
+              "size": 10.125,
+              "weight": 700
             },
             "style": {
+              "size": 7.875,
+              "padding": 8.25,
+              "gap": 2.25,
               "flex": 4.9,
-              "size": 8,
-              "padding": 8,
-              "gap": 2,
               "border": {
-                "width": 0.8,
+                "width": 0.75,
                 "color": "linhas"
               }
             }
@@ -104,70 +136,71 @@
             "label": "",
             "taxIdLabel": "Nº de Contribuinte:",
             "nameStyle": {
-              "weight": 700,
-              "size": 10
+              "size": 10.125,
+              "weight": 700
             },
             "style": {
-              "flex": 5.1,
-              "size": 8,
-              "gap": 2
+              "size": 7.875,
+              "gap": 2.25,
+              "flex": 5.1
             }
           }
-        ]
+        ],
+        "style": {
+          "marginBottom": 14.25,
+          "gap": 15,
+          "alignItems": "start"
+        }
       },
       {
         "type": "documentNumber",
         "prefix": "{{document.title}} - {{document.type}} nº",
         "style": {
+          "size": 10.125,
           "weight": 700,
-          "size": 10,
           "uppercase": true
         }
       },
       {
         "type": "row",
-        "style": {
-          "justify": "between",
-          "marginTop": 3,
-          "marginBottom": 12
-        },
         "children": [
           {
             "type": "documentDate",
             "prefix": "Data de emissão:",
             "style": {
-              "color": "textoSuave",
-              "size": 7.5
+              "size": 7.5,
+              "color": "texto-suave"
             }
           },
           {
             "type": "atcud",
             "prefix": "ATCUD (Código Único do Documento):",
             "style": {
-              "color": "textoSuave",
-              "size": 7.5
+              "size": 7.5,
+              "color": "texto-suave"
             }
           }
-        ]
+        ],
+        "style": {
+          "marginTop": 3,
+          "marginBottom": 12,
+          "justify": "between"
+        }
       },
       {
         "type": "items",
-        "style": {
-          "size": 8
-        },
         "headerStyle": {
-          "background": "fundoCinzento",
-          "color": "cinzento",
           "size": 7.5,
-          "weight": 700
-        },
-        "rowStyle": {},
-        "showCurrency": false,
-        "grid": {
-          "width": 0.5,
-          "color": "linhas"
+          "weight": 700,
+          "color": "cinzento",
+          "background": "fundo-cinzento"
         },
         "zebra": "zebra",
+        "grid": {
+          "width": 0.563,
+          "color": "linhas"
+        },
+        "showCurrency": false,
         "columns": [
           {
             "field": "description",
@@ -189,7 +222,7 @@
             "label": "Descrição",
             "flex": 2.9,
             "style": {
-              "size": 7,
+              "size": 7.125,
               "color": "cinzento"
             }
           },
@@ -203,13 +236,13 @@
             "label": "Valor",
             "flex": 1
           }
-        ]
+        ],
+        "style": {
+          "size": 7.875
+        }
       },
       {
         "type": "row",
-        "style": {
-          "marginTop": 12
-        },
         "children": [
           {
             "type": "stack",
@@ -220,51 +253,49 @@
           },
           {
             "type": "stack",
-            "style": {
-              "flex": 4.6,
-              "gap": 5
-            },
             "children": [
               {
                 "type": "text",
                 "text": "Totais do documento (valores em kwanzas)",
                 "style": {
-                  "size": 8,
+                  "size": 7.875,
                   "weight": 700,
                   "color": "cinzento"
                 }
               },
               {
                 "type": "totals",
+                "totalLabel": "Valor total a pagar",
                 "byRate": false,
                 "showCurrency": false,
-                "totalLabel": "Valor total a pagar",
-                "rowRule": "linhasClaras",
-                "totalBackground": "fundoCinzento",
                 "totalStyle": {
-                  "weight": 700,
-                  "size": 9
+                  "size": 9,
+                  "weight": 700
                 },
+                "rowRule": "linhas-claras",
+                "totalBackground": "fundo-cinzento",
                 "style": {
-                  "size": 8,
-                  "paddingX": 8,
+                  "size": 7.875,
+                  "paddingX": 8.25,
                   "border": {
-                    "width": 0.8,
+                    "width": 0.75,
                     "color": "linhas"
                   }
                 }
               }
-            ]
+            ],
+            "style": {
+              "gap": 5.25,
+              "flex": 4.6
+            }
           }
-        ]
+        ],
+        "style": {
+          "marginTop": 12
+        }
       },
       {
         "type": "stack",
-        "style": {
-          "gap": 6,
-          "marginTop": 24,
-          "size": 8
-        },
         "children": [
           {
             "type": "notes",
@@ -272,33 +303,38 @@
             "inline": true,
             "labelStyle": {
               "weight": 700,
-              "color": "textoSuave"
+              "color": "texto-suave"
             }
           }
-        ]
+        ],
+        "style": {
+          "size": 7.875,
+          "marginTop": 24,
+          "gap": 6
+        }
       },
       {
         "type": "bank",
-        "layout": "table",
         "label": "Dados bancários",
-        "grid": {
-          "width": 0.5,
-          "color": "linhas"
-        },
+        "layout": "table",
         "labelStyle": {
+          "size": 7.875,
           "weight": 700,
-          "size": 8,
           "marginBottom": 6
         },
         "headerStyle": {
-          "background": "fundoCinzento",
-          "color": "textoSuave",
-          "size": 7,
-          "weight": 700
+          "size": 7.125,
+          "weight": 700,
+          "color": "texto-suave",
+          "background": "fundo-cinzento"
+        },
+        "grid": {
+          "width": 0.563,
+          "color": "linhas"
         },
         "style": {
-          "marginTop": 16,
-          "size": 8
+          "size": 7.875,
+          "marginTop": 15.75
         }
       },
       {
@@ -308,32 +344,22 @@
           "legal"
         ],
         "style": {
-          "marginTop": 10,
-          "size": 7,
-          "color": "textoSuave"
+          "size": 7.125,
+          "color": "texto-suave",
+          "marginTop": 9.75
         }
       }
     ],
     "bottom": {
       "height": 48,
       "style": {
-        "paddingX": 40,
-        "justify": "end",
-        "paddingY": 10
+        "paddingX": 39.75,
+        "paddingY": 9.75,
+        "justify": "end"
       },
       "children": [
         {
           "type": "row",
-          "style": {
-            "justify": "between",
-            "paddingY": 6,
-            "borderTop": {
-              "width": 0.5,
-              "color": "linhasClaras"
-            },
-            "size": 7,
-            "color": "textoSuave"
-          },
           "children": [
             {
               "type": "fiscal",
@@ -345,7 +371,17 @@
               "type": "text",
               "text": "{{document.number}}"
             }
-          ]
+          ],
+          "style": {
+            "size": 7.125,
+            "color": "texto-suave",
+            "paddingY": 6,
+            "justify": "between",
+            "borderTop": {
+              "width": 0.563,
+              "color": "linhas-claras"
+            }
+          }
         }
       ]
     }

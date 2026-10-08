@@ -1,0 +1,63 @@
+{
+  "name": "@veroao/invoice",
+  "version": "0.0.0",
+  "description": "Facturas, recibos e notas angolanas em React e Tailwind CSS - com as regras da AGT incluídas",
+  "type": "module",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js",
+      "default": "./dist/index.js"
+    }
+  },
+  "files": [
+    "dist",
+    "fonts"
+  ],
+  "sideEffects": false,
+  "scripts": {
+    "build": "tsc -p tsconfig.build.json",
+    "dev": "tsc -p tsconfig.build.json --watch",
+    "test": "vitest run",
+    "typecheck": "tsc --noEmit",
+    "templates": "tsx --tsconfig tsconfig.scripts.json scripts/build-templates.tsx"
+  },
+  "keywords": [
+    "react",
+    "tailwind",
+    "pdf",
+    "factura",
+    "invoice",
+    "angola",
+    "agt",
+    "facturação electrónica"
+  ],
+  "author": "Eterim Prestação de Serviços",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Eterim/vero-template.git",
+    "directory": "packages/invoice"
+  },
+  "homepage": "https://github.com/Eterim/vero-template",
+  "peerDependencies": {
+    "react": ">=18"
+  },
+  "dependencies": {
+    "@react-pdf/renderer": "^4.9.0",
+    "qrcode": "^1.5.4"
+  },
+  "devDependencies": {
+    "@napi-rs/canvas": "^1.0.10",
+    "@types/qrcode": "^1.5.6",
+    "@types/react": "^19.2.2",
+    "pdfjs-dist": "^6.4.299",
+    "react": "^19.2.4",
+    "sharp": "^0.35.5",
+    "tsx": "^4.20.0",
+    "typescript": "~5.9.3",
+    "vitest": "^3.2.4"
+  }
+}

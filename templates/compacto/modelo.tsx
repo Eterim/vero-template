@@ -40,19 +40,25 @@ export default function Compacto() {
           </Column>
         </Row>
         <Row className="text-[10px] mb-[13px] gap-4">
-          <Issuer label="Emitente" className="flex-1" />
-          <Customer label="Cliente" className="flex-1" />
-          <Payment label="Pagamento" className="flex-1" />
+          <Issuer label="Emitente" className="flex-1" labelClassName={rotulo} />
+          <Customer label="Cliente" className="flex-1" labelClassName={rotulo} />
+          <Payment label="Pagamento" className="flex-1" labelClassName={rotulo} />
         </Row>
-        <Items className="text-[10px]" detailsClassName={detalhe} />
+        <Items
+          className="text-[10px]"
+          headerClassName={cabecalhoTabela}
+          rowClassName={linhaTabela}
+          detailsClassName={detalhe}
+        />
         <Row className="text-[10px] mt-[11px] gap-[21px]">
           <Column className="gap-2 flex-1">
-            <AmountInWords />
-            <Notes />
-            <BankAccounts />
+            <AmountInWords labelClassName={rotulo} />
+            <Notes labelClassName={rotulo} />
+            <BankAccounts labelClassName={rotulo} headerClassName={cabecalhoTabela} />
           </Column>
           <Totals
             className="flex-1"
+            titleClassName={rotulo}
             totalClassName="text-[14.5px] font-bold"
             ruleClassName="border-texto"
           />

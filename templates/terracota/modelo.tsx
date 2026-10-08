@@ -45,19 +45,24 @@ export default function Terracota() {
           </Column>
         </Row>
         <Row className="mb-[35px] gap-8">
-          <Issuer label="Emitente" className={`${filete} flex-1`} />
-          <Customer label="Cliente" className={`${filete} flex-1`} />
+          <Issuer label="Emitente" className={`${filete} flex-1`} labelClassName={rotulo} />
+          <Customer label="Cliente" className={`${filete} flex-1`} labelClassName={rotulo} />
         </Row>
-        <Items detailsClassName={detalhe} />
+        <Items
+          headerClassName={cabecalhoTabela}
+          rowClassName={linhaTabela}
+          detailsClassName={detalhe}
+        />
         <Row className="mt-[27px] gap-[37px]">
           <Column className="gap-[13px] flex-1">
-            <AmountInWords />
-            <Notes className="text-texto-suave" />
-            <Payment />
-            <BankAccounts />
+            <AmountInWords labelClassName={rotulo} />
+            <Notes className="text-texto-suave" labelClassName={rotulo} />
+            <Payment labelClassName={rotulo} />
+            <BankAccounts labelClassName={rotulo} headerClassName={cabecalhoTabela} />
           </Column>
           <Totals
             className="bg-areia p-[21px] rounded-[5px] flex-1"
+            titleClassName={rotulo}
             totalClassName="text-[22.5px] font-bold text-terracota"
             ruleClassName="border-terracota"
           />

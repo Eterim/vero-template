@@ -37,18 +37,23 @@ export default function Minimal() {
           <DocumentDate className="text-xs text-texto-suave" />
         </Row>
         <Row className="mb-12 gap-[53px]">
-          <Issuer label="De" className="gap-[3px] flex-1" />
-          <Customer label="Para" className="gap-[3px] flex-1" />
+          <Issuer label="De" className="gap-[3px] flex-1" labelClassName={rotulo} />
+          <Customer label="Para" className="gap-[3px] flex-1" labelClassName={rotulo} />
         </Row>
-        <Items detailsClassName={detalhe} />
+        <Items
+          headerClassName={cabecalhoTabela}
+          rowClassName={linhaTabela}
+          detailsClassName={detalhe}
+        />
         <Row className="mt-[37px] gap-[53px]">
           <Column className="text-texto-suave gap-4 flex-1">
-            <AmountInWords />
-            <Notes />
-            <BankAccounts />
+            <AmountInWords labelClassName={rotulo} />
+            <Notes labelClassName={rotulo} />
+            <BankAccounts labelClassName={rotulo} headerClassName={cabecalhoTabela} />
           </Column>
           <Totals
             className="flex-1"
+            titleClassName={rotulo}
             totalClassName="font-display text-[29.5px]"
             ruleClassName="border-texto"
           />

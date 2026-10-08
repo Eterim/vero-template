@@ -44,19 +44,28 @@ export default function Azul() {
           </Row>
         </Header>
         <Row className="mb-[27px] gap-[19px]">
-          <Issuer label="De" className={`${cartao} flex-1`} />
-          <Customer label="Para" className={`${cartao} flex-1`} />
-          <Payment label="Pagamento" className={`${cartao} flex-1`} />
+          <Issuer label="De" className={`${cartao} flex-1`} labelClassName={rotulo} />
+          <Customer label="Para" className={`${cartao} flex-1`} labelClassName={rotulo} />
+          <Payment label="Pagamento" className={`${cartao} flex-1`} labelClassName={rotulo} />
         </Row>
-        <Items detailsClassName={detalhe} />
+        <Items
+          headerClassName={cabecalhoTabela}
+          rowClassName={linhaTabela}
+          detailsClassName={detalhe}
+        />
         <Row className="mt-6 gap-8">
           <Column className="gap-[13px] flex-1">
-            <AmountInWords className="gap-[3px]" />
-            <Notes className="text-texto-suave" />
-            <BankAccounts className="gap-[3px]" />
+            <AmountInWords className="gap-[3px]" labelClassName={rotulo} />
+            <Notes className="text-texto-suave" labelClassName={rotulo} />
+            <BankAccounts
+              className="gap-[3px]"
+              labelClassName={rotulo}
+              headerClassName={cabecalhoTabela}
+            />
           </Column>
           <Totals
             className={`${cartao} flex-1`}
+            titleClassName={rotulo}
             totalClassName="text-[22.5px] font-bold text-azul"
             ruleClassName="border-azul"
           />

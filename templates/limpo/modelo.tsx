@@ -41,18 +41,35 @@ export default function Limpo() {
           </Column>
         </Row>
         <Row className="mb-8 gap-[27px]">
-          <Issuer label="De" className="gap-[3px] flex-1" />
-          <Customer label="Para" className="bg-fundo-suave p-4 gap-[3px] rounded-[8px] flex-1" />
+          <Issuer label="De" className="gap-[3px] flex-1" labelClassName={rotulo} />
+          <Customer
+            label="Para"
+            className="bg-fundo-suave p-4 gap-[3px] rounded-[8px] flex-1"
+            labelClassName={rotulo}
+          />
         </Row>
-        <Items detailsClassName={detalhe} />
+        <Items
+          headerClassName={cabecalhoTabela}
+          rowClassName={linhaTabela}
+          detailsClassName={detalhe}
+        />
         <Row className="mt-[27px] gap-[37px]">
           <Column className="gap-4 flex-1">
-            <AmountInWords className="gap-[3px]" />
-            <Notes className="text-texto-suave" />
-            <Payment className="gap-[3px]" />
-            <BankAccounts className="gap-[3px]" />
+            <AmountInWords className="gap-[3px]" labelClassName={rotulo} />
+            <Notes className="text-texto-suave" labelClassName={rotulo} />
+            <Payment className="gap-[3px]" labelClassName={rotulo} />
+            <BankAccounts
+              className="gap-[3px]"
+              labelClassName={rotulo}
+              headerClassName={cabecalhoTabela}
+            />
           </Column>
-          <Totals className="flex-1" totalClassName="text-xl font-bold" ruleClassName="border-texto" />
+          <Totals
+            className="flex-1"
+            titleClassName={rotulo}
+            totalClassName="text-xl font-bold"
+            ruleClassName="border-texto"
+          />
         </Row>
         <Spacer className="h-[32px]" />
         <Row className="py-4 gap-4 border-t-[0.75px] border-linhas items-end">

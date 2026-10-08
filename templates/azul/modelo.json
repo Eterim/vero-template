@@ -11,9 +11,9 @@
       "colors": {
         "fundo": "#FFFFFF",
         "texto": "#0F172A",
-        "textoSuave": "#64748B",
+        "texto-suave": "#64748B",
         "azul": "#1D4ED8",
-        "azulClaro": "#EFF6FF",
+        "azul-claro": "#EFF6FF",
         "linhas": "#E2E8F0"
       },
       "fonts": {
@@ -22,213 +22,301 @@
       },
       "styles": {
         "rotulo": {
-          "color": "azul",
           "size": 7,
           "weight": 700,
           "uppercase": true,
-          "letterSpacing": 0.6,
-          "marginBottom": 5
+          "letterSpacing": 0.4,
+          "color": "#71717a",
+          "marginBottom": 4
         },
         "cabecalhoTabela": {
-          "background": "azul",
-          "color": "#FFFFFF",
           "size": 7.5,
           "weight": 700,
-          "paddingX": 12,
-          "paddingY": 8,
-          "radius": 6
+          "color": "#52525b",
+          "paddingX": 6,
+          "paddingY": 6,
+          "borderBottom": {
+            "width": 0.75,
+            "color": "#d4d4d8"
+          }
         },
         "linhaTabela": {
-          "paddingX": 12,
-          "paddingY": 9,
+          "paddingX": 6,
+          "paddingY": 6,
           "borderBottom": {
             "width": 0.5,
-            "color": "linhas"
+            "color": "#e4e4e7"
           }
         },
         "detalhe": {
-          "color": "textoSuave",
-          "size": 7.5,
+          "size": 7,
+          "color": "#71717a",
           "marginTop": 2
         },
-        "cartao": {
-          "background": "azulClaro",
-          "padding": 14,
-          "radius": 10,
-          "gap": 2
+        "body": {
+          "color": "texto"
         }
       }
     },
     "page": {
       "background": "fundo",
-      "marginX": 40,
-      "marginTop": 26
-    },
-    "top": {
-      "style": {
-        "background": "azul",
-        "paddingX": 40,
-        "paddingY": 26
-      },
-      "children": [
-        {
-          "type": "row",
-          "style": {
-            "justify": "between",
-            "alignItems": "center"
-          },
-          "children": [
-            {
-              "type": "logo",
-              "height": 36,
-              "fallbackStyle": {
-                "size": 20,
-                "weight": 700,
-                "color": "#FFFFFF"
-              }
-            },
-            {
-              "type": "stack",
-              "style": {
-                "alignItems": "end",
-                "gap": 3
-              },
-              "children": [
-                {
-                  "type": "documentTitle",
-                  "style": {
-                    "color": "#FFFFFF",
-                    "size": 18,
-                    "weight": 700
-                  }
-                },
-                {
-                  "type": "documentNumber",
-                  "style": {
-                    "color": "#DBEAFE",
-                    "size": 10
-                  }
-                },
-                {
-                  "type": "documentDate",
-                  "style": {
-                    "color": "#DBEAFE",
-                    "size": 8
-                  }
-                }
-              ]
-            }
-          ]
-        }
-      ]
+      "marginX": 39.75,
+      "marginTop": 26.25
     },
     "body": [
       {
         "type": "row",
-        "style": {
-          "gap": 14,
-          "marginBottom": 20
-        },
         "children": [
           {
             "type": "party",
             "role": "issuer",
             "label": "De",
-            "style": [
-              "cartao",
-              {
-                "flex": 1
-              }
-            ]
+            "labelStyle": {
+              "size": 7.125,
+              "weight": 700,
+              "uppercase": true,
+              "letterSpacing": 0.563,
+              "color": "azul",
+              "marginBottom": 5.25
+            },
+            "style": {
+              "background": "azul-claro",
+              "padding": 14.25,
+              "gap": 2.25,
+              "radius": 9.75,
+              "flex": 1
+            }
           },
           {
             "type": "party",
             "role": "customer",
             "label": "Para",
-            "style": [
-              "cartao",
-              {
-                "flex": 1
-              }
-            ]
+            "labelStyle": {
+              "size": 7.125,
+              "weight": 700,
+              "uppercase": true,
+              "letterSpacing": 0.563,
+              "color": "azul",
+              "marginBottom": 5.25
+            },
+            "style": {
+              "background": "azul-claro",
+              "padding": 14.25,
+              "gap": 2.25,
+              "radius": 9.75,
+              "flex": 1
+            }
           },
           {
             "type": "payment",
             "label": "Pagamento",
-            "style": [
-              "cartao",
-              {
-                "flex": 1
-              }
-            ]
+            "labelStyle": {
+              "size": 7.125,
+              "weight": 700,
+              "uppercase": true,
+              "letterSpacing": 0.563,
+              "color": "azul",
+              "marginBottom": 5.25
+            },
+            "style": {
+              "background": "azul-claro",
+              "padding": 14.25,
+              "gap": 2.25,
+              "radius": 9.75,
+              "flex": 1
+            }
           }
-        ]
+        ],
+        "style": {
+          "marginBottom": 20.25,
+          "gap": 14.25
+        }
       },
       {
         "type": "items",
-        "detailsStyle": "detalhe"
+        "headerStyle": {
+          "size": 7.5,
+          "weight": 700,
+          "color": "#ffffff",
+          "background": "azul",
+          "paddingX": 12,
+          "paddingY": 8.25,
+          "radius": 6
+        },
+        "rowStyle": {
+          "paddingX": 12,
+          "paddingY": 9,
+          "borderBottom": {
+            "width": 0.563,
+            "color": "linhas"
+          }
+        },
+        "detailsStyle": {
+          "size": 7.5,
+          "color": "texto-suave",
+          "marginTop": 2.25
+        }
       },
       {
         "type": "row",
-        "style": {
-          "gap": 24,
-          "marginTop": 18
-        },
         "children": [
           {
             "type": "stack",
-            "style": {
-              "flex": 1,
-              "gap": 10
-            },
             "children": [
               {
                 "type": "amountInWords",
+                "labelStyle": {
+                  "size": 7.125,
+                  "weight": 700,
+                  "uppercase": true,
+                  "letterSpacing": 0.563,
+                  "color": "azul",
+                  "marginBottom": 5.25
+                },
                 "style": {
-                  "gap": 2
+                  "gap": 2.25
                 }
               },
               {
                 "type": "notes",
+                "labelStyle": {
+                  "size": 7.125,
+                  "weight": 700,
+                  "uppercase": true,
+                  "letterSpacing": 0.563,
+                  "color": "azul",
+                  "marginBottom": 5.25
+                },
                 "style": {
-                  "color": "textoSuave"
+                  "color": "texto-suave"
                 }
               },
               {
                 "type": "bank",
+                "labelStyle": {
+                  "size": 7.125,
+                  "weight": 700,
+                  "uppercase": true,
+                  "letterSpacing": 0.563,
+                  "color": "azul",
+                  "marginBottom": 5.25
+                },
+                "headerStyle": {
+                  "size": 7.5,
+                  "weight": 700,
+                  "color": "#ffffff",
+                  "background": "azul",
+                  "paddingX": 12,
+                  "paddingY": 8.25,
+                  "radius": 6
+                },
                 "style": {
-                  "gap": 2
+                  "gap": 2.25
                 }
               }
-            ]
+            ],
+            "style": {
+              "gap": 9.75,
+              "flex": 1
+            }
           },
           {
             "type": "totals",
-            "ruleColor": "azul",
-            "totalStyle": {
+            "titleStyle": {
+              "size": 7.125,
+              "weight": 700,
+              "uppercase": true,
+              "letterSpacing": 0.563,
               "color": "azul",
-              "size": 17,
-              "weight": 700
+              "marginBottom": 5.25
             },
-            "style": [
-              "cartao",
-              {
-                "flex": 1
-              }
-            ]
+            "totalStyle": {
+              "size": 16.875,
+              "weight": 700,
+              "color": "azul"
+            },
+            "style": {
+              "background": "azul-claro",
+              "padding": 14.25,
+              "gap": 2.25,
+              "radius": 9.75,
+              "flex": 1
+            }
           }
-        ]
+        ],
+        "style": {
+          "marginTop": 18,
+          "gap": 24
+        }
       },
       {
         "type": "fiscal",
         "style": {
+          "size": 7.125,
+          "lineHeight": 1.35,
+          "color": "texto-suave",
           "marginTop": 18,
-          "size": 7,
-          "color": "textoSuave",
-          "gap": 2,
-          "lineHeight": 1.35
+          "gap": 2.25
         }
       }
-    ]
+    ],
+    "top": {
+      "style": {
+        "background": "azul",
+        "paddingX": 39.75,
+        "paddingY": 26.25
+      },
+      "children": [
+        {
+          "type": "row",
+          "children": [
+            {
+              "type": "logo",
+              "height": 36,
+              "fallbackStyle": {
+                "size": 19.875,
+                "weight": 700,
+                "color": "#ffffff"
+              }
+            },
+            {
+              "type": "stack",
+              "children": [
+                {
+                  "type": "documentTitle",
+                  "style": {
+                    "size": 18,
+                    "weight": 700,
+                    "color": "#ffffff"
+                  }
+                },
+                {
+                  "type": "documentNumber",
+                  "style": {
+                    "size": 10.125,
+                    "color": "#dbeafe"
+                  }
+                },
+                {
+                  "type": "documentDate",
+                  "style": {
+                    "size": 7.875,
+                    "color": "#dbeafe"
+                  }
+                }
+              ],
+              "style": {
+                "gap": 3,
+                "alignItems": "end"
+              }
+            }
+          ],
+          "style": {
+            "alignItems": "center",
+            "justify": "between"
+          }
+        }
+      ]
+    }
   }
 }

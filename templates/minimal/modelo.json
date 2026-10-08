@@ -11,7 +11,7 @@
       "colors": {
         "fundo": "#FFFFFF",
         "texto": "#1C1917",
-        "textoSuave": "#78716C",
+        "texto-suave": "#78716C",
         "linhas": "#E7E5E4"
       },
       "fonts": {
@@ -20,143 +20,222 @@
       },
       "styles": {
         "rotulo": {
-          "color": "textoSuave",
           "size": 7,
+          "weight": 700,
           "uppercase": true,
-          "letterSpacing": 1.2,
-          "marginBottom": 6
+          "letterSpacing": 0.4,
+          "color": "#71717a",
+          "marginBottom": 4
         },
         "cabecalhoTabela": {
-          "color": "textoSuave",
-          "size": 7,
-          "uppercase": true,
-          "letterSpacing": 1,
-          "paddingY": 8,
+          "size": 7.5,
+          "weight": 700,
+          "color": "#52525b",
+          "paddingX": 6,
+          "paddingY": 6,
           "borderBottom": {
-            "width": 0.5,
-            "color": "texto"
+            "width": 0.75,
+            "color": "#d4d4d8"
           }
         },
         "linhaTabela": {
-          "paddingY": 10,
+          "paddingX": 6,
+          "paddingY": 6,
           "borderBottom": {
             "width": 0.5,
-            "color": "linhas"
+            "color": "#e4e4e7"
           }
         },
         "detalhe": {
-          "color": "textoSuave",
-          "size": 7.5,
+          "size": 7,
+          "color": "#71717a",
           "marginTop": 2
+        },
+        "body": {
+          "color": "texto"
         }
       }
     },
     "page": {
       "background": "fundo",
-      "marginX": 56,
-      "marginTop": 56
+      "marginX": 56.25,
+      "marginTop": 56.25
     },
     "body": [
       {
         "type": "documentTitle",
         "style": {
           "font": "display",
-          "size": 34
+          "size": 34.125
         }
       },
       {
         "type": "row",
-        "style": {
-          "justify": "between",
-          "marginTop": 6,
-          "marginBottom": 36
-        },
         "children": [
           {
             "type": "documentNumber",
             "style": {
-              "color": "textoSuave",
-              "size": 9
+              "size": 9,
+              "color": "texto-suave"
             }
           },
           {
             "type": "documentDate",
             "style": {
-              "color": "textoSuave",
-              "size": 9
+              "size": 9,
+              "color": "texto-suave"
             }
           }
-        ]
+        ],
+        "style": {
+          "marginTop": 6,
+          "marginBottom": 36,
+          "justify": "between"
+        }
       },
       {
         "type": "row",
-        "style": {
-          "gap": 40,
-          "marginBottom": 36
-        },
         "children": [
           {
             "type": "party",
             "role": "issuer",
             "label": "De",
+            "labelStyle": {
+              "size": 7.125,
+              "uppercase": true,
+              "letterSpacing": 1.125,
+              "color": "texto-suave",
+              "marginBottom": 6
+            },
             "style": {
-              "flex": 1,
-              "gap": 2
+              "gap": 2.25,
+              "flex": 1
             }
           },
           {
             "type": "party",
             "role": "customer",
             "label": "Para",
+            "labelStyle": {
+              "size": 7.125,
+              "uppercase": true,
+              "letterSpacing": 1.125,
+              "color": "texto-suave",
+              "marginBottom": 6
+            },
             "style": {
-              "flex": 1,
-              "gap": 2
+              "gap": 2.25,
+              "flex": 1
             }
           }
-        ]
+        ],
+        "style": {
+          "marginBottom": 36,
+          "gap": 39.75
+        }
       },
       {
         "type": "items",
-        "detailsStyle": "detalhe"
+        "headerStyle": {
+          "size": 7.125,
+          "uppercase": true,
+          "letterSpacing": 0.938,
+          "color": "texto-suave",
+          "paddingY": 8.25,
+          "borderBottom": {
+            "width": 0.563,
+            "color": "texto"
+          }
+        },
+        "rowStyle": {
+          "paddingY": 9.75,
+          "borderBottom": {
+            "width": 0.563,
+            "color": "linhas"
+          }
+        },
+        "detailsStyle": {
+          "size": 7.5,
+          "color": "texto-suave",
+          "marginTop": 2.25
+        }
       },
       {
         "type": "row",
-        "style": {
-          "gap": 40,
-          "marginTop": 28
-        },
         "children": [
           {
             "type": "stack",
-            "style": {
-              "flex": 1,
-              "gap": 12,
-              "color": "textoSuave"
-            },
             "children": [
               {
-                "type": "amountInWords"
+                "type": "amountInWords",
+                "labelStyle": {
+                  "size": 7.125,
+                  "uppercase": true,
+                  "letterSpacing": 1.125,
+                  "color": "texto-suave",
+                  "marginBottom": 6
+                }
               },
               {
-                "type": "notes"
+                "type": "notes",
+                "labelStyle": {
+                  "size": 7.125,
+                  "uppercase": true,
+                  "letterSpacing": 1.125,
+                  "color": "texto-suave",
+                  "marginBottom": 6
+                }
               },
               {
-                "type": "bank"
+                "type": "bank",
+                "labelStyle": {
+                  "size": 7.125,
+                  "uppercase": true,
+                  "letterSpacing": 1.125,
+                  "color": "texto-suave",
+                  "marginBottom": 6
+                },
+                "headerStyle": {
+                  "size": 7.125,
+                  "uppercase": true,
+                  "letterSpacing": 0.938,
+                  "color": "texto-suave",
+                  "paddingY": 8.25,
+                  "borderBottom": {
+                    "width": 0.563,
+                    "color": "texto"
+                  }
+                }
               }
-            ]
+            ],
+            "style": {
+              "color": "texto-suave",
+              "gap": 12,
+              "flex": 1
+            }
           },
           {
             "type": "totals",
-            "ruleColor": "texto",
+            "titleStyle": {
+              "size": 7.125,
+              "uppercase": true,
+              "letterSpacing": 1.125,
+              "color": "texto-suave",
+              "marginBottom": 6
+            },
             "totalStyle": {
               "font": "display",
-              "size": 22
+              "size": 22.125
             },
             "style": {
               "flex": 1
             }
           }
-        ]
+        ],
+        "style": {
+          "marginTop": 27.75,
+          "gap": 39.75
+        }
       },
       {
         "type": "spacer",
@@ -165,16 +244,16 @@
       {
         "type": "fiscal",
         "style": {
-          "marginTop": 0,
-          "size": 7,
-          "color": "textoSuave",
-          "gap": 2,
+          "size": 7.125,
           "lineHeight": 1.35,
+          "color": "texto-suave",
+          "paddingY": 14.25,
+          "marginTop": 0,
+          "gap": 2.25,
           "borderTop": {
-            "width": 0.5,
+            "width": 0.563,
             "color": "linhas"
-          },
-          "paddingY": 14
+          }
         }
       }
     ]
