@@ -23,10 +23,11 @@
     "build": "tsc -p tsconfig.build.json && vite build --config preview/vite.config.ts --logLevel warn",
     "dev": "tsc -p tsconfig.build.json --watch",
     "test": "vitest run",
-    "typecheck": "tsc --noEmit",
+    "typecheck": "tsc --noEmit && tsc -p tsconfig.scripts.json",
     "templates": "tsx --tsconfig tsconfig.scripts.json scripts/build-templates.tsx",
     "examples": "tsx --tsconfig tsconfig.scripts.json scripts/build-examples.tsx",
-    "prepublishOnly": "npm run build && npm test"
+    "prepublishOnly": "npm run build && npm test",
+    "check:templates": "tsx --tsconfig tsconfig.scripts.json scripts/check-templates.tsx"
   },
   "keywords": [
     "react",

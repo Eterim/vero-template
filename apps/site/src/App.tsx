@@ -58,7 +58,7 @@ function Footer() {
 
 export default function App() {
   return (
-    <BrowserRouter>
+    <BrowserRouter basename={import.meta.env.BASE_URL}>
       <ScrollManager />
       <Nav />
       <main>

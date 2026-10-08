@@ -1,0 +1,95 @@
+# Verificação de cada pull request e de cada envio para a main.
+#
+# Segurança: `pull_request` (nunca pull_request_target) - o código de um fork corre sem
+# segredos e com o token só de leitura. Os modelos são lidos sem executar antes de
+# serem compilados (packages/invoice/scripts/audit-source.ts).
+name: CI
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ci-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  scope:
+    name: Âmbito do PR
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    outputs:
+      templates: ${{ steps.scope.outputs.templates }}
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          fetch-depth: 0
+          persist-credentials: false
+      - id: scope
+        if: github.event_name == 'pull_request'
+        run: node .github/scripts/pr-scope.mjs
+        env:
+          BASE_SHA: ${{ github.event.pull_request.base.sha }}
+          HEAD_SHA: ${{ github.event.pull_request.head.sha }}
+          PR_AUTHOR: ${{ github.event.pull_request.user.login }}
+          PR_ASSOCIATION: ${{ github.event.pull_request.author_association }}
+
+  library:
+    name: Biblioteca
+    needs: scope
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci --ignore-scripts
+      - run: npm run typecheck -w packages/invoice
+      - run: npm test -w packages/invoice
+      - run: npm run build -w packages/invoice
+
+  templates:
+    name: Modelos
+    needs: scope
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci --ignore-scripts
+      # Num PR, só os modelos alterados (nenhum = nada a fazer); na main, todos.
+      - if: github.event_name != 'pull_request' || needs.scope.outputs.templates != ''
+        run: npm run check:templates -w packages/invoice -- $TEMPLATES
+        env:
+          TEMPLATES: ${{ needs.scope.outputs.templates }}
+          PR_AUTHOR: ${{ github.event.pull_request.user.login }}
+          PR_ASSOCIATION: ${{ github.event.pull_request.author_association }}
+
+  site:
+    name: Site
+    needs: scope
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci --ignore-scripts
+      - run: npm run build

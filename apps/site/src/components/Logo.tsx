@@ -1,7 +1,7 @@
 export function Logo({ className = '' }: { className?: string }) {
   return (
     <span className={`flex items-center gap-2 ${className}`}>
-      <img src="/vero-white.png" alt="" width={132} height={96} className="h-[22px] w-auto" />
+      <img src={`${import.meta.env.BASE_URL}vero-white.png`} alt="" width={132} height={96} className="h-[22px] w-auto" />
       <span className="text-xl font-black tracking-tighter text-white">Vero</span>
       <span className="ml-0.5 border border-zinc-700 px-1.5 py-px font-mono text-[10px] tracking-wider text-zinc-400 uppercase">Template</span>
     </span>

@@ -11,6 +11,7 @@ import { createElement, type FC } from 'react'
 import sharp from 'sharp'
 import { compile, render, sampleDocument } from '../src/index.js'
 import { rasterize } from './raster.js'
+import { importJson, type Meta } from './import-json.js'
 
 const ROOT = new URL('../../../templates/', import.meta.url).pathname
 const only = process.argv.slice(2)
@@ -24,13 +25,11 @@ async function toWebp(pdfBytes: Uint8Array, width = 900): Promise<Buffer> {
 
 for (const slug of slugs) {
   const dir = join(ROOT, slug)
-  const meta = JSON.parse(readFileSync(join(dir, 'meta.json'), 'utf8'))
+  const meta = JSON.parse(readFileSync(join(dir, 'meta.json'), 'utf8')) as Meta
   const mod = (await import(join(dir, 'modelo.tsx'))) as { default: FC }
   const template = compile(createElement(mod.default))
-  writeFileSync(join(dir, 'modelo.json'), JSON.stringify({
-    format: 'vero-template', schemaVersion: 2, id: `${meta.author.name}/${slug}`, version: meta.version, name: meta.name, author: meta.author.name, template,
-  }, null, 2) + '\n')
-  for (const dt of meta.docTypes as ('FT' | 'FR' | 'NC' | 'ND' | 'RC')[]) {
+  writeFileSync(join(dir, 'modelo.json'), JSON.stringify(importJson(meta, slug, template), null, 2) + '\n')
+  for (const dt of meta.docTypes) {
     const { pdf, warnings } = await render(template, sampleDocument(dt))
     if (warnings.length) throw new Error(`${slug} ${dt}: ${warnings.map((w) => w.message).join('; ')}`)
     writeFileSync(join(dir, `preview-${dt.toLowerCase()}.webp`), await toWebp(pdf))

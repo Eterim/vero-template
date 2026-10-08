@@ -11,7 +11,7 @@ function InvoiceFan() {
       <div className="absolute top-[45%] left-[40%] h-[60%] w-[80%] -translate-x-1/2 -translate-y-1/2 rounded-full bg-sky-500/25 blur-[120px]" />
       <div className="absolute inset-0 animate-float [transform-style:preserve-3d]">
         {FAN.map((id, i) => (
-          <img key={id} src={`/previews/${id}.webp`} alt="" width={900} height={1272}
+          <img key={id} src={`${import.meta.env.BASE_URL}previews/${id}.webp`} alt="" width={900} height={1272}
             loading={i < 2 ? 'eager' : 'lazy'} fetchPriority={i === 0 ? 'high' : 'auto'}
             className="absolute top-[8%] left-[6%] w-[46%] rounded-[3px] shadow-[0_0_0_1px_rgba(255,255,255,.08),0_50px_90px_-10px_rgba(0,0,0,.9)]"
             style={{
@@ -37,7 +37,7 @@ export function Hero() {
         <div className="max-w-[640px] animate-fade-up">
           {/* ícone do Vero em tile, como o do React Email */}
           <span className="flex size-16 items-center justify-center rounded-2xl border border-white/10 bg-gradient-to-b from-zinc-800 to-zinc-950 shadow-[inset_0_1px_0_rgba(255,255,255,.12),0_10px_30px_-10px_rgba(14,165,233,.5)]">
-            <img src="/vero-white.png" alt="" width={132} height={96} className="h-6 w-auto" />
+            <img src={`${import.meta.env.BASE_URL}vero-white.png`} alt="" width={132} height={96} className="h-6 w-auto" />
           </span>
           <h1 className="mt-8 text-[2.7rem] leading-[0.95] font-black tracking-tighter text-balance sm:text-[4rem]">
             Cansado da factura de sempre?{' '}

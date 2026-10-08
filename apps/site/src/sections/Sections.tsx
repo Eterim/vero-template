@@ -100,7 +100,7 @@ export function Showcase() {
           <Code code={mode === 'tailwind' ? TAILWIND : INLINE} file="modelos/moderno.tsx"
             className="min-w-0 border-0 [&_pre]:h-[560px] [&_pre]:text-[12px]" />
           <div className="relative flex items-center justify-center border-t border-zinc-800 bg-[radial-gradient(circle_at_50%_40%,#18181b,#09090b)] p-8 lg:border-t-0 lg:border-l">
-            <img src="/previews/vero-moderno.webp" alt="O PDF gerado pelo código ao lado" loading="lazy" width={900} height={1272}
+            <img src={`${import.meta.env.BASE_URL}previews/vero-moderno.webp`} alt="O PDF gerado pelo código ao lado" loading="lazy" width={900} height={1272}
               className="w-full max-w-[340px] shadow-[0_30px_60px_-15px_rgba(0,0,0,.9)]" />
             <span className="absolute top-3 right-3 font-mono text-[10px] text-zinc-600">FR · A4</span>
           </div>
@@ -312,7 +312,7 @@ export function Tools() {
             <div className="grid sm:grid-cols-[1fr_190px]">
               <div className="min-h-[200px]"><ToolPanel id={active} /></div>
               <div className="hidden border-l border-zinc-800 bg-zinc-900/40 p-4 sm:block">
-                <img src="/previews/vero-classico.webp" alt="" loading="lazy" width={900} height={1272} className="w-full" />
+                <img src={`${import.meta.env.BASE_URL}previews/vero-classico.webp`} alt="" loading="lazy" width={900} height={1272} className="w-full" />
               </div>
             </div>
           </div>

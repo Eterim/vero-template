@@ -16,8 +16,9 @@ templates/<nome>/
 
 ## Regras
 
-- O modelo só define o **aspecto**. Números, NIF, ATCUD, a menção do programa certificado e o QR vêm sempre dos componentes - nunca escritos como texto.
-- Todos os elementos obrigatórios da AGT têm de estar presentes; a CLI recusa publicar se faltar algum.
+- O modelo só define o **aspecto**. Números, NIF, ATCUD, a menção do programa certificado, o QR e os dados de pagamento vêm sempre dos componentes - nunca escritos como texto.
+- Todos os elementos obrigatórios da AGT têm de estar presentes.
+- Antes do pull request: `npm run check:templates -w packages/invoice -- <nome>`. A CI corre o mesmo - ver [CONTRIBUTING.md](../CONTRIBUTING.md) para a lista completa.
 - Não uses o logótipo, o nome ou os dados de uma empresa real - o logótipo vem da empresa que usar o modelo.
 - Licença MIT.
 
@@ -38,4 +39,4 @@ templates/<nome>/
 }
 ```
 
-`collection`: `vero` (modelos oficiais), `exemplos` ou `comunidade`.
+`collection`: `comunidade` para quem contribui; `vero` (modelos oficiais) e `exemplos` são da equipa.

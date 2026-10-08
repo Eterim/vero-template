@@ -7,6 +7,8 @@ import { fileURLToPath } from 'node:url'
 const repoRoot = fileURLToPath(new URL('../..', import.meta.url))
 
 export default defineConfig({
+  // SITE_BASE=/vero-template/ no GitHub Pages (ver .github/workflows/pages.yml).
+  base: process.env.SITE_BASE ?? '/',
   plugins: [react(), tailwindcss()],
   server: { fs: { allow: [repoRoot] } },
 })

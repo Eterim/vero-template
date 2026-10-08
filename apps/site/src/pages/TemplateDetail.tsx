@@ -92,7 +92,7 @@ function JsonTab({ t }: { t: Template }) {
 
 function Sidebar({ t }: { t: Template }) {
   const info: [React.ReactNode, React.ReactNode][] = [
-    ['Autor', <a href={t.author.url} className="text-zinc-200 hover:text-white">@{t.author.name}</a>],
+    ['Autor', <a href={t.author.url} rel="nofollow noopener noreferrer ugc" className="text-zinc-200 hover:text-white">@{t.author.name}</a>],
     ['Versão', `v${t.version}`],
     ['Licença', t.license],
     ['Actualizado', new Date(t.updatedAt).toLocaleDateString('pt-PT', { day: 'numeric', month: 'long', year: 'numeric' })],
@@ -165,7 +165,7 @@ export default function TemplateDetail() {
             <h1 className="text-4xl font-black tracking-tighter sm:text-6xl">{t.name}</h1>
             <p className="mt-3 max-w-xl text-[17px] leading-relaxed text-zinc-400">{t.description}</p>
             <div className="mt-4 flex flex-wrap items-center gap-2 text-xs text-zinc-500">
-              <span className="flex items-center gap-1.5 border border-zinc-800 px-2 py-1"><img src="/vero-white.png" alt="" className="h-2.5 w-auto" /> @{t.author.name}</span>
+              <span className="flex items-center gap-1.5 border border-zinc-800 px-2 py-1"><img src={`${import.meta.env.BASE_URL}vero-white.png`} alt="" className="h-2.5 w-auto" /> @{t.author.name}</span>
               <span className="border border-zinc-800 px-2 py-1 font-mono">v{t.version}</span>
               <span className="flex items-center gap-1 border border-zinc-800 px-2 py-1"><Scale className="size-3" /> {t.license}</span>
               {t.tags.map((g) => <span key={g} className="flex items-center gap-1 px-1 py-1 text-zinc-600"><Tag className="size-3" />{g}</span>)}
