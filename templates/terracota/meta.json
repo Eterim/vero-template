@@ -1,0 +1,25 @@
+{
+  "slug": "terracota",
+  "name": "Terracota",
+  "description": "Tons quentes e rodapé de cor.",
+  "author": {
+    "name": "vero",
+    "url": "https://vero.ao"
+  },
+  "collection": "exemplos",
+  "version": 1,
+  "license": "MIT",
+  "docTypes": [
+    "FT",
+    "FR",
+    "NC",
+    "ND",
+    "RC"
+  ],
+  "tags": [
+    "quente",
+    "faixa",
+    "serifada"
+  ],
+  "updatedAt": "2026-10-08"
+}

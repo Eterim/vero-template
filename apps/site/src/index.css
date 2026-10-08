@@ -1,0 +1,28 @@
+@import "tailwindcss";
+@import "@fontsource-variable/geist";
+@import "@fontsource-variable/geist-mono";
+
+@theme {
+  --font-sans: "Geist Variable", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: "Geist Mono Variable", ui-monospace, SFMono-Regular, Menlo, monospace;
+  --animate-float: float 9s ease-in-out infinite;
+  --animate-fade-up: fade-up 0.9s cubic-bezier(.2,.7,.2,1) both;
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-14px); }
+}
+@keyframes fade-up {
+  from { opacity: 0; transform: translateY(18px); }
+  to { opacity: 1; transform: none; }
+}
+
+/* Site para programadores: só tema escuro. */
+html { scroll-behavior: smooth; color-scheme: dark; }
+body { background: #000; color: #fafafa; -webkit-font-smoothing: antialiased; }
+::selection { background: #38bdf8; color: #000; }
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation: none !important; transition: none !important; scroll-behavior: auto !important; }
+}

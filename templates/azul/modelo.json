@@ -1,0 +1,234 @@
+{
+  "format": "vero-template",
+  "schemaVersion": 2,
+  "id": "vero/azul",
+  "version": 1,
+  "name": "Azul",
+  "author": "vero",
+  "template": {
+    "version": 2,
+    "theme": {
+      "colors": {
+        "fundo": "#FFFFFF",
+        "texto": "#0F172A",
+        "textoSuave": "#64748B",
+        "azul": "#1D4ED8",
+        "azulClaro": "#EFF6FF",
+        "linhas": "#E2E8F0"
+      },
+      "fonts": {
+        "body": "Inter",
+        "display": "Inter"
+      },
+      "styles": {
+        "rotulo": {
+          "color": "azul",
+          "size": 7,
+          "weight": 700,
+          "uppercase": true,
+          "letterSpacing": 0.6,
+          "marginBottom": 5
+        },
+        "cabecalhoTabela": {
+          "background": "azul",
+          "color": "#FFFFFF",
+          "size": 7.5,
+          "weight": 700,
+          "paddingX": 12,
+          "paddingY": 8,
+          "radius": 6
+        },
+        "linhaTabela": {
+          "paddingX": 12,
+          "paddingY": 9,
+          "borderBottom": {
+            "width": 0.5,
+            "color": "linhas"
+          }
+        },
+        "detalhe": {
+          "color": "textoSuave",
+          "size": 7.5,
+          "marginTop": 2
+        },
+        "cartao": {
+          "background": "azulClaro",
+          "padding": 14,
+          "radius": 10,
+          "gap": 2
+        }
+      }
+    },
+    "page": {
+      "background": "fundo",
+      "marginX": 40,
+      "marginTop": 26
+    },
+    "top": {
+      "style": {
+        "background": "azul",
+        "paddingX": 40,
+        "paddingY": 26
+      },
+      "children": [
+        {
+          "type": "row",
+          "style": {
+            "justify": "between",
+            "alignItems": "center"
+          },
+          "children": [
+            {
+              "type": "logo",
+              "height": 36,
+              "fallbackStyle": {
+                "size": 20,
+                "weight": 700,
+                "color": "#FFFFFF"
+              }
+            },
+            {
+              "type": "stack",
+              "style": {
+                "alignItems": "end",
+                "gap": 3
+              },
+              "children": [
+                {
+                  "type": "documentTitle",
+                  "style": {
+                    "color": "#FFFFFF",
+                    "size": 18,
+                    "weight": 700
+                  }
+                },
+                {
+                  "type": "documentNumber",
+                  "style": {
+                    "color": "#DBEAFE",
+                    "size": 10
+                  }
+                },
+                {
+                  "type": "documentDate",
+                  "style": {
+                    "color": "#DBEAFE",
+                    "size": 8
+                  }
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    "body": [
+      {
+        "type": "row",
+        "style": {
+          "gap": 14,
+          "marginBottom": 20
+        },
+        "children": [
+          {
+            "type": "party",
+            "role": "issuer",
+            "label": "De",
+            "style": [
+              "cartao",
+              {
+                "flex": 1
+              }
+            ]
+          },
+          {
+            "type": "party",
+            "role": "customer",
+            "label": "Para",
+            "style": [
+              "cartao",
+              {
+                "flex": 1
+              }
+            ]
+          },
+          {
+            "type": "payment",
+            "label": "Pagamento",
+            "style": [
+              "cartao",
+              {
+                "flex": 1
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "items",
+        "detailsStyle": "detalhe"
+      },
+      {
+        "type": "row",
+        "style": {
+          "gap": 24,
+          "marginTop": 18
+        },
+        "children": [
+          {
+            "type": "stack",
+            "style": {
+              "flex": 1,
+              "gap": 10
+            },
+            "children": [
+              {
+                "type": "amountInWords",
+                "style": {
+                  "gap": 2
+                }
+              },
+              {
+                "type": "notes",
+                "style": {
+                  "color": "textoSuave"
+                }
+              },
+              {
+                "type": "bank",
+                "style": {
+                  "gap": 2
+                }
+              }
+            ]
+          },
+          {
+            "type": "totals",
+            "ruleColor": "azul",
+            "totalStyle": {
+              "color": "azul",
+              "size": 17,
+              "weight": 700
+            },
+            "style": [
+              "cartao",
+              {
+                "flex": 1
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "fiscal",
+        "style": {
+          "marginTop": 18,
+          "size": 7,
+          "color": "textoSuave",
+          "gap": 2,
+          "lineHeight": 1.35
+        }
+      }
+    ]
+  }
+}

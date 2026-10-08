@@ -1,0 +1,24 @@
+{
+  "slug": "moderno",
+  "name": "Moderno",
+  "description": "Azul-petróleo, com canto decorativo da mesma cor.",
+  "author": {
+    "name": "vero",
+    "url": "https://vero.ao"
+  },
+  "collection": "vero",
+  "version": 1,
+  "license": "MIT",
+  "docTypes": [
+    "FT",
+    "FR",
+    "NC",
+    "ND",
+    "RC"
+  ],
+  "tags": [
+    "vero",
+    "cor"
+  ],
+  "updatedAt": "2026-10-08"
+}

@@ -1,0 +1,24 @@
+{
+  "slug": "simples",
+  "name": "Simples",
+  "description": "Azul-escuro, sem canto decorativo, linhas finas.",
+  "author": {
+    "name": "vero",
+    "url": "https://vero.ao"
+  },
+  "collection": "vero",
+  "version": 1,
+  "license": "MIT",
+  "docTypes": [
+    "FT",
+    "FR",
+    "NC",
+    "ND",
+    "RC"
+  ],
+  "tags": [
+    "vero",
+    "minimalista"
+  ],
+  "updatedAt": "2026-10-08"
+}

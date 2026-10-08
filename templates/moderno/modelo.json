@@ -1,0 +1,353 @@
+{
+  "format": "vero-template",
+  "schemaVersion": 2,
+  "id": "vero/moderno",
+  "version": 1,
+  "name": "Moderno",
+  "author": "vero",
+  "template": {
+    "version": 2,
+    "theme": {
+      "colors": {
+        "fundo": "#FFFFFF",
+        "texto": "#111827",
+        "textoSuave": "#6B7280",
+        "cinzento": "#374151",
+        "destaque": "#0E4C63",
+        "linhas": "#C8CCD1",
+        "linhasClaras": "#E5E7EB",
+        "fundoCinzento": "#F3F4F6",
+        "zebra": "#F9FAFB"
+      },
+      "fonts": {
+        "body": "Helvetica",
+        "display": "Helvetica"
+      }
+    },
+    "page": {
+      "background": "fundo",
+      "marginX": 40,
+      "marginTop": 10,
+      "corner": true,
+      "cornerColor": "destaque"
+    },
+    "body": [
+      {
+        "type": "row",
+        "style": {
+          "justify": "end",
+          "paddingY": 6,
+          "marginBottom": 8,
+          "borderBottom": {
+            "width": 1,
+            "color": "linhas"
+          }
+        },
+        "children": [
+          {
+            "type": "logo",
+            "height": 46,
+            "fallback": "none",
+            "style": {
+              "flex": 1
+            }
+          },
+          {
+            "type": "documentTitle",
+            "withCode": true,
+            "style": {
+              "size": 30,
+              "weight": 700,
+              "color": "destaque",
+              "uppercase": true,
+              "align": "right"
+            }
+          }
+        ]
+      },
+      {
+        "type": "row",
+        "style": {
+          "gap": 15,
+          "marginBottom": 14,
+          "alignItems": "start"
+        },
+        "children": [
+          {
+            "type": "party",
+            "role": "customer",
+            "label": "Contribuinte:",
+            "labelStyle": {
+              "size": 7,
+              "weight": 700,
+              "color": "cinzento",
+              "marginBottom": 2
+            },
+            "nameStyle": {
+              "weight": 700,
+              "size": 10
+            },
+            "style": {
+              "flex": 4.9,
+              "size": 8,
+              "padding": 8,
+              "gap": 2,
+              "border": {
+                "width": 0.8,
+                "color": "linhas"
+              }
+            }
+          },
+          {
+            "type": "party",
+            "role": "issuer",
+            "label": "",
+            "taxIdLabel": "Nº de Contribuinte:",
+            "nameStyle": {
+              "weight": 700,
+              "size": 10
+            },
+            "style": {
+              "flex": 5.1,
+              "size": 8,
+              "gap": 2
+            }
+          }
+        ]
+      },
+      {
+        "type": "documentNumber",
+        "prefix": "{{document.title}} - {{document.type}} nº",
+        "style": {
+          "weight": 700,
+          "size": 10,
+          "uppercase": true
+        }
+      },
+      {
+        "type": "row",
+        "style": {
+          "justify": "between",
+          "marginTop": 3,
+          "marginBottom": 12
+        },
+        "children": [
+          {
+            "type": "documentDate",
+            "prefix": "Data de emissão:",
+            "style": {
+              "color": "textoSuave",
+              "size": 7.5
+            }
+          },
+          {
+            "type": "atcud",
+            "prefix": "ATCUD (Código Único do Documento):",
+            "style": {
+              "color": "textoSuave",
+              "size": 7.5
+            }
+          }
+        ]
+      },
+      {
+        "type": "items",
+        "style": {
+          "size": 8
+        },
+        "headerStyle": {
+          "background": "fundoCinzento",
+          "color": "cinzento",
+          "size": 7.5,
+          "weight": 700
+        },
+        "rowStyle": {},
+        "showCurrency": false,
+        "grid": {
+          "width": 0.5,
+          "color": "linhas"
+        },
+        "zebra": "zebra",
+        "columns": [
+          {
+            "field": "description",
+            "label": "Descrição",
+            "flex": 3
+          },
+          {
+            "field": "quantity",
+            "label": "Qtd",
+            "flex": 0.8
+          },
+          {
+            "field": "unitPrice",
+            "label": "Taxa",
+            "flex": 1.5
+          },
+          {
+            "field": "details",
+            "label": "Descrição",
+            "flex": 2.9,
+            "style": {
+              "size": 7,
+              "color": "cinzento"
+            }
+          },
+          {
+            "field": "taxRate",
+            "label": "IVA",
+            "flex": 1.1
+          },
+          {
+            "field": "lineTotal",
+            "label": "Valor",
+            "flex": 1
+          }
+        ]
+      },
+      {
+        "type": "row",
+        "style": {
+          "marginTop": 12
+        },
+        "children": [
+          {
+            "type": "stack",
+            "children": [],
+            "style": {
+              "flex": 5.7
+            }
+          },
+          {
+            "type": "stack",
+            "style": {
+              "flex": 4.6,
+              "gap": 5
+            },
+            "children": [
+              {
+                "type": "text",
+                "text": "Totais do documento (valores em kwanzas)",
+                "style": {
+                  "size": 8,
+                  "weight": 700,
+                  "color": "cinzento"
+                }
+              },
+              {
+                "type": "totals",
+                "byRate": false,
+                "showCurrency": false,
+                "totalLabel": "Valor total a pagar",
+                "rowRule": "linhasClaras",
+                "totalBackground": "fundoCinzento",
+                "totalStyle": {
+                  "weight": 700,
+                  "size": 9
+                },
+                "style": {
+                  "size": 8,
+                  "paddingX": 8,
+                  "border": {
+                    "width": 0.8,
+                    "color": "linhas"
+                  }
+                }
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "stack",
+        "style": {
+          "gap": 6,
+          "marginTop": 24,
+          "size": 8
+        },
+        "children": [
+          {
+            "type": "notes",
+            "label": "Instruções de pagamento",
+            "inline": true,
+            "labelStyle": {
+              "weight": 700,
+              "color": "textoSuave"
+            }
+          }
+        ]
+      },
+      {
+        "type": "bank",
+        "layout": "table",
+        "label": "Dados bancários",
+        "grid": {
+          "width": 0.5,
+          "color": "linhas"
+        },
+        "labelStyle": {
+          "weight": 700,
+          "size": 8,
+          "marginBottom": 6
+        },
+        "headerStyle": {
+          "background": "fundoCinzento",
+          "color": "textoSuave",
+          "size": 7,
+          "weight": 700
+        },
+        "style": {
+          "marginTop": 16,
+          "size": 8
+        }
+      },
+      {
+        "type": "fiscal",
+        "parts": [
+          "exemptions",
+          "legal"
+        ],
+        "style": {
+          "marginTop": 10,
+          "size": 7,
+          "color": "textoSuave"
+        }
+      }
+    ],
+    "bottom": {
+      "height": 48,
+      "style": {
+        "paddingX": 40,
+        "justify": "end",
+        "paddingY": 10
+      },
+      "children": [
+        {
+          "type": "row",
+          "style": {
+            "justify": "between",
+            "paddingY": 6,
+            "borderTop": {
+              "width": 0.5,
+              "color": "linhasClaras"
+            },
+            "size": 7,
+            "color": "textoSuave"
+          },
+          "children": [
+            {
+              "type": "fiscal",
+              "parts": [
+                "certification"
+              ]
+            },
+            {
+              "type": "text",
+              "text": "{{document.number}}"
+            }
+          ]
+        }
+      ]
+    }
+  }
+}

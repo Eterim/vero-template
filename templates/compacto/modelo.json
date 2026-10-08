@@ -1,0 +1,202 @@
+{
+  "format": "vero-template",
+  "schemaVersion": 2,
+  "id": "vero/compacto",
+  "version": 1,
+  "name": "Compacto",
+  "author": "vero",
+  "template": {
+    "version": 2,
+    "theme": {
+      "colors": {
+        "fundo": "#FFFFFF",
+        "texto": "#000000",
+        "textoSuave": "#525252",
+        "cinzentoClaro": "#F5F5F5",
+        "linhas": "#D4D4D4"
+      },
+      "fonts": {
+        "body": "Helvetica",
+        "display": "Helvetica"
+      },
+      "styles": {
+        "rotulo": {
+          "color": "textoSuave",
+          "size": 6.5,
+          "weight": 700,
+          "uppercase": true,
+          "marginBottom": 2
+        },
+        "cabecalhoTabela": {
+          "background": "cinzentoClaro",
+          "size": 6.5,
+          "weight": 700,
+          "uppercase": true,
+          "paddingX": 4,
+          "paddingY": 4
+        },
+        "linhaTabela": {
+          "paddingX": 4,
+          "paddingY": 4,
+          "borderBottom": {
+            "width": 0.3,
+            "color": "linhas"
+          }
+        },
+        "detalhe": {
+          "color": "textoSuave",
+          "size": 6.5
+        }
+      }
+    },
+    "page": {
+      "background": "fundo",
+      "marginX": 28,
+      "marginTop": 26
+    },
+    "body": [
+      {
+        "type": "row",
+        "style": {
+          "justify": "between",
+          "alignItems": "start",
+          "marginBottom": 10,
+          "paddingY": 6,
+          "borderBottom": {
+            "width": 1,
+            "color": "texto"
+          }
+        },
+        "children": [
+          {
+            "type": "logo",
+            "height": 28,
+            "fallbackStyle": {
+              "size": 12,
+              "weight": 700
+            }
+          },
+          {
+            "type": "stack",
+            "style": {
+              "alignItems": "end",
+              "gap": 1
+            },
+            "children": [
+              {
+                "type": "documentTitle",
+                "style": {
+                  "size": 13,
+                  "weight": 700,
+                  "uppercase": true
+                }
+              },
+              {
+                "type": "documentNumber",
+                "style": {
+                  "size": 8.5,
+                  "weight": 700
+                }
+              },
+              {
+                "type": "documentDate",
+                "style": {
+                  "size": 7.5
+                }
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "row",
+        "style": {
+          "gap": 12,
+          "marginBottom": 10,
+          "size": 7.5
+        },
+        "children": [
+          {
+            "type": "party",
+            "role": "issuer",
+            "label": "Emitente",
+            "style": {
+              "flex": 1
+            }
+          },
+          {
+            "type": "party",
+            "role": "customer",
+            "label": "Cliente",
+            "style": {
+              "flex": 1
+            }
+          },
+          {
+            "type": "payment",
+            "label": "Pagamento",
+            "style": {
+              "flex": 1
+            }
+          }
+        ]
+      },
+      {
+        "type": "items",
+        "detailsStyle": "detalhe",
+        "style": {
+          "size": 7.5
+        }
+      },
+      {
+        "type": "row",
+        "style": {
+          "gap": 16,
+          "marginTop": 8,
+          "size": 7.5
+        },
+        "children": [
+          {
+            "type": "stack",
+            "style": {
+              "flex": 1,
+              "gap": 6
+            },
+            "children": [
+              {
+                "type": "amountInWords"
+              },
+              {
+                "type": "notes"
+              },
+              {
+                "type": "bank"
+              }
+            ]
+          },
+          {
+            "type": "totals",
+            "ruleColor": "texto",
+            "totalStyle": {
+              "weight": 700,
+              "size": 11
+            },
+            "style": {
+              "flex": 1
+            }
+          }
+        ]
+      },
+      {
+        "type": "fiscal",
+        "style": {
+          "marginTop": 10,
+          "size": 7,
+          "color": "textoSuave",
+          "gap": 2,
+          "lineHeight": 1.35
+        }
+      }
+    ]
+  }
+}

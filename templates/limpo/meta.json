@@ -1,0 +1,24 @@
+{
+  "slug": "limpo",
+  "name": "Limpo",
+  "description": "Branco e limpo, com o cliente em destaque.",
+  "author": {
+    "name": "vero",
+    "url": "https://vero.ao"
+  },
+  "collection": "exemplos",
+  "version": 1,
+  "license": "MIT",
+  "docTypes": [
+    "FT",
+    "FR",
+    "NC",
+    "ND",
+    "RC"
+  ],
+  "tags": [
+    "branco",
+    "cartão"
+  ],
+  "updatedAt": "2026-10-08"
+}

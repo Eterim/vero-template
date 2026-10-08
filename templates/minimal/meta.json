@@ -1,0 +1,24 @@
+{
+  "slug": "minimal",
+  "name": "Minimal",
+  "description": "Títulos serifados, só linhas finas.",
+  "author": {
+    "name": "vero",
+    "url": "https://vero.ao"
+  },
+  "collection": "exemplos",
+  "version": 1,
+  "license": "MIT",
+  "docTypes": [
+    "FT",
+    "FR",
+    "NC",
+    "ND",
+    "RC"
+  ],
+  "tags": [
+    "serifada",
+    "minimalista"
+  ],
+  "updatedAt": "2026-10-08"
+}

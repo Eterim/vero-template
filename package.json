@@ -1,0 +1,11 @@
+{
+  "name": "vero-template",
+  "private": true,
+  "description": "Vero Template - facturas angolanas em React e Tailwind CSS",
+  "workspaces": ["apps/*", "packages/*"],
+  "scripts": {
+    "dev": "npm run dev -w apps/site",
+    "build": "npm run build -w apps/site"
+  },
+  "license": "MIT"
+}

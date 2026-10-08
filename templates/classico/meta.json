@@ -1,0 +1,25 @@
+{
+  "slug": "classico",
+  "name": "Clássico",
+  "description": "O modelo por omissão das facturas do Vero.",
+  "author": {
+    "name": "vero",
+    "url": "https://vero.ao"
+  },
+  "collection": "vero",
+  "version": 1,
+  "license": "MIT",
+  "docTypes": [
+    "FT",
+    "FR",
+    "NC",
+    "ND",
+    "RC"
+  ],
+  "tags": [
+    "vero",
+    "grelha",
+    "clássico"
+  ],
+  "updatedAt": "2026-10-08"
+}
