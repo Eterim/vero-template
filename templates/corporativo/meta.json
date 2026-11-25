@@ -2,11 +2,24 @@
   "slug": "corporativo",
   "name": "Corporativo",
   "description": "Como as facturas das grandes empresas: filete de cor no título, faixa com número e data, resumo em linhas finas.",
-  "author": { "name": "vero", "url": "https://vero.ao" },
+  "author": {
+    "name": "vero",
+    "url": "https://vero.ao"
+  },
   "collection": "exemplos",
-  "version": 1,
+  "version": 2,
   "license": "MIT",
-  "docTypes": ["FT", "FR", "NC", "ND", "RC"],
-  "tags": ["empresa", "linhas finas", "cor"],
+  "docTypes": [
+    "FT",
+    "FR",
+    "NC",
+    "ND",
+    "RC"
+  ],
+  "tags": [
+    "empresa",
+    "linhas finas",
+    "cor"
+  ],
   "updatedAt": "2026-11-25"
 }

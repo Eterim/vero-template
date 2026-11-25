@@ -399,10 +399,10 @@ function Bank({ b }: { b: Extract<Block, { type: 'bank' }> }) {
   const grid = b.grid ? { width: b.grid.width, color: color(t, b.grid.color) ?? t.theme.colors.foreground } : null
   type Col = [string, number, (a: BankAccount) => string]
   const cols: Col[] = [
-    ['Banco', 1.2, (a) => a.bank], ['IBAN', 2.4, (a) => a.iban],
+    // Banco · Nome (titular da conta) · IBAN, e conta/SWIFT só quando alguma conta os tem
+    ['Banco', 1.2, (a) => a.bank], ['Nome', 2, (a) => a.holder ?? data.org.name], ['IBAN', 2.4, (a) => a.iban],
     ...(accounts.some((a) => a.account) ? [['Conta', 1.4, (a) => a.account ?? ''] as Col] : []),
     ...(accounts.some((a) => a.swift) ? [['SWIFT', 1, (a) => a.swift ?? ''] as Col] : []),
-    ['Titular', 2, (a) => a.holder ?? data.org.name],
   ]
   const cellExtra = (i: number) => ({ paddingVertical: 6, paddingHorizontal: 6, ...(grid && i > 0 ? { borderLeftWidth: grid.width, borderLeftColor: grid.color } : {}) })
   return (

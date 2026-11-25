@@ -105,14 +105,15 @@ export default function Corporativo() {
           />
         </Row>
 
-        <Row className="mt-[16px] gap-6 items-start">
-          <Atcud prefix="ATCUD:" className="text-[9.5px] text-muted flex-1" />
-          <BankAccounts
-            label="Dados bancários"
-            className="text-[9.5px] flex-[2]"
-            labelClassName={label}
-          />
-        </Row>
+        <Atcud prefix="ATCUD:" className="text-[9.5px] text-muted mt-[16px]" />
+        <BankAccounts
+          label="Dados bancários"
+          layout="table"
+          className="text-[9.5px] mt-[10px]"
+          labelClassName={label}
+          headerClassName="text-[9px] font-bold uppercase text-muted py-[6px] border-b-2 border-brand"
+          gridClassName="border-[0.75px] border-line"
+        />
 
         <Footer className="px-[50px] justify-center h-[34px] border-t border-line">
           <Text className="text-[9px] text-muted text-center">{"{{org.name}} · {{org.website}}"}</Text>

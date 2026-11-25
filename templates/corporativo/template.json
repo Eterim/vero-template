@@ -2,7 +2,7 @@
   "format": "vero-template",
   "schemaVersion": 2,
   "id": "vero/corporativo",
-  "version": 1,
+  "version": 2,
   "name": "Corporativo",
   "author": "vero",
   "template": {
@@ -441,38 +441,44 @@
         }
       },
       {
-        "type": "row",
-        "children": [
-          {
-            "type": "atcud",
-            "prefix": "ATCUD:",
-            "style": {
-              "size": 7.125,
-              "color": "muted",
-              "flex": 1
-            }
-          },
-          {
-            "type": "bank",
-            "label": "Dados bancários",
-            "labelStyle": {
-              "size": 6.75,
-              "weight": 700,
-              "uppercase": true,
-              "letterSpacing": 0.45,
-              "color": "muted",
-              "marginBottom": 2.25
-            },
-            "style": {
-              "size": 7.125,
-              "flex": 2
-            }
-          }
-        ],
+        "type": "atcud",
+        "prefix": "ATCUD:",
         "style": {
-          "marginTop": 12,
-          "gap": 18,
-          "alignItems": "start"
+          "size": 7.125,
+          "color": "muted",
+          "marginTop": 12
+        }
+      },
+      {
+        "type": "bank",
+        "label": "Dados bancários",
+        "layout": "table",
+        "labelStyle": {
+          "size": 6.75,
+          "weight": 700,
+          "uppercase": true,
+          "letterSpacing": 0.45,
+          "color": "muted",
+          "marginBottom": 2.25
+        },
+        "headerStyle": {
+          "size": 6.75,
+          "weight": 700,
+          "uppercase": true,
+          "color": "muted",
+          "paddingY": 4.5,
+          "borderBottom": {
+            "width": 1.5,
+            "color": "brand"
+          }
+        },
+        "grid": {
+          "width": 0.563,
+          "color": "line"
+        },
+        "style": {
+          "size": 7.125,
+          "marginTop": 7.5
         }
       }
     ],
