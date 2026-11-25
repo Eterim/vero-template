@@ -237,6 +237,7 @@ class Compiler {
       }
       case 'fiscal': return withStyle({ type: 'fiscal', parts: Array.isArray(p.parts) ? p.parts : undefined })
       case 'pageNumber': return withStyle({ type: 'pageNumber' })
+      case 'copyLabel': return withStyle({ type: 'copyLabel' })
       default:
         this.issues.push({ component: name, message: kind === 'header' || kind === 'footer' || kind === 'corner' ? 'só pode estar directamente dentro de <Document>' : 'não pode estar aqui' })
         return null

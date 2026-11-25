@@ -122,7 +122,7 @@ transforms, CSS grid and absolute positioning. You can also use `style={{ fontSi
 
 `Tailwind` · `Document` · `Header` · `Footer` · `CornerDecoration` · `Row` · `Column` · `Text` · `Spacer` · `Hr` ·
 `Logo` · `DocumentTitle` · `DocumentNumber` · `DocumentDate` · `Atcud` · `StatusBadge` · `Issuer` · `Customer` ·
-`Payment` · `Items` · `Totals` · `Notes` · `AmountInWords` · `BankAccounts` · `LegalNotes` · `PageNumber`
+`Payment` · `Items` · `Totals` · `Notes` · `AmountInWords` · `BankAccounts` · `LegalNotes` · `PageNumber` · `CopyLabel`
 
 Your own components, lists (`.map`) and conditions work. Hooks don't - a template has no state.
 

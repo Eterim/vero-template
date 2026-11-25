@@ -25,7 +25,7 @@ export const TEMPLATE_VARIABLES = [
 
 const BLOCK_TYPES = new Set([
   'row', 'stack', 'text', 'spacer', 'divider', 'logo', 'documentTitle', 'documentNumber', 'documentDate', 'atcud',
-  'statusBadge', 'party', 'payment', 'items', 'totals', 'notes', 'fiscal', 'pageNumber', 'amountInWords', 'bank',
+  'statusBadge', 'party', 'payment', 'items', 'totals', 'notes', 'fiscal', 'pageNumber', 'copyLabel', 'amountInWords', 'bank',
 ])
 
 /** Chaves com texto que aparece no PDF, e o tamanho máximo de cada uma. */

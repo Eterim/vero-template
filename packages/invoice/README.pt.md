@@ -122,7 +122,7 @@ transformações, grelha CSS e posicionamento absoluto. Também se pode usar `st
 
 `Tailwind` · `Document` · `Header` · `Footer` · `CornerDecoration` · `Row` · `Column` · `Text` · `Spacer` · `Hr` ·
 `Logo` · `DocumentTitle` · `DocumentNumber` · `DocumentDate` · `Atcud` · `StatusBadge` · `Issuer` · `Customer` ·
-`Payment` · `Items` · `Totals` · `Notes` · `AmountInWords` · `BankAccounts` · `LegalNotes` · `PageNumber`
+`Payment` · `Items` · `Totals` · `Notes` · `AmountInWords` · `BankAccounts` · `LegalNotes` · `PageNumber` · `CopyLabel`
 
 Componentes teus, listas (`.map`) e condições funcionam. Hooks não - um template não tem estado.
 

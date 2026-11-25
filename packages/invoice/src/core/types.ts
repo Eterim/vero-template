@@ -95,6 +95,8 @@ export type Block =
   | (Base & { type: 'notes'; label?: string; labelStyle?: StyleRef; inline?: boolean })
   | (Base & { type: 'fiscal'; /** Que menções este bloco mostra (por omissão, todas). */ parts?: FiscalPart[] })
   | (Base & { type: 'pageNumber' })
+  /** ORIGINAL / 2.ª VIA (vem do Vero; nada numa pró-forma). */
+  | (Base & { type: 'copyLabel' })
   | (Base & { type: 'amountInWords'; label?: string; labelStyle?: StyleRef; inline?: boolean })
   | (Base & { type: 'bank'; label?: string; labelStyle?: StyleRef; layout?: 'list' | 'table'; headerStyle?: StyleRef; grid?: Border })
 
@@ -172,6 +174,8 @@ export interface DocumentData {
   /** Vazio numa pró-forma (não leva QR). */
   qrUrl: string
   status?: 'paid' | 'pending' | 'cancelled'
+  /** Via do documento: "ORIGINAL" ou "2.ª VIA" (vazio numa pró-forma). Mostrada pelo bloco copyLabel. */
+  copyLabel?: string | null
   /** Marca de água de um documento anulado (status 'cancelled'). Por omissão "ANULADO". */
   cancelledLabel?: string | null
   reference?: string | null

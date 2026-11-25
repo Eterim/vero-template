@@ -254,6 +254,13 @@ export const COMPONENT_DOCS: ComponentDoc[] = [
     props: STYLED,
     examples: [{ id: 'default', title: 'Ao lado do número' }],
   },
+  {
+    slug: 'copy-label', name: 'CopyLabel', group: 'Documento',
+    summary: 'ORIGINAL ou 2.ª VIA. O Vero diz qual.',
+    props: STYLED,
+    examples: [{ id: 'default', title: 'Ao lado do número' }],
+    notes: ['Nas facturas, recibos e notas sai ORIGINAL; quando a empresa tira uma segunda via, sai 2.ª VIA. Numa pró-forma não aparece.', 'O template não pode escrever estas palavras como texto: só este componente.'],
+  },
 ]
 
 const images = import.meta.glob<string>('../../../../examples/*/*.webp', { eager: true, query: '?url', import: 'default' })

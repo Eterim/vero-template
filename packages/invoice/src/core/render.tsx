@@ -535,6 +535,10 @@ function BlockView({ b, at }: { b: Block; at: At }) {
     case 'bank': return <Bank b={b} />
     case 'pageNumber':
       return <Box style={b.style}><Text render={({ pageNumber, totalPages }) => `PÁGINA ${pageNumber} / ${totalPages}`} /></Box>
+    case 'copyLabel':
+      // A via vem sempre do Vero (o template não a pode escrever como texto - safety.ts)
+      if (data.documentType === 'PF' || !data.copyLabel) return null
+      return <Box style={b.style}><Text>{data.copyLabel}</Text></Box>
   }
 }
 

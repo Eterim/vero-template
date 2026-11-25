@@ -25,6 +25,7 @@ export function sampleDocument(documentType: DocType = 'FT'): DocumentData {
     issuedAt,
     atcud: isProforma ? '' : `${SERIES[documentType].split(' ')[1].replace('/', '-')}`,
     hashChars: isProforma ? '' : 'Ab3x',
+    copyLabel: isProforma ? null : 'ORIGINAL',
     certificationNumber: 'FE/271/AGT/2026',
     qrUrl: isProforma ? '' : `https://quiosqueagt.minfin.gov.ao/facturacao-eletronica/consultar-fe?emissor=5000000000&document=${encodeURIComponent(SERIES[documentType])}`,
     status: documentType === 'FR' || isReceipt ? 'paid' : documentType === 'FT' ? 'pending' : undefined,

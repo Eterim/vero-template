@@ -142,3 +142,5 @@ export const BankAccounts = marker<Styled & { label?: string; layout?: 'list' | 
 export const LegalNotes = marker<Styled & { parts?: FiscalPart[] }>('fiscal', 'LegalNotes')
 /** PÁGINA 1 / 2 */
 export const PageNumber = marker<Styled>('pageNumber', 'PageNumber')
+/** ORIGINAL ou 2.ª VIA - o Vero diz qual. Numa pró-forma não aparece. */
+export const CopyLabel = marker<Styled>('copyLabel', 'CopyLabel')
