@@ -2,7 +2,7 @@
   "format": "vero-template",
   "schemaVersion": 2,
   "id": "vero/minimal",
-  "version": 1,
+  "version": 2,
   "name": "Minimal",
   "author": "vero",
   "template": {
@@ -83,6 +83,16 @@
             "type": "documentDate",
             "style": {
               "size": 9,
+              "color": "muted"
+            }
+          },
+          {
+            "type": "copyLabel",
+            "style": {
+              "size": 6.75,
+              "weight": 700,
+              "uppercase": true,
+              "letterSpacing": 0.9,
               "color": "muted"
             }
           }

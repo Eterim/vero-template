@@ -2,6 +2,7 @@ import {
   Tailwind, Document, Row, Column, Logo, DocumentTitle, DocumentNumber,
   DocumentDate, Issuer, Customer, Payment, Items, Totals, Notes,
   AmountInWords, BankAccounts, LegalNotes,
+  CopyLabel,
 } from "@veroao/invoice"
 
 const config = {
@@ -37,6 +38,7 @@ export default function Compact() {
             <DocumentTitle className="text-[17.5px] font-bold uppercase" />
             <DocumentNumber className="text-[11.5px] font-bold" />
             <DocumentDate className="text-[10px]" />
+            <CopyLabel className="text-[9px] font-bold uppercase tracking-[1.2px] text-muted" />
           </Column>
         </Row>
         <Row className="text-[10px] mb-[13px] gap-4">

@@ -1,0 +1,502 @@
+{
+  "format": "vero-template",
+  "schemaVersion": 2,
+  "id": "vero/corporativo",
+  "version": 1,
+  "name": "Corporativo",
+  "author": "vero",
+  "template": {
+    "version": 2,
+    "theme": {
+      "colors": {
+        "background": "#FFFFFF",
+        "foreground": "#1F2937",
+        "muted": "#6B7280",
+        "brand": "#7A1F4B",
+        "line": "#D1D5DB",
+        "soft": "#F9FAFB"
+      },
+      "fonts": {
+        "body": "Helvetica",
+        "display": "Helvetica"
+      },
+      "styles": {
+        "label": {
+          "size": 7,
+          "weight": 700,
+          "uppercase": true,
+          "letterSpacing": 0.4,
+          "color": "#71717a",
+          "marginBottom": 4
+        },
+        "tableHeader": {
+          "size": 7.5,
+          "weight": 700,
+          "color": "#52525b",
+          "paddingX": 6,
+          "paddingY": 6,
+          "borderBottom": {
+            "width": 0.75,
+            "color": "#d4d4d8"
+          }
+        },
+        "tableRow": {
+          "paddingX": 6,
+          "paddingY": 6,
+          "borderBottom": {
+            "width": 0.5,
+            "color": "#e4e4e7"
+          }
+        },
+        "details": {
+          "size": 7,
+          "color": "#71717a",
+          "marginTop": 2
+        },
+        "body": {
+          "color": "foreground"
+        }
+      }
+    },
+    "page": {
+      "background": "background",
+      "marginX": 37.5,
+      "marginTop": 33
+    },
+    "body": [
+      {
+        "type": "row",
+        "children": [
+          {
+            "type": "stack",
+            "children": [
+              {
+                "type": "documentTitle",
+                "style": {
+                  "size": 16.5,
+                  "weight": 700,
+                  "paddingBottom": 4.5,
+                  "borderBottom": {
+                    "width": 1.5,
+                    "color": "brand"
+                  }
+                }
+              },
+              {
+                "type": "party",
+                "role": "issuer",
+                "label": "",
+                "nameStyle": {
+                  "size": 7.5,
+                  "weight": 700
+                },
+                "style": {
+                  "size": 7.125,
+                  "gap": 0.75,
+                  "marginTop": 3
+                }
+              }
+            ],
+            "style": {
+              "gap": 4.5,
+              "flex": 1
+            }
+          },
+          {
+            "type": "stack",
+            "children": [
+              {
+                "type": "logo",
+                "height": 33,
+                "fallbackStyle": {
+                  "size": 15,
+                  "weight": 700,
+                  "color": "brand"
+                }
+              },
+              {
+                "type": "pageNumber",
+                "style": {
+                  "size": 6.75,
+                  "color": "muted"
+                }
+              }
+            ],
+            "style": {
+              "gap": 4.5,
+              "alignItems": "end",
+              "flex": 1
+            }
+          }
+        ],
+        "style": {
+          "marginBottom": 16.5,
+          "alignItems": "start",
+          "justify": "between"
+        }
+      },
+      {
+        "type": "row",
+        "children": [
+          {
+            "type": "stack",
+            "children": [
+              {
+                "type": "text",
+                "text": "Nº do documento",
+                "style": {
+                  "size": 6.75,
+                  "weight": 700,
+                  "uppercase": true,
+                  "letterSpacing": 0.45,
+                  "color": "muted",
+                  "marginBottom": 2.25
+                }
+              },
+              {
+                "type": "documentNumber",
+                "style": {
+                  "size": 8.25,
+                  "weight": 700
+                }
+              }
+            ],
+            "style": {
+              "flex": 1
+            }
+          },
+          {
+            "type": "stack",
+            "children": [
+              {
+                "type": "text",
+                "text": "Data de emissão",
+                "style": {
+                  "size": 6.75,
+                  "weight": 700,
+                  "uppercase": true,
+                  "letterSpacing": 0.45,
+                  "color": "muted",
+                  "marginBottom": 2.25
+                }
+              },
+              {
+                "type": "documentDate",
+                "style": {
+                  "size": 7.875
+                }
+              }
+            ],
+            "style": {
+              "flex": 1
+            }
+          },
+          {
+            "type": "stack",
+            "children": [
+              {
+                "type": "text",
+                "text": "Via",
+                "style": {
+                  "size": 6.75,
+                  "weight": 700,
+                  "uppercase": true,
+                  "letterSpacing": 0.45,
+                  "color": "muted",
+                  "marginBottom": 2.25
+                }
+              },
+              {
+                "type": "copyLabel",
+                "style": {
+                  "size": 7.875,
+                  "weight": 700,
+                  "color": "brand"
+                }
+              }
+            ],
+            "style": {
+              "flex": 1,
+              "alignItems": "end"
+            }
+          }
+        ],
+        "style": {
+          "paddingY": 7.5,
+          "marginBottom": 13.5,
+          "gap": 18,
+          "borderTop": {
+            "width": 0.75,
+            "color": "line"
+          },
+          "borderBottom": {
+            "width": 0.75,
+            "color": "line"
+          }
+        }
+      },
+      {
+        "type": "party",
+        "role": "customer",
+        "label": "Cliente",
+        "taxIdLabel": "NIF:",
+        "labelStyle": {
+          "size": 6.75,
+          "weight": 700,
+          "uppercase": true,
+          "letterSpacing": 0.45,
+          "color": "muted",
+          "marginBottom": 2.25
+        },
+        "nameStyle": {
+          "size": 8.625,
+          "weight": 700
+        },
+        "style": {
+          "size": 7.5,
+          "gap": 1.5,
+          "marginBottom": 15
+        }
+      },
+      {
+        "type": "row",
+        "children": [
+          {
+            "type": "text",
+            "text": "Resumo do documento",
+            "style": {
+              "size": 8.25,
+              "weight": 700,
+              "color": "foreground"
+            }
+          },
+          {
+            "type": "text",
+            "text": "Valor Kz",
+            "style": {
+              "size": 8.25,
+              "weight": 700,
+              "color": "foreground"
+            }
+          }
+        ],
+        "style": {
+          "paddingBottom": 4.5,
+          "marginBottom": 1.5,
+          "justify": "between",
+          "borderBottom": {
+            "width": 1.5,
+            "color": "brand"
+          }
+        }
+      },
+      {
+        "type": "items",
+        "headerStyle": {
+          "size": 6.75,
+          "weight": 700,
+          "paddingY": 5.25,
+          "borderBottom": {
+            "width": 0.75,
+            "color": "line"
+          }
+        },
+        "rowStyle": {
+          "paddingY": 5.25,
+          "borderBottom": {
+            "width": 0.563,
+            "color": "line"
+          }
+        },
+        "detailsStyle": {
+          "size": 7.125,
+          "color": "muted",
+          "marginTop": 1.5
+        },
+        "showCurrency": false,
+        "columns": [
+          {
+            "field": "description",
+            "label": "Descrição",
+            "flex": 3.2
+          },
+          {
+            "field": "quantity",
+            "label": "Quantidade",
+            "flex": 1.1
+          },
+          {
+            "field": "unitPrice",
+            "label": "Preço Unitário",
+            "flex": 1.4
+          },
+          {
+            "field": "lineDiscount",
+            "label": "Desconto",
+            "flex": 1
+          },
+          {
+            "field": "taxAmount",
+            "label": "IVA",
+            "flex": 1.1
+          },
+          {
+            "field": "lineTotal",
+            "label": "Total",
+            "flex": 1.3
+          }
+        ],
+        "style": {
+          "size": 7.5
+        }
+      },
+      {
+        "type": "row",
+        "children": [
+          {
+            "type": "stack",
+            "children": [
+              {
+                "type": "amountInWords",
+                "label": "Extenso:",
+                "inline": true,
+                "labelStyle": {
+                  "weight": 700
+                },
+                "style": {
+                  "size": 7.125,
+                  "color": "muted"
+                }
+              },
+              {
+                "type": "notes",
+                "label": "Notas:",
+                "inline": true,
+                "labelStyle": {
+                  "weight": 700
+                },
+                "style": {
+                  "size": 7.125
+                }
+              },
+              {
+                "type": "payment",
+                "label": "Pagamento",
+                "labelStyle": {
+                  "size": 6.75,
+                  "weight": 700,
+                  "uppercase": true,
+                  "letterSpacing": 0.45,
+                  "color": "muted",
+                  "marginBottom": 2.25
+                },
+                "style": {
+                  "size": 7.125
+                }
+              },
+              {
+                "type": "fiscal",
+                "parts": [
+                  "exemptions",
+                  "legal"
+                ],
+                "style": {
+                  "size": 7.125,
+                  "lineHeight": 1.35,
+                  "color": "muted",
+                  "gap": 1.5
+                }
+              }
+            ],
+            "style": {
+              "gap": 7.5,
+              "flex": 1
+            }
+          },
+          {
+            "type": "totals",
+            "title": "Totais do documento",
+            "totalLabel": "Total a pagar",
+            "titleStyle": {
+              "size": 8.25,
+              "weight": 700,
+              "color": "foreground"
+            },
+            "totalStyle": {
+              "size": 9,
+              "weight": 700,
+              "color": "brand"
+            },
+            "rowRule": "line",
+            "style": {
+              "size": 7.5,
+              "flex": 1
+            }
+          }
+        ],
+        "style": {
+          "marginTop": 13.5,
+          "gap": 22.5,
+          "alignItems": "start"
+        }
+      },
+      {
+        "type": "row",
+        "children": [
+          {
+            "type": "atcud",
+            "prefix": "ATCUD:",
+            "style": {
+              "size": 7.125,
+              "color": "muted",
+              "flex": 1
+            }
+          },
+          {
+            "type": "bank",
+            "label": "Dados bancários",
+            "labelStyle": {
+              "size": 6.75,
+              "weight": 700,
+              "uppercase": true,
+              "letterSpacing": 0.45,
+              "color": "muted",
+              "marginBottom": 2.25
+            },
+            "style": {
+              "size": 7.125,
+              "flex": 2
+            }
+          }
+        ],
+        "style": {
+          "marginTop": 12,
+          "gap": 18,
+          "alignItems": "start"
+        }
+      }
+    ],
+    "bottom": {
+      "height": 25.5,
+      "style": {
+        "paddingX": 37.5,
+        "justify": "center",
+        "borderTop": {
+          "width": 0.75,
+          "color": "line"
+        }
+      },
+      "children": [
+        {
+          "type": "text",
+          "text": "{{org.name}} · {{org.website}}",
+          "style": {
+            "size": 6.75,
+            "color": "muted",
+            "align": "center"
+          }
+        }
+      ]
+    }
+  }
+}

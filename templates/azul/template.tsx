@@ -2,6 +2,7 @@ import {
   Tailwind, Document, Header, Row, Column, Logo, DocumentTitle,
   DocumentNumber, DocumentDate, Issuer, Customer, Payment, Items, Totals,
   Notes, AmountInWords, BankAccounts, LegalNotes,
+  CopyLabel,
 } from "@veroao/invoice"
 
 const config = {
@@ -40,6 +41,7 @@ export default function Blue() {
               <DocumentTitle className="text-2xl font-bold text-[#ffffff]" />
               <DocumentNumber className="text-[13.5px] text-[#dbeafe]" />
               <DocumentDate className="text-[10.5px] text-[#dbeafe]" />
+              <CopyLabel className="text-[9px] font-bold uppercase tracking-[1.2px] text-[#dbeafe]" />
             </Column>
           </Row>
         </Header>

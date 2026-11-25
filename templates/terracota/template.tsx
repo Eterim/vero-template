@@ -2,6 +2,7 @@ import {
   Tailwind, Document, Footer, Row, Column, Text, Logo, DocumentTitle,
   DocumentNumber, DocumentDate, Issuer, Customer, Payment, Items, Totals,
   Notes, AmountInWords, BankAccounts, LegalNotes, PageNumber,
+  CopyLabel,
 } from "@veroao/invoice"
 
 const config = {
@@ -42,6 +43,7 @@ export default function Terracotta() {
           <Column className="gap-[5px] items-end">
             <Logo className="h-[45px]" fallbackClassName="font-display text-[21.5px] text-brand" />
             <DocumentDate className="text-[11.5px] text-muted" />
+            <CopyLabel className="text-[9px] font-bold uppercase tracking-[1.2px] text-muted" />
           </Column>
         </Row>
         <Row className="mb-[35px] gap-8">

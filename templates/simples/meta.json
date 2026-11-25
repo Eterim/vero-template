@@ -7,7 +7,7 @@
     "url": "https://vero.ao"
   },
   "collection": "vero",
-  "version": 2,
+  "version": 3,
   "license": "MIT",
   "docTypes": [
     "FT",
@@ -20,5 +20,5 @@
     "vero",
     "minimalista"
   ],
-  "updatedAt": "2026-10-08"
+  "updatedAt": "2026-11-25"
 }

@@ -1,0 +1,12 @@
+{
+  "slug": "executivo",
+  "name": "Executivo",
+  "description": "Faixa escura no topo com dourado, letra serifada no título.",
+  "author": { "name": "vero", "url": "https://vero.ao" },
+  "collection": "exemplos",
+  "version": 1,
+  "license": "MIT",
+  "docTypes": ["FT", "FR", "NC", "ND", "RC"],
+  "tags": ["escuro", "dourado", "serifada"],
+  "updatedAt": "2026-11-25"
+}

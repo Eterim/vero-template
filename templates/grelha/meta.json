@@ -1,0 +1,12 @@
+{
+  "slug": "grelha",
+  "name": "Grelha",
+  "description": "Tudo em caixas com contorno, como as facturas tradicionais em papel.",
+  "author": { "name": "vero", "url": "https://vero.ao" },
+  "collection": "exemplos",
+  "version": 1,
+  "license": "MIT",
+  "docTypes": ["FT", "FR", "NC", "ND", "RC"],
+  "tags": ["caixas", "tradicional", "grelha"],
+  "updatedAt": "2026-11-25"
+}

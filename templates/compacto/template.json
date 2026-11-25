@@ -2,7 +2,7 @@
   "format": "vero-template",
   "schemaVersion": 2,
   "id": "vero/compacto",
-  "version": 1,
+  "version": 2,
   "name": "Compacto",
   "author": "vero",
   "template": {
@@ -96,6 +96,16 @@
                 "type": "documentDate",
                 "style": {
                   "size": 7.5
+                }
+              },
+              {
+                "type": "copyLabel",
+                "style": {
+                  "size": 6.75,
+                  "weight": 700,
+                  "uppercase": true,
+                  "letterSpacing": 0.9,
+                  "color": "muted"
                 }
               }
             ],

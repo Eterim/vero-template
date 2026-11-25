@@ -7,7 +7,7 @@
     "url": "https://vero.ao"
   },
   "collection": "exemplos",
-  "version": 1,
+  "version": 2,
   "license": "MIT",
   "docTypes": [
     "FT",
@@ -20,5 +20,5 @@
     "serifada",
     "minimalista"
   ],
-  "updatedAt": "2026-10-08"
+  "updatedAt": "2026-11-25"
 }

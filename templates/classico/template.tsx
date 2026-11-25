@@ -2,6 +2,7 @@ import {
   Tailwind, Document, CornerDecoration, Row, Column, Text, Logo,
   DocumentTitle, DocumentNumber, DocumentDate, Atcud, Issuer, Customer,
   Items, Totals, Notes, AmountInWords, BankAccounts, LegalNotes,
+  CopyLabel,
 } from "@veroao/invoice"
 
 const config = {
@@ -51,10 +52,13 @@ export default function Classic() {
             nameClassName="text-[13.5px] font-bold"
           />
         </Row>
-        <DocumentNumber
-          prefix="{{document.title}} - {{document.type}} nº"
-          className="text-[13.5px] font-bold uppercase"
-        />
+        <Row className="items-end justify-between">
+          <DocumentNumber
+            prefix="{{document.title}} - {{document.type}} nº"
+            className="text-[13.5px] font-bold uppercase"
+          />
+          <CopyLabel className="text-[9px] font-bold uppercase tracking-[1.2px] text-muted" />
+        </Row>
         <Row className="mt-1 mb-4 justify-between">
           <DocumentDate prefix="Data de emissão:" className="text-[10px] text-muted" />
           <Atcud

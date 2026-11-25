@@ -1,0 +1,362 @@
+{
+  "format": "vero-template",
+  "schemaVersion": 2,
+  "id": "vero/savana",
+  "version": 1,
+  "name": "Savana",
+  "author": "vero",
+  "template": {
+    "version": 2,
+    "theme": {
+      "colors": {
+        "background": "#FFFFFF",
+        "foreground": "#1C2B22",
+        "muted": "#5F6B63",
+        "green": "#1F5135",
+        "ochre": "#C98A2B",
+        "mist": "#F2F6F3",
+        "line": "#DCE5DF"
+      },
+      "fonts": {
+        "body": "Inter",
+        "display": "Inter"
+      },
+      "styles": {
+        "label": {
+          "size": 7,
+          "weight": 700,
+          "uppercase": true,
+          "letterSpacing": 0.4,
+          "color": "#71717a",
+          "marginBottom": 4
+        },
+        "tableHeader": {
+          "size": 7.5,
+          "weight": 700,
+          "color": "#52525b",
+          "paddingX": 6,
+          "paddingY": 6,
+          "borderBottom": {
+            "width": 0.75,
+            "color": "#d4d4d8"
+          }
+        },
+        "tableRow": {
+          "paddingX": 6,
+          "paddingY": 6,
+          "borderBottom": {
+            "width": 0.5,
+            "color": "#e4e4e7"
+          }
+        },
+        "details": {
+          "size": 7,
+          "color": "#71717a",
+          "marginTop": 2
+        },
+        "body": {
+          "color": "foreground"
+        }
+      }
+    },
+    "page": {
+      "background": "background",
+      "marginX": 39,
+      "marginTop": 30
+    },
+    "body": [
+      {
+        "type": "row",
+        "children": [
+          {
+            "type": "stack",
+            "children": [
+              {
+                "type": "logo",
+                "height": 33,
+                "fallbackStyle": {
+                  "size": 15,
+                  "weight": 700,
+                  "color": "green"
+                }
+              }
+            ],
+            "style": {
+              "gap": 3
+            }
+          },
+          {
+            "type": "stack",
+            "children": [
+              {
+                "type": "documentTitle",
+                "style": {
+                  "size": 19.5,
+                  "weight": 700,
+                  "color": "green"
+                }
+              },
+              {
+                "type": "documentNumber",
+                "style": {
+                  "size": 8.625,
+                  "weight": 700
+                }
+              },
+              {
+                "type": "documentDate",
+                "style": {
+                  "size": 7.875,
+                  "color": "muted"
+                }
+              },
+              {
+                "type": "copyLabel",
+                "style": {
+                  "size": 6.75,
+                  "weight": 700,
+                  "uppercase": true,
+                  "letterSpacing": 1.125,
+                  "color": "ochre"
+                }
+              }
+            ],
+            "style": {
+              "gap": 2.25,
+              "alignItems": "end"
+            }
+          }
+        ],
+        "style": {
+          "paddingTop": 13.5,
+          "marginBottom": 21,
+          "alignItems": "start",
+          "justify": "between",
+          "borderTop": {
+            "width": 3,
+            "color": "green"
+          }
+        }
+      },
+      {
+        "type": "row",
+        "children": [
+          {
+            "type": "party",
+            "role": "issuer",
+            "label": "Emitente",
+            "labelStyle": {
+              "size": 6.75,
+              "weight": 700,
+              "uppercase": true,
+              "letterSpacing": 0.6,
+              "color": "ochre",
+              "marginBottom": 3.75
+            },
+            "nameStyle": {
+              "size": 8.625,
+              "weight": 700
+            },
+            "style": {
+              "flex": 1,
+              "background": "mist",
+              "padding": 10.5,
+              "gap": 1.5,
+              "size": 7.5
+            }
+          },
+          {
+            "type": "party",
+            "role": "customer",
+            "label": "Cliente",
+            "labelStyle": {
+              "size": 6.75,
+              "weight": 700,
+              "uppercase": true,
+              "letterSpacing": 0.6,
+              "color": "ochre",
+              "marginBottom": 3.75
+            },
+            "nameStyle": {
+              "size": 8.625,
+              "weight": 700
+            },
+            "style": {
+              "flex": 1,
+              "background": "mist",
+              "padding": 10.5,
+              "gap": 1.5,
+              "size": 7.5
+            }
+          }
+        ],
+        "style": {
+          "marginBottom": 19.5,
+          "gap": 12
+        }
+      },
+      {
+        "type": "items",
+        "headerStyle": {
+          "size": 6.75,
+          "weight": 700,
+          "uppercase": true,
+          "color": "#FFFFFF",
+          "background": "green",
+          "paddingX": 7.5,
+          "paddingY": 6
+        },
+        "rowStyle": {
+          "paddingX": 7.5,
+          "paddingY": 6
+        },
+        "zebra": "mist",
+        "detailsStyle": {
+          "size": 7.125,
+          "color": "muted",
+          "marginTop": 1.5
+        },
+        "style": {
+          "size": 7.5
+        }
+      },
+      {
+        "type": "row",
+        "children": [
+          {
+            "type": "stack",
+            "children": [
+              {
+                "type": "amountInWords",
+                "labelStyle": {
+                  "size": 6.75,
+                  "weight": 700,
+                  "uppercase": true,
+                  "letterSpacing": 0.6,
+                  "color": "ochre",
+                  "marginBottom": 3.75
+                },
+                "style": {
+                  "size": 7.5
+                }
+              },
+              {
+                "type": "notes",
+                "labelStyle": {
+                  "size": 6.75,
+                  "weight": 700,
+                  "uppercase": true,
+                  "letterSpacing": 0.6,
+                  "color": "ochre",
+                  "marginBottom": 3.75
+                },
+                "style": {
+                  "size": 7.5,
+                  "color": "muted"
+                }
+              },
+              {
+                "type": "payment",
+                "labelStyle": {
+                  "size": 6.75,
+                  "weight": 700,
+                  "uppercase": true,
+                  "letterSpacing": 0.6,
+                  "color": "ochre",
+                  "marginBottom": 3.75
+                },
+                "style": {
+                  "size": 7.5
+                }
+              },
+              {
+                "type": "bank",
+                "labelStyle": {
+                  "size": 6.75,
+                  "weight": 700,
+                  "uppercase": true,
+                  "letterSpacing": 0.6,
+                  "color": "ochre",
+                  "marginBottom": 3.75
+                },
+                "style": {
+                  "size": 7.5
+                }
+              }
+            ],
+            "style": {
+              "gap": 9,
+              "flex": 1
+            }
+          },
+          {
+            "type": "totals",
+            "totalStyle": {
+              "size": 11.25,
+              "weight": 700
+            },
+            "rowRule": "line",
+            "totalBackground": "green",
+            "totalColor": "#FFFFFF",
+            "style": {
+              "flex": 1,
+              "size": 7.5
+            }
+          }
+        ],
+        "style": {
+          "marginTop": 18,
+          "gap": 22.5,
+          "alignItems": "start"
+        }
+      },
+      {
+        "type": "fiscal",
+        "style": {
+          "size": 7.125,
+          "lineHeight": 1.35,
+          "color": "muted",
+          "marginTop": 16.5,
+          "gap": 2.25
+        }
+      }
+    ],
+    "bottom": {
+      "height": 27,
+      "style": {
+        "paddingX": 39,
+        "justify": "center",
+        "borderTop": {
+          "width": 1.5,
+          "color": "ochre"
+        }
+      },
+      "children": [
+        {
+          "type": "row",
+          "children": [
+            {
+              "type": "text",
+              "text": "{{org.name}} · {{org.website}}",
+              "style": {
+                "size": 7.125,
+                "color": "muted"
+              }
+            },
+            {
+              "type": "pageNumber",
+              "style": {
+                "size": 7.125,
+                "weight": 700,
+                "color": "green"
+              }
+            }
+          ],
+          "style": {
+            "justify": "between"
+          }
+        }
+      ]
+    }
+  }
+}

@@ -2,7 +2,7 @@
   "format": "vero-template",
   "schemaVersion": 2,
   "id": "vero/moderno",
-  "version": 2,
+  "version": 3,
   "name": "Moderno",
   "author": "vero",
   "template": {
@@ -153,12 +153,31 @@
         }
       },
       {
-        "type": "documentNumber",
-        "prefix": "{{document.title}} - {{document.type}} nº",
+        "type": "row",
+        "children": [
+          {
+            "type": "documentNumber",
+            "prefix": "{{document.title}} - {{document.type}} nº",
+            "style": {
+              "size": 10.125,
+              "weight": 700,
+              "uppercase": true
+            }
+          },
+          {
+            "type": "copyLabel",
+            "style": {
+              "size": 6.75,
+              "weight": 700,
+              "uppercase": true,
+              "letterSpacing": 0.9,
+              "color": "muted"
+            }
+          }
+        ],
         "style": {
-          "size": 10.125,
-          "weight": 700,
-          "uppercase": true
+          "alignItems": "end",
+          "justify": "between"
         }
       },
       {

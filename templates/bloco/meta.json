@@ -1,0 +1,12 @@
+{
+  "slug": "bloco",
+  "name": "Bloco",
+  "description": "Número grande e caixa escura com o total, para quem quer impacto.",
+  "author": { "name": "vero", "url": "https://vero.ao" },
+  "collection": "exemplos",
+  "version": 1,
+  "license": "MIT",
+  "docTypes": ["FT", "FR", "NC", "ND", "RC"],
+  "tags": ["moderno", "contraste", "grande"],
+  "updatedAt": "2026-11-25"
+}

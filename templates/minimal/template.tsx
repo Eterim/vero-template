@@ -2,6 +2,7 @@ import {
   Tailwind, Document, Row, Column, Spacer, DocumentTitle, DocumentNumber,
   DocumentDate, Issuer, Customer, Items, Totals, Notes, AmountInWords,
   BankAccounts, LegalNotes,
+  CopyLabel,
 } from "@veroao/invoice"
 
 const config = {
@@ -35,6 +36,7 @@ export default function Minimal() {
         <Row className="mt-2 mb-12 justify-between">
           <DocumentNumber className="text-xs text-muted" />
           <DocumentDate className="text-xs text-muted" />
+          <CopyLabel className="text-[9px] font-bold uppercase tracking-[1.2px] text-muted" />
         </Row>
         <Row className="mb-12 gap-[53px]">
           <Issuer label="De" className="gap-[3px] flex-1" labelClassName={label} />
