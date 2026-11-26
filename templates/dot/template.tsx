@@ -2,9 +2,9 @@ import { Tailwind, Document, Footer, CornerDecoration, Row, Column, Text, Spacer
   DocumentDate, StatusBadge, Customer, Issuer, Payment, Items, Totals, Notes, AmountInWords, BankAccounts, LegalNotes,
   PageNumber, CopyLabel } from "@veroao/invoice"
 
-// Noite: azul-noite, faixas no canto, rodapé escuro com riscas e um círculo cortado no canto.
+// DOT: azul-noite, faixas no canto, rodapé escuro com riscas e um círculo cortado no canto.
 const label = "mb-1 text-[7px] font-bold uppercase tracking-wider text-blue"
-export default function Noite() {
+export default function Dot() {
   return (
     <Tailwind config={{ theme: { extend: { colors: { navy: "#01042D", blue: "#1E40AF", sky: "#3B82F6", ice: "#EEF3FF", mist: "#F7F9FE", line: "#DCE4F5", muted: "#55607A" } } } }}>
       <Document className="bg-white px-12 pt-10 text-[10px] text-navy">
