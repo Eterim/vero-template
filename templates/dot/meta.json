@@ -1,0 +1,15 @@
+{
+  "slug": "dot",
+  "name": "DOT",
+  "description": "Azul-noite com faixas no canto, partes em duas colunas e rodapé escuro com riscas.",
+  "author": {
+    "name": "Akejr",
+    "url": "https://github.com/Akejr"
+  },
+  "collection": "comunidade",
+  "version": 1,
+  "license": "MIT",
+  "docTypes": ["FT", "FR", "NC", "ND", "RC"],
+  "tags": ["azul", "escuro", "rodapé"],
+  "updatedAt": "2026-11-26"
+}
